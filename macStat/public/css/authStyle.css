@@ -1,0 +1,40 @@
+body{
+	background-color: #CDCDCD
+}
+.form-frame{
+	background-color: rgba(6, 4, 4, 0.82);
+	height: auto;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin: 20 auto;
+	overflow-y: auto 
+}
+fieldset{
+	margin: 10 0 50 0;
+}
+legend, label{
+	color:white;
+}
+/*.forgot{
+	font-size: 9pt;
+	margin:10 auto 10;
+}*/
+.register{
+	font-size: 10pt;
+	margin: 10 auto;
+}
+.login{
+	margin: 20 0 0 0;
+	padding:0;
+	height: 40px;
+}
+.login a{
+	display: block;
+	color: white;
+	text-decoration: none;
+	height: 100%;
+	padding:10;
+}
+/*.imgLogo{
+	padding:0;
+}*/
