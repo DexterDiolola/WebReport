@@ -92,7 +92,6 @@ macStats.factory('myService',['$http', function($http){
 		}
 		var map = new google.maps.Map(document.getElementById('map'), options);
 		
-
 		for(var x=0; x<obj.length; x++){
 			addMarker(obj[x]);
 					
@@ -321,7 +320,7 @@ macStats.controller('dashboardControllerPD',
 					$('.db-s-frame').hide();
 					$(".db-graph-frame").attr("style", "margin-top: 70;");
 					
-					graphPackages('sum-perday', '1Hour');
+					graphPackages('sum-perday', '30Minutes');
 					myService.maxOfPackages('max-perday').then(function(response){
 						$scope.xxxmins = response.data[0]['xxxmins'];
 						$scope.ihr = response.data[0]['ihr'];
@@ -460,7 +459,7 @@ macStats.controller('dashboardControllerPW',
 					$('.db-s-frame').hide();
 					$(".db-graph-frame").attr("style", "margin-top: 70;");
 					
-					graphPackages('sum-perweek', '1Hour');
+					graphPackages('sum-perweek', '30Minutes');
 					myService.maxOfPackages('max-perweek').then(function(response){
 						$scope.xxxmins = response.data[0]['xxxmins'];
 						$scope.ihr = response.data[0]['ihr'];
@@ -597,7 +596,7 @@ macStats.controller('dashboardControllerPM',
 					$('.db-s-frame').hide();
 					$(".db-graph-frame").attr("style", "margin-top: 70;");
 					
-					graphPackages('sum-perday', '1Hour');
+					graphPackages('sum-perday', '30Minutes');
 					myService.maxOfPackages('max-perday').then(function(response){
 						$scope.xxxmins = response.data[0]['xxxmins'];
 						$scope.ihr = response.data[0]['ihr'];
@@ -1416,7 +1415,7 @@ macStats.controller('userDashboardPD',
 					$('.db-s-frame').hide();
 					$(".db-graph-frame").attr("style", "margin-top: 70;");
 					
-					graphPackages('sum-perday', '1Hour');
+					graphPackages('sum-perday', '30Minutes');
 					myService.maxOfPackages('max-perday').then(function(response){
 						$scope.xxxmins = response.data[0]['xxxmins'];
 						$scope.ihr = response.data[0]['ihr'];
@@ -1553,7 +1552,7 @@ macStats.controller('userDashboardPW',
 					$('.db-s-frame').hide();
 					$(".db-graph-frame").attr("style", "margin-top: 70;");
 					
-					graphPackages('sum-perweek', '1Hour');
+					graphPackages('sum-perweek', '30Minutes');
 					myService.maxOfPackages('max-perweek').then(function(response){
 						$scope.xxxmins = response.data[0]['xxxmins'];
 						$scope.ihr = response.data[0]['ihr'];
@@ -1689,7 +1688,7 @@ macStats.controller('userDashboardPM',
 					$('.db-s-frame').hide();
 					$(".db-graph-frame").attr("style", "margin-top: 70;");
 					
-					graphPackages('sum-perday', '1Hour');
+					graphPackages('sum-perday', '30Minutes');
 					myService.maxOfPackages('max-perday').then(function(response){
 						$scope.xxxmins = response.data[0]['xxxmins'];
 						$scope.ihr = response.data[0]['ihr'];
