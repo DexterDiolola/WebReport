@@ -1,0 +1,50 @@
+version 2.0.0
+  1. Added new query parameter 'vpnaddress'
+    files modified:
+      -modified ADD_MAC_ENTRY stored procedure (added 'vpnaddr' parameter).
+      -modified utilizations table (Added 'vpnaddr' column).
+      -apiController.php 
+
+  2. Implementation of 4thUtil (vpnaddr)
+    files modified:
+      -Modified stored procedure MACS_PER_TREND and MACS_PER_TREND_USER (added vpnaddr)
+      -Modified PERMAC_ACTIVITY stored procedure (added vpnaddr)
+      -Modified max_table & min_table (added 'vpnaddr' column)
+      -Modified MY_SCHEDULER stored procedure (added vpnaddr)
+      -permac.php (added new table 4th util)
+      -frontController.js (added events for 4th Util table)
+      -styles.css (added ".permac-tb4" for vpnaddr)
+
+  3. Added support for MOD_PACKAGES stored procedure.
+    files modified:
+      -Modified MOD_PACKAGES stored procedure (added new parameters).
+      -Modified packages table (added new columns).
+      -apiController (added parameters to insert in MOD_PACKAGES stored procedure).
+
+  4. Added MAX_OF_PACKAGES stored procedure.
+    -The procedure summarzes the max and total of table 'packages' which is 
+      filled up by json POST request.
+
+
+  5. Modify the whole dashboard section
+    fiiles modified:
+      -styles.css (deleted all styles that are related to dashboard.php)
+      -dashboard.php (overall rewrite)
+      -frontController.js (added jquery events for new html classes in dashboard.php) 
+
+  6. Implementation of graph of data returned by MAX-OF-PACKAGES stored procedure.
+    files modified:
+      -web.php (added rest api route '/max-of-packages')
+      -apiControllerphp (define the function maxOfPackages)
+      -charts-dashboard2.js (change the function and data needed for the graph function and disable xAxes)
+      -frontController.js (added the function graphPackages to admin and user controllers)
+
+
+vesion 2.0.1
+
+  7. Design continuation in dashboard section.
+    files modified
+      -charts-dashboard.js(redefined the background colors returned by every graph)
+      -charts-dashboard.js (added function that returns the overall graph)
+      -frontController.js (call the over-all package graph).
+
