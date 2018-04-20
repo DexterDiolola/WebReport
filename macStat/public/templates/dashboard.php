@@ -124,6 +124,7 @@
 		margin: auto;
 		width: 48%;
 		height: 300px;
+		border-top: 3px solid #898989;
 	}
 	.tb-label{
 		padding-top: 10;
@@ -432,7 +433,7 @@
 		
 		<div class="db-table">
 			<table class="table table-hover">
-				<tr style="background-color: rgba(14, 16, 15, 0.4);">
+				<tr style="background-color: rgba(255, 40, 169, 0.3);">
 				   	<th scope="row">Mac</th>
 			    	<th>DateTime</th>
 			    </tr>
@@ -461,7 +462,7 @@
 		</div>
 		<div class="db-table">
 			<table class="table table-hover">
-				<tr style="background-color: rgba(35, 255, 86, 0.3);">
+				<tr style="background-color: rgba(93, 0, 193, 0.5);">
 				   	<th>Max Connected</th>
 			      	<th>DateTime</th>
 			    </tr>
@@ -482,7 +483,7 @@
 		</div>
 		<div class="db-table">
 			<table class="table table-hover">
-				<tr style="background-color: rgba(255, 174, 35, 0.3);">
+				<tr style="background-color: rgba(44, 116, 251, 0.3);">
 					<td>Max Utiltx</td>
 					<td>Max Utilrx</td>
 					<td>DateTime</td>
@@ -502,7 +503,7 @@
 		</div>	
 		<div class="db-table">
 			<table class="table table-hover">
-				<tr style="background-color: rgba(255, 40, 169, 0.3);">
+				<tr style="background-color: rgba(170, 35, 255, 0.3);">
 					<td>Max Usagetx</td>
 					<td>Max Usagerx</td>
 					<td>DateTime</td>
