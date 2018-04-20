@@ -28,8 +28,202 @@ function graphPackages(cond, type){
 		var ctx = document.getElementById("canvas1").getContext("2d");
 		var ctx2 = document.getElementById("canvas2").getContext("2d");
 
+		if(type=="overall"){
+			myChart = new Chart(ctx2, {
+				type: "bar",
+				data: {
+					labels: dateTime,
+					datasets: [{
+						label: "30Minutes",
+						data: xxxMinutes,
+						backgroundColor: "rgba(14, 16, 15, 0.4)",
+						borderColor: "rgba(14, 16, 15, 0.9)",
+						borderWidth: "2"
+					},
+					{
+						label: "1Hour",
+						data: iHour,
+						backgroundColor: "rgba(35, 255, 86, 0.3)",
+						borderColor: "rgba(0, 204, 47, 0.76)",
+						borderWidth: "2"
+					},
+					{
+						label: "2Hours",
+						data: iiHours,
+						backgroundColor: "rgba(103, 245, 253, 0.3)",
+						borderColor: "rgba(0, 198, 179, 0.76)",
+						borderWidth: "2"
+					},
+					{
+						label: "5Hours",
+						data: vHours,
+						backgroundColor: "rgba(255, 174, 35, 0.3)",
+						borderColor: "rgba(204, 129, 0, 0.76)",
+						borderWidth: "2"
+					},
+					{
+						label: "1Day",
+						data: iDay,
+						backgroundColor: "rgba(255, 40, 169, 0.3)",
+						borderColor: "rgba(204, 0, 122, 0.76)",
+						borderWidth: "2"
+					},
+					{
+						label: "2Days",
+						data: iiDays,
+						backgroundColor: "rgba(93, 0, 193, 0.5)",
+						borderColor: "rgba(76, 0, 158, 0.9)",
+						borderWidth: "2"
+					},
+					{
+						label: "4Days",
+						data: ivDays,
+						backgroundColor: "rgba(44, 116, 251, 0.3)",
+						borderColor: "rgba(0, 71, 204, 0.76)",
+						borderWidth: "2"
+					},
+					{
+						label: "1Week",
+						data: iWeek,
+						backgroundColor: "rgba(170, 35, 255, 0.3)",
+						borderColor: "rgba(100, 0, 163, 0.76)",
+						borderWidth: "2"
+					}]
+				},
+				options:{
+					maintainAspectRatio: false,
+					title: {
+						display: true,
+						text: "Packages Graph ",
+					},
+					//responsive: false,
+					scales:{
+						yAxes:[{
+							ticks:{
+								beginAtZero: true
+							}
+						}],
+						xAxes:[{
+							display: false
+						}]
+					},
+				}
+			});	
+			myChart2 = new Chart(ctx, {
+				type: "line",
+				data: {
+					labels: dateTime,
+					datasets: [{
+						label: "30Minutes",
+						data: xxxMinutes,
+						backgroundColor: "rgba(14, 16, 15, 0.4)",
+						borderColor: "rgba(14, 16, 15, 0.9)",
+						borderWidth: "2",
+						lineTension: 0.3,
+	        			fill: false,
+	        			pointBackgroundColor: "rgba(14, 16, 15, 0.9)",
+	        			pointRadius: 2
+					},
+					{
+						label: "1Hour",
+						data: iHour,
+						backgroundColor: "rgba(35, 255, 86, 0.3)",
+						borderColor: "rgba(0, 204, 47, 0.76)",
+						borderWidth: "2",
+						lineTension: 0.3,
+	        			fill: false,
+	        			pointBackgroundColor: "rgba(0, 204, 47, 0.76)",
+	        			pointRadius: 2
+					},
+					{
+						label: "2Hours",
+						data: iiHours,
+						backgroundColor: "rgba(103, 245, 253, 0.3)",
+						borderColor: "rgba(0, 198, 179, 0.76)",
+						borderWidth: "2",
+						lineTension: 0.3,
+	        			fill: false,
+	        			pointBackgroundColor: "rgba(0, 198, 179, 0.76)",
+	        			pointRadius: 2
+					},
+					{
+						label: "5Hours",
+						data: vHours,
+						backgroundColor: "rgba(255, 174, 35, 0.3)",
+						borderColor: "rgba(204, 129, 0, 0.76)",
+						borderWidth: "2",
+						lineTension: 0.3,
+	        			fill: false,
+	        			pointBackgroundColor: "rgba(204, 129, 0, 0.76)",
+	        			pointRadius: 2
+					},
+					{
+						label: "1Day",
+						data: iDay,
+						backgroundColor: "rgba(255, 40, 169, 0.3)",
+						borderColor: "rgba(204, 0, 122, 0.76)",
+						borderWidth: "2",
+						lineTension: 0.3,
+	        			fill: false,
+	        			pointBackgroundColor: "rgba(204, 0, 122, 0.76)",
+	        			pointRadius: 2
+					},
+					{
+						label: "2Days",
+						data: iiDays,
+						backgroundColor: "rgba(93, 0, 193, 0.5)",
+						borderColor: "rgba(76, 0, 158, 0.9)",
+						borderWidth: "2",
+						lineTension: 0.3,
+	        			fill: false,
+	        			pointBackgroundColor: "rgba(76, 0, 158, 0.9)",
+	        			pointRadius: 2
+					},
+					{
+						label: "4Days",
+						data: ivDays,
+						backgroundColor: "rgba(44, 116, 251, 0.3)",
+						borderColor: "rgba(0, 71, 204, 0.76)",
+						borderWidth: "2",
+						lineTension: 0.3,
+	        			fill: false,
+	        			pointBackgroundColor: "rgba(0, 71, 204, 0.76)",
+	        			pointRadius: 2
+					},
+					{
+						label: "1Week",
+						data: iWeek,
+						backgroundColor: "rgba(170, 35, 255, 0.3)",
+						borderColor: "rgba(100, 0, 163, 0.76)",
+						borderWidth: "2",
+						lineTension: 0.3,
+	        			fill: false,
+	        			pointBackgroundColor: "rgba(100, 0, 163, 0.76)",
+	        			pointRadius: 2
+					}]
+				},
+				options:{
+					maintainAspectRatio: false,
+					title: {
+						display: true,
+						text: "Packages Graph ",
+					},
+					scales:{
+						yAxes:[{
+							ticks:{
+								beginAtZero: true,
+								max: Math.max(...xxxMinutes) + 1
+							}
+						}],
+						xAxes:[{
+							display: false
+						}]
+					},
+				}
+			});
+		}
 
-		if(type=="30Minutes"){
+		else if(type=="30Minutes"){
 			myChart = new Chart(ctx2, {
 				type: "bar",
 				data: {
@@ -37,8 +231,8 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "30 Minutes",
 						data: xxxMinutes,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(14, 16, 15, 0.4)",
+						borderColor: "rgba(14, 16, 15, 0.9)",
 						borderWidth: "2"
 					}]
 				},
@@ -68,13 +262,13 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "30 Minutes",
 						data: xxxMinutes,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(14, 16, 15, 0.4)",
+						borderColor: "rgba(14, 16, 15, 0.9)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
 	        			fill: true,
-	        			pointBackgroundColor: "black",
-	        			pointBorderColor: "rgba(35, 255, 86, 0.3)"
+	        			pointBackgroundColor: "rgba(14, 16, 15, 0.9)",
+	        			pointRadius: 2
 					}]
 				},
 				options:{
@@ -141,10 +335,10 @@ function graphPackages(cond, type){
 						backgroundColor: "rgba(35, 255, 86, 0.3)",
 						borderColor: "rgba(0, 204, 47, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
 	        			fill: true,
-	        			pointBackgroundColor: "black",
-	        			pointBorderColor: "rgba(35, 255, 86, 0.3)"
+	        			pointBackgroundColor: "rgba(0, 204, 47, 0.76)",
+	        			pointRadius: 2
 					}]
 				},
 				options:{
@@ -177,8 +371,8 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "2 Hours",
 						data: iiHours,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(103, 245, 253, 0.3)",
+						borderColor: "rgba(0, 198, 179, 0.76)",
 						borderWidth: "2"
 					}]
 				},
@@ -208,13 +402,13 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "2Hours",
 						data: iiHours,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(103, 245, 253, 0.3)",
+						borderColor: "rgba(0, 198, 179, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
 	        			fill: true,
-	        			pointBackgroundColor: "black",
-	        			pointBorderColor: "rgba(35, 255, 86, 0.3)"
+	        			pointBackgroundColor: "rgba(0, 198, 179, 0.76)",
+	        			pointRadius: 2
 					}]
 				},
 				options:{
@@ -247,8 +441,8 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "5 Hours",
 						data: vHours,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(255, 174, 35, 0.3)",
+						borderColor: "rgba(204, 129, 0, 0.76)",
 						borderWidth: "2"
 					}]
 				},
@@ -278,13 +472,13 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "5Hours",
 						data: vHours,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(255, 174, 35, 0.3)",
+						borderColor: "rgba(204, 129, 0, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
 	        			fill: true,
-	        			pointBackgroundColor: "black",
-	        			pointBorderColor: "rgba(35, 255, 86, 0.3)"
+	        			pointBackgroundColor: "rgba(204, 129, 0, 0.76)",
+	        			pointRadius: 2
 					}]
 				},
 				options:{
@@ -317,8 +511,8 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "1Day",
 						data: iDay,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(255, 40, 169, 0.3)",
+						borderColor: "rgba(204, 0, 122, 0.76)",
 						borderWidth: "2"
 					}]
 				},
@@ -348,13 +542,13 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "1Day",
 						data: iDay,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(255, 40, 169, 0.3)",
+						borderColor: "rgba(204, 0, 122, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
 	        			fill: true,
-	        			pointBackgroundColor: "black",
-	        			pointBorderColor: "rgba(35, 255, 86, 0.3)"
+	        			pointBackgroundColor: "rgba(204, 0, 122, 0.76)",
+	        			pointRadius: 2
 					}]
 				},
 				options:{
@@ -387,8 +581,8 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "2Days",
 						data: iiDays,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(93, 0, 193, 0.5)",
+						borderColor: "rgba(76, 0, 158, 0.9)",
 						borderWidth: "2"
 					}]
 				},
@@ -418,13 +612,13 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "2Days",
 						data: iiDays,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(93, 0, 193, 0.5)",
+						borderColor: "rgba(76, 0, 158, 0.9)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
 	        			fill: true,
-	        			pointBackgroundColor: "black",
-	        			pointBorderColor: "rgba(35, 255, 86, 0.3)"
+	        			pointBackgroundColor: "rgba(76, 0, 158, 0.9)",
+	        			pointRadius: 2
 					}]
 				},
 				options:{
@@ -457,8 +651,8 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "4Days",
 						data: ivDays,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(44, 116, 251, 0.3)",
+						borderColor: "rgba(0, 71, 204, 0.76)",
 						borderWidth: "2"
 					}]
 				},
@@ -488,13 +682,13 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "4Days",
 						data: ivDays,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(44, 116, 251, 0.3)",
+						borderColor: "rgba(0, 71, 204, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
 	        			fill: true,
-	        			pointBackgroundColor: "black",
-	        			pointBorderColor: "rgba(35, 255, 86, 0.3)"
+	        			pointBackgroundColor: "rgba(0, 71, 204, 0.76)",
+	        			pointRadius: 2
 					}]
 				},
 				options:{
@@ -527,8 +721,8 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "1Week",
 						data: iWeek,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(170, 35, 255, 0.3)",
+						borderColor: "rgba(100, 0, 163, 0.76)",
 						borderWidth: "2"
 					}]
 				},
@@ -558,13 +752,13 @@ function graphPackages(cond, type){
 					datasets: [{
 						label: "1Week",
 						data: iWeek,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(170, 35, 255, 0.3)",
+						borderColor: "rgba(100, 0, 163, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
 	        			fill: true,
-	        			pointBackgroundColor: "black",
-	        			pointBorderColor: "rgba(35, 255, 86, 0.3)"
+	        			pointBackgroundColor: "rgba(100, 0, 163, 0.76)",
+	        			pointRadius: 2
 					}]
 				},
 				options:{
