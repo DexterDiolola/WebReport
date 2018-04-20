@@ -1,0 +1,169 @@
+@media screen and (max-width: 1024px){
+	/*DASHBOARD SECTION*/
+	.db-totalActive, .db-maxConnected,
+	.db-util, .db-usage{
+		width: 43%;
+	}
+	.db-totalActive, .db-maxConnected{
+		margin-bottom: 25px;
+	}
+	.db-graph-container, .db-table-container{
+		width: 90%;
+	}
+	.db-active-list, .db-connected-list,
+	.db-util-list, .db-usage-list{
+		margin: 20 10 20 20;
+	}
+	/*SUMMARIES AND PERMAC SECTION*/
+	.reports-tb1-container,.reports-tb2-container,
+	.permac-tb1-container, .permac-tb2-container{
+		width: 95%;
+		height: 300px;
+	}
+	.reports-table, .permac-table{
+		height: 250px;
+	}
+	/*ADD MAC LABEL SECTION*/
+	.aml-tb1-container{
+		width: 45%;
+	}
+	.aml-tb2-container{
+		width: 50%;
+	}
+	.aml-tb3-container{
+		width: 97%;
+	}
+}
+@media screen and (max-width: 1000px){
+	.sideBar{
+		width:20%;
+	}
+	.workingArea{
+		width: 80%;
+	}
+}
+@media screen and (max-width: 910px){
+	/*DASHBOARD SECTION*/
+	.db-active-list, .db-connected-list,
+	.db-util-list, .db-usage-list{
+		width: 95%;
+		margin-left: 15
+	}
+	/*CHARTS SECTION*/
+	.chart-tab{
+		width: 90%;
+		margin: 0 0 0 20;
+	}
+	/*ADD MAC LABEL SECTION*/
+	.aml-tb1-container, .aml-tb2-container, .aml-tb3-container{
+		width: 90%;
+	}
+}
+@media screen and (max-width: 768px){
+	.sideBar{
+		width:22%;
+	}
+	.workingArea{
+		width: 78%;
+	}	
+	/*CHARTS SECTION*/
+	.row1{
+		width: 98%;
+	}
+	.chart-container{
+		width: 99%;
+		margin: 0 0 10 0;
+	}
+	.chart-tab{
+		width: 25%;
+		margin: 15 0 0 10;
+	}
+	/*ADD MAC LABEL SECTION*/
+	.row1{
+		margin-left: 0;
+	}
+	.aml-tb1-container, .aml-tb2-container, .aml-tb3-container{
+		margin: auto;
+	}
+	.aml-tb2-container{
+		margin-top: 10px;
+	}
+
+}
+@media screen and (max-width: 650px){
+	.sideBar{
+		width:100%;
+		height: auto;
+	}
+	.workingArea{
+		width: 100%;
+	}
+	.spacer{
+		margin: 60 0 0 0;
+	}
+	.sidebarHeader{
+		margin: 20 0 0 0;
+	}
+	/*SUMMARIES AND PERMAC SECTION*/
+	.reports-container, .permac-container{
+		margin-left: 5;
+	}
+	.reports-tb1-container, .permac-tb1-container{
+		margin: 10 auto auto auto;
+		height: 320px;
+	}
+	.reports-tb2-container, .permac-tb2-container{
+		margin: 10 auto 10 auto;
+		height: 320px;
+	}
+	/*ASSIGN MAC SECTION*/
+	.am-tb1-container, .am-tb2-container, .am-tb3-container{
+		width: 90%;
+		margin: auto;
+	}
+	.am-tb3-container{
+		margin-top: 10px;
+	}
+}
+@media screen and (max-width: 575px){
+	/*SUMMARIES AND PERMAC SECTION*/
+	.reports-container, .permac-container{
+		margin-left: 0;
+	}
+	.reports-tb1-tab, .permac-tb1-tab{
+		width: 80%;
+		margin: 0 0 0 20;
+	}
+}
+@media screen and (max-width: 425px){
+	/*DASHBOARD SECTION*/
+	.db-totalActive, .db-maxConnected,
+	.db-util, .db-usage, .db-graph-container,
+	.db-table-container{
+		margin-left: 15px;
+	}
+	.db-totalActive, .db-maxConnected,
+	.db-util, .db-usage{
+		width: 80%;
+		height: 180px;
+		margin: auto;
+		margin-bottom: 20px
+	}
+	.db-active-list, .db-connected-list,
+	.db-util-list, .db-usage-list{
+		margin-left: 10px;
+	}
+	/*SUMMARIES SECTION*/
+	.reports-tb1-container, .reports-tb2-container,
+	.permac-tb1-container, .permac-tb2-container{
+		height: 350px;
+	}
+}
+@media screen and (max-width: 410px){
+	/*CHARTS SECTION*/
+	.chart-container{
+		width: 95%;
+		margin: 0 auto 10 auto;
+	}
+	
+}
