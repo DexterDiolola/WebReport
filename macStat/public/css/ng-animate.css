@@ -1,0 +1,49 @@
+main.ng-enter{
+	transition: 0.4s linear all;
+	opacity: 0;
+}
+
+main.ng-enter.ng-enter-active{
+	opacity: 1;
+}
+
+.animate-assigned.ng-enter{
+	transition: 0.4s linear all;
+	opacity: 0;
+	transform: translateY(30px);
+}
+.animate-assigned.ng-enter.ng-enter-active{
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.animate-assigned.ng-leave{
+	transition: 0.4s linear all;
+	opacity: 1;
+	transform: translateX(0);
+}
+.animate-assigned.ng-leave.ng-leave-active{
+	opacity: 0;
+	transform: translateX(-100%);
+}
+
+.animate-unassigned.ng-enter{
+	transition: 0.4s linear all;
+	opacity: 0;
+	transform: translateY(30px);
+}
+.animate-unassigned.ng-enter.ng-enter-active{
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.animate-unassigned.ng-leave{
+	transition: 0.4s linear all;
+	opacity: 1;
+	transform: translateX(0);
+}
+
+.animate-unassigned.ng-leave.ng-leave-active{
+	opacity: 0;
+	transform: translateX(-100%);
+}
