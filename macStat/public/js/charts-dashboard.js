@@ -27,8 +27,8 @@ function graphActiveDevices(urlParam, trendStr){
 				datasets: [{
 					label: "Active Devices",
 					data: activeDevices,
-					backgroundColor: "rgba(14, 16, 15, 0.4)",
-					borderColor: "rgba(14, 16, 15, 0.9)",
+					backgroundColor: "rgba(255, 40, 169, 0.3)",
+					borderColor: "rgba(204, 0, 122, 0.76)",
 					borderWidth: "2"
 				}]
 			},
@@ -58,13 +58,13 @@ function graphActiveDevices(urlParam, trendStr){
 				datasets: [{
 					label: "Active Devices ",
 					data: activeDevices,
-					backgroundColor: "rgba(14, 16, 15, 0.4)",
-					borderColor: "rgba(14, 16, 15, 0.9)",
+					backgroundColor: "rgba(255, 40, 169, 0.3)",
+					borderColor: "rgba(204, 0, 122, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
-        			fill: true,
-        			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-        			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+					lineTension: 0.3,
+	        		fill: true,
+	        		pointBackgroundColor: "rgba(204, 0, 122, 0.76)",
+	        		pointRadius: 2
 				}]
 			},
 			options:{
@@ -138,8 +138,8 @@ function graphLayout(urlParam, trendStr, type){
 					datasets: [{
 						label: "Max Connected",
 						data: totalActive,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(93, 0, 193, 0.5)",
+						borderColor: "rgba(76, 0, 158, 0.9)",
 						borderWidth: "2"
 					}]
 				},
@@ -169,13 +169,13 @@ function graphLayout(urlParam, trendStr, type){
 					datasets: [{
 						label: "Max Connected ",
 						data: totalActive,
-						backgroundColor: "rgba(35, 255, 86, 0.3)",
-						borderColor: "rgba(0, 204, 47, 0.76)",
+						backgroundColor: "rgba(93, 0, 193, 0.5)",
+						borderColor: "rgba(76, 0, 158, 0.9)",
 						borderWidth: "2",
-						lineTension: 0,
-        				fill: true,
-        				pointBackgroundColor: "black",
-        				pointBorderColor: "rgba(35, 255, 86, 0.3)"
+						lineTension: 0.3,
+	        			fill: true,
+	        			pointBackgroundColor: "rgba(76, 0, 158, 0.9)",
+	        			pointRadius: 2
 					}]
 				},
 				options:{
@@ -278,8 +278,8 @@ function graphLayout(urlParam, trendStr, type){
 					datasets: [{
 						label: "Max Utiltx (in KB)",
 						data: totalUtiltx,
-						backgroundColor: "rgba(255, 174, 35, 0.3)",
-						borderColor: "rgba(204, 129, 0, 0.76)",
+						backgroundColor: "rgba(44, 116, 251, 0.3)",
+						borderColor: "rgba(0, 71, 204, 0.76)",
 						borderWidth: "2"
 					},
 					{
@@ -315,13 +315,13 @@ function graphLayout(urlParam, trendStr, type){
 					datasets: [{
 						label: "Max Utiltx (in KB)",
 						data: totalUtiltx,
-						backgroundColor: "rgba(255, 174, 35, 0.3)",
-						borderColor: "rgba(204, 129, 0, 0.76)",
+						backgroundColor: "rgba(44, 116, 251, 0.3)",
+						borderColor: "rgba(0, 71, 204, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
-        				fill: true,
-        				pointBackgroundColor: "black",
-        				pointBorderColor: "rgba(204, 129, 0, 0.76)"
+						lineTension: 0.3,
+	        			fill: true,
+	        			pointBackgroundColor: "rgba(0, 71, 204, 0.76)",
+	        			pointRadius: 2
 					},
 					{
 						label: "Max Utilrx (in KB)",
@@ -329,10 +329,10 @@ function graphLayout(urlParam, trendStr, type){
 						backgroundColor: "rgba(26, 65, 54, 0.3)",
 						borderColor: "rgba(11, 29, 24, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
         				fill: false,
-        				pointBackgroundColor: "black",
-        				pointBorderColor: "rgba(11, 29, 24, 0.76)"
+        				pointBackgroundColor: "rgba(11, 29, 24, 0.76)",
+        				pointRadius: 2
 					}]
 				},
 				options:{
@@ -364,8 +364,8 @@ function graphLayout(urlParam, trendStr, type){
 					datasets: [{
 						label: "Max Usagetx (in GB)",
 						data: totalUsagetx,
-						backgroundColor: "rgba(255, 40, 169, 0.3)",
-						borderColor: "rgba(204, 0, 122, 0.76)",
+						backgroundColor: "rgba(170, 35, 255, 0.3)",
+						borderColor: "rgba(100, 0, 163, 0.76)",
 						borderWidth: "2"
 					},
 					{
@@ -401,13 +401,13 @@ function graphLayout(urlParam, trendStr, type){
 					datasets: [{
 						label: "Max Usagetx (in GB)",
 						data: totalUsagetx,
-						backgroundColor: "rgba(255, 40, 169, 0.3)",
-						borderColor: "rgba(204, 0, 122, 0.76)",
+						backgroundColor: "rgba(170, 35, 255, 0.3)",
+						borderColor: "rgba(100, 0, 163, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
-        				fill: true,
-        				pointBackgroundColor: "black",
-        				pointBorderColor: "rgba(204, 0, 122, 0.76)"
+						lineTension: 0.3,
+	        			fill: true,
+	        			pointBackgroundColor: "rgba(100, 0, 163, 0.76)",
+	        			pointRadius: 2
 					},
 					{
 						label: "Max Usagerx (in GB)",
@@ -415,10 +415,10 @@ function graphLayout(urlParam, trendStr, type){
 						backgroundColor: "rgba(26, 65, 54, 0.3)",
 						borderColor: "rgba(11, 29, 24, 0.76)",
 						borderWidth: "2",
-						lineTension: 0,
+						lineTension: 0.3,
         				fill: false,
-        				pointBackgroundColor: "black",
-        				pointBorderColor: "rgba(11, 29, 24, 0.76)"
+        				pointBackgroundColor: "rgba(11, 29, 24, 0.76)",
+        				pointRadius: 2
 					}]
 				},
 				options:{
