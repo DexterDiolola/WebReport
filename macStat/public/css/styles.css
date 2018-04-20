@@ -1,0 +1,298 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+.taDropdown, .mcDropdown, .tdDropdown,
+.permac-date-dropdown{
+	overflow-y: auto;
+	height: auto;
+	max-height: 115px; 
+}
+
+/*UPPER BORDER SECTION*/
+.upperBorder{
+	background-color: #404040;
+	width: 100%;
+	height: 50px;
+	position: absolute;
+}
+.btnUser{
+	float: right;
+	list-style-type: none;
+	margin: 13 8 0 0;
+}
+.btnUser a{
+	color: white;
+	font-size: 12pt;
+}
+.btnUser a:hover{
+	text-decoration: none
+}
+.btnUser ul li a{
+	color: black;
+	font-size: 11pt
+}
+/*SIDEBAR SECTION*/
+.contentArea{
+	height: 100%;
+	/*border: 1px solid green*/;
+	margin: 0;
+}
+.sideBar{
+	background-color: #898989;
+	/*border: 1px solid red;*/
+	height: 100%;
+	width: 15%;
+}
+.spacer{
+	height: 100px auto;
+	/*border: 1px solid blue*/;
+	margin: 100 0 0 0;
+}
+.spacer li{
+	list-style-type: none;
+}
+.spacer li a{
+	color: white;
+	font-size: 11pt;
+	padding: 6 0 0 15;
+	text-decoration: none;
+	display: block;
+	height: 35px
+}
+.reportsSubMenu li a, .adminSubMenu li a{
+	font-size: 10pt;
+	font-weight: normal
+}
+.admin{
+	margin: 0 0 10 0;
+}
+
+/*WORKING AREA SECTION*/
+.workingArea{
+	background-color: #E9E9E9;
+	overflow-y: auto; /*Added overflow x&y to make*/
+	overflow-x: hidden;/*the height of sidebar and workingArea adjustable*/  
+	height: auto;
+	width: 85%;
+	margin: 0 0 0 0;
+}
+.sidebarHeader{
+	width: 100%;
+	margin: 60 0 0 10;
+	border-bottom: 1px solid #C2C2C2;
+}
+
+/*DASHBOARD SECTION*/
+.db-tab{
+	background-color: #898989;
+	margin: 10 0 0 10;
+}
+.db-tab li a{
+	color: white;
+	font-weight: 400;
+}
+/*SUMMARIES SECTION AND PERMAC SECTION*/
+.reports-container, .permac-container{
+	width: 99%;
+	height: auto;
+	margin: 0 0 0 10;
+}
+.reports-tb1-container{
+	background-color: white;
+	margin: 10 10 10 0;
+	width: 70%;
+	height: 450px;
+	border: 1px solid #DBDBDB;
+	border-top: 4px solid #404040;
+}
+.reports-tb2-container{
+	background-color: white;
+	margin: 10 0 10 0;
+	width: 25%;
+	height: 450px;
+	border: 1px solid #DBDBDB;
+	border-top: 4px solid #404040;
+}
+.reports-tb1-container h5{
+	margin: 10 0 10 20;
+}
+.reports-tb2-container h5, .permac-tb2-container h5{
+	margin: 10 0 10 10;
+}
+.reports-table, .permac-table{
+	width: 95%;
+	height: 380px;
+	margin: auto;
+	overflow-y: auto;
+}
+.reports-tb1-tab, .permac-tb1-tab{
+	width: 50%;
+	margin: 3 0 0 5;
+}
+.reports-tb1-tab a, .permac-tb1-tab a{
+	font-size: 9pt;
+	font-weight: 500
+}
+.reports-table th, .permac-table th{
+	color: white;
+}
+.reports-table th, .reports-table tr,
+.permac-table th, .permac-table tr{
+	text-align: center;
+}
+.th-macs, .td-macs, .th-location, .td-location{
+	text-align: left !important;
+}
+.reports-tb2, .permac-tb2, .permac-tb3, .permac-tb4, .permac-tb5{
+	display: none;
+}
+.permac-tb1-container{
+	background-color: white;
+	margin: 10 10 10 0;
+	width: 95%;
+	height: 450px;
+	border: 1px solid #DBDBDB;
+	border-top: 4px solid #404040;
+}
+.permac-search-form{
+	margin: 8 0 8 30;
+}
+.permac-search-form input, .permac-search-form button{
+	font-size: 11pt;
+}
+.permac-search-results, .permac-graph{
+	display: none;
+}
+td, th{
+	font-size: 9pt;
+	font-weight: 500;
+}
+.dropdown-item{
+	font-size: 10pt;
+}
+/*CHARTS SECTION*/
+.row1{
+	margin: 10 0 0 10;
+	width: 99%;
+	height: auto;
+}
+.chart-container{
+	background-color: white;
+	width: 48%;
+	height: 350px;
+	margin: 0 10 0 0;
+}
+.chart-container h5{
+	margin: 20 0 0 25;
+}
+.chart-tab{
+	margin: 15 0 0 10;
+}
+.chart-tab a{
+	font-size: 10pt;
+	font-weight: 400;
+}
+.canvas-container{
+	height: 250px;
+	width: 95%;
+	margin: 30 0 0 10;
+}
+#canvas2, #canvas4, #canvas6,
+#canvas8, #canvas10, #canvas12,
+#canvas14, #canvas16, #canvas18,
+#canvas20, #canvas22, #canvas24,
+#canvas26, #canvas28, #canvas30,
+#canvas32, #canvas34, #canvas36,
+#canvas38{
+	display: none !important;
+}
+/*ADD-MAC-LABEL ASSIGN MAC SECTION*/
+.aml-tb1-container{
+	background-color: white;
+	margin: 10 10 10 0;
+	width: 30%;
+	height: 230px;
+}
+.aml-tb2-container{
+	background-color: white;
+	margin: 10 0 10 1%;
+	width: 63%;
+	height: 230px;
+}
+.aml-tb3-container{
+	background-color: white;
+	margin: 10 0 10 0;
+	width: 82%;
+	height: 250px;
+}
+.am-tb1-container, .aml-tb3-container{
+	background-color: white;
+	margin: 10 0 10 0;
+	width: 95%;
+	height: 250px;
+}
+.am-tb2-container{
+	background-color: white;
+	margin: 10 10 10 0;
+	width: 40%;
+	height: 230px;
+}
+.am-tb3-container{
+	background-color: white;
+	margin: 10 0 10 1%;
+	width: 53%;
+	height: 230px;
+}
+.aml-tb1-container h5, .aml-tb2-container h5,
+.aml-tb3-container h5, .am-tb1-container h5,
+.am-tb2-container h5, .am-tb3-container h5{
+	margin: 10 0 15 10;
+}
+.aml-tb2-container th, .aml-tb2-container tr,
+.aml-tb3-container th, .aml-tb3-container tr,
+.am-tb1-container th, .am-tb1-container tr,
+.am-tb2-container th, .am-tb2-container tr,
+.am-tb3-container th, .am-tb3-container tr{
+	text-align: center;
+}
+.am-table2-header{
+	color: white;
+}
+.aml-form-container{
+	margin: auto;
+}
+.aml-form-container label{
+	font-size: 9pt;
+}
+.aml-input-mac, .aml-input-label{
+	height: 30px;
+	border-radius: 3px;
+	font-size: 11pt;
+}
+.aml-registered-table, .aml-macs-table,
+.am-assign-table, .am-list-table, .am-unassign-table{
+	/*border: 1px solid red*/;
+	height: 160px;
+	overflow-y: auto;
+}
+.aml-macs-table button, .am-assign-table button,
+.am-unassign-table button{
+	padding: auto;
+	font-size: 10pt;
+}
+.users-selectpicker{
+	width: 150px;
+	height: 25px;
+	font-size: 9pt;
+}
+.btn-view-all{
+	width: 80px;
+	height: 25px;
+	padding: 0;
+	margin: 0 0 0 15;
+	font-size: 9pt;
+}
+.am-tb3-container h5{
+	display: inline-block;
+}
+.am-table3{
+	display: 
+}
