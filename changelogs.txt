@@ -45,6 +45,6 @@ vesion 2.0.1
   7. Design continuation in dashboard section.
     files modified
       -charts-dashboard.js(redefined the background colors returned by every graph)
-      -charts-dashboard.js (added function that returns the overall graph)
+      -charts-dashboard2.js (added function that returns the overall graph)
       -frontController.js (call the over-all package graph).
 
