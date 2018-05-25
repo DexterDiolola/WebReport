@@ -41,9 +41,9 @@
 				<li>
 					<a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-database" aria-hidden="true"></i>&emsp;Reports</a>
 					<ul id="submenu-1" class="collapse reportsSubMenu">
-                        <li><a href="admin/reports/Summary-perDay"><i class="fa fa-angle-right"></i>&emsp;Summaries</a></li>
-                        <li><a href="admin/reports/Charts-perDay"><i class="fa fa-angle-right"></i>&emsp;Charts</a></li>
-                     	<li><a href="admin/reports/PerMac-perDay"><i class="fa fa-angle-right"></i>&emsp;PerMac</a></li>
+                        <li><a href="admin/reports/summaries"><i class="fa fa-angle-right"></i>&emsp;Summaries</a></li>
+                        <li><a href="admin/reports/charts"><i class="fa fa-angle-right"></i>&emsp;Charts</a></li>
+                     	<li><a href="admin/reports/permac"><i class="fa fa-angle-right"></i>&emsp;PerMac</a></li>
                     </ul>
 				</li>
 				<li class="admin">
