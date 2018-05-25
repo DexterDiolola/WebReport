@@ -66,11 +66,10 @@ function xxxMinutesGraph(obj, trendStr){
 				backgroundColor: "rgba(14, 16, 15, 0.4)",
 				borderColor: "rgba(14, 16, 15, 0.9)",
 				borderWidth: "2",
-				lineTension: 0,
-       			fill: true,
-       			pointRadius: 1,
-       			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	      		fill: true,
+	       		pointBackgroundColor: "rgba(14, 16, 15, 0.9)",
+	       		pointRadius: 2
 			}]
 		},
 		options:{
@@ -154,11 +153,10 @@ function iHourGraph(obj, trendStr){
 				backgroundColor: "rgba(35, 255, 86, 0.3)",
 				borderColor: "rgba(0, 204, 47, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: true,
-       			pointRadius: 1,
-       			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: true,
+	        	pointBackgroundColor: "rgba(0, 204, 47, 0.76)",
+	        	pointRadius: 2
 			}]
 		},
 		options:{
@@ -242,11 +240,10 @@ function iiHoursGraph(obj, trendStr){
 				backgroundColor: "rgba(103, 245, 253, 0.3)",
 				borderColor: "rgba(0, 198, 179, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: true,
-       			pointRadius: 1,
-       			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: true,
+	        	pointBackgroundColor: "rgba(0, 198, 179, 0.76)",
+	        	pointRadius: 2
 			}]
 		},
 		options:{
@@ -330,11 +327,10 @@ function vHoursGraph(obj, trendStr){
 				backgroundColor: "rgba(255, 174, 35, 0.3)",
 				borderColor: "rgba(204, 129, 0, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: true,
-       			pointRadius: 1,
-       			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: true,
+	        	pointBackgroundColor: "rgba(204, 129, 0, 0.76)",
+	        	pointRadius: 2
 			}]
 		},
 		options:{
@@ -418,11 +414,10 @@ function iDayGraph(obj, trendStr){
 				backgroundColor: "rgba(255, 40, 169, 0.3)",
 				borderColor: "rgba(204, 0, 122, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: true,
-       			pointRadius: 1,
-       			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: true,
+	        	pointBackgroundColor: "rgba(204, 0, 122, 0.76)",
+	        	pointRadius: 2
 			}]
 		},
 		options:{
@@ -506,11 +501,10 @@ function iiDaysGraph(obj, trendStr){
 				backgroundColor: "rgba(93, 0, 193, 0.5)",
 				borderColor: "rgba(76, 0, 158, 0.9)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: true,
-       			pointRadius: 1,
-       			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: true,
+	        	pointBackgroundColor: "rgba(76, 0, 158, 0.9)",
+	        	pointRadius: 2
 			}]
 		},
 		options:{
@@ -594,11 +588,10 @@ function ivDaysGraph(obj, trendStr){
 				backgroundColor: "rgba(44, 116, 251, 0.3)",
 				borderColor: "rgba(0, 71, 204, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: true,
-       			pointRadius: 1,
-       			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: true,
+	        	pointBackgroundColor: "rgba(0, 71, 204, 0.76)",
+	        	pointRadius: 2
 			}]
 		},
 		options:{
@@ -682,11 +675,10 @@ function iWeekGraph(obj, trendStr){
 				backgroundColor: "rgba(170, 35, 255, 0.3)",
 				borderColor: "rgba(100, 0, 163, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: true,
-       			pointRadius: 1,
-       			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: true,
+	        	pointBackgroundColor: "rgba(100, 0, 163, 0.76)",
+	        	pointRadius: 2
 			}]
 		},
 		options:{
@@ -829,11 +821,10 @@ function packagesGraph(obj, trendStr){
 				backgroundColor: "rgba(14, 16, 15, 0.4)",
 				borderColor: "rgba(14, 16, 15, 0.9)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: false,
-       			pointRadius: 1.2,
-       			//pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			//pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	      		fill: false,
+	       		pointBackgroundColor: "rgba(14, 16, 15, 0.9)",
+	       		pointRadius: 2
 			},
 			{
 				label: "1Hour",
@@ -841,11 +832,10 @@ function packagesGraph(obj, trendStr){
 				backgroundColor: "rgba(35, 255, 86, 0.3)",
 				borderColor: "rgba(0, 204, 47, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: false,
-       			pointRadius: 1.2,
-       			//pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			//pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: false,
+	        	pointBackgroundColor: "rgba(0, 204, 47, 0.76)",
+	        	pointRadius: 2
 			},
 			{
 				label: "2Hours",
@@ -853,11 +843,10 @@ function packagesGraph(obj, trendStr){
 				backgroundColor: "rgba(103, 245, 253, 0.3)",
 				borderColor: "rgba(0, 198, 179, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: false,
-       			pointRadius: 1.2,
-       			//pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			//pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: false,
+	        	pointBackgroundColor: "rgba(0, 198, 179, 0.76)",
+	        	pointRadius: 2
 			},
 			{
 				label: "5Hours",
@@ -865,11 +854,10 @@ function packagesGraph(obj, trendStr){
 				backgroundColor: "rgba(255, 174, 35, 0.3)",
 				borderColor: "rgba(204, 129, 0, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: false,
-       			pointRadius: 1.2,
-       			//pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			//pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: false,
+	        	pointBackgroundColor: "rgba(204, 129, 0, 0.76)",
+	        	pointRadius: 2
 			},
 			{
 				label: "1Day",
@@ -877,11 +865,10 @@ function packagesGraph(obj, trendStr){
 				backgroundColor: "rgba(255, 40, 169, 0.3)",
 				borderColor: "rgba(204, 0, 122, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: false,
-       			pointRadius: 1.2,
-       			//pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			//pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: false,
+	        	pointBackgroundColor: "rgba(204, 0, 122, 0.76)",
+	        	pointRadius: 2
 			},
 			{
 				label: "2Days",
@@ -889,11 +876,10 @@ function packagesGraph(obj, trendStr){
 				backgroundColor: "rgba(93, 0, 193, 0.5)",
 				borderColor: "rgba(76, 0, 158, 0.9)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: false,
-       			pointRadius: 1.2,
-       			//pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			//pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: false,
+	        	pointBackgroundColor: "rgba(76, 0, 158, 0.9)",
+	        	pointRadius: 2
 			},
 			{
 				label: "4Days",
@@ -901,11 +887,10 @@ function packagesGraph(obj, trendStr){
 				backgroundColor: "rgba(44, 116, 251, 0.3)",
 				borderColor: "rgba(0, 71, 204, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: false,
-       			pointRadius: 1.2,
-       			//pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			//pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: false,
+	        	pointBackgroundColor: "rgba(0, 71, 204, 0.76)",
+	        	pointRadius: 2
 			},
 			{
 				label: "1Week",
@@ -913,11 +898,10 @@ function packagesGraph(obj, trendStr){
 				backgroundColor: "rgba(170, 35, 255, 0.3)",
 				borderColor: "rgba(100, 0, 163, 0.76)",
 				borderWidth: "2",
-				lineTension: 0.1,
-       			fill: false,
-       			pointRadius: 1.2,
-       			//pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-       			//pointBorderColor: "rgba(14, 16, 15, 0.9)"
+				lineTension: 0.3,
+	        	fill: false,
+	        	pointBackgroundColor: "rgba(100, 0, 163, 0.76)",
+	        	pointRadius: 2
 			}]
 		},
 		options:{
