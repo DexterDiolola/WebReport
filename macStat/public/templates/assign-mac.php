@@ -1,4 +1,12 @@
-<div class="sidebarHeader"><h3>Administration</h3></div>
+<div class="db-header-frame">
+	<div class="aa row">
+		<div class="db-label">
+			<h3>Assign Mac</h3>
+		</div>
+		
+	</div>
+
+</div>
 <div class="row1">
 	<div class="am-tb1-container" style="border-top: 2px solid #404040;">
 		<h5>Assign Macs To Users</h5>
@@ -6,7 +14,7 @@
 			<table class="table table-hover table-sm am-table1">
 				<tr ng-repeat="unassigned in unassigned_macs" class="animate-unassigned">
 					<th>{{$index + 1}}.</th>
-					<th><a href="admin/reports/PerMac-perDay/macs?mac={{unassigned.mac}}" class="am-mac-label">{{unassigned.mac}}</a></th>
+					<th><a href="admin/reports/permac/macs?mac={{unassigned.mac}}" class="am-mac-label">{{unassigned.mac}}</a></th>
 					<th>{{unassigned.label == '' ? "----------" : unassigned.label}}</th>
 					<th>
 						<select class="selectpicker users-selectpicker" data-live-search="true" ng-model="selected_user">
@@ -47,7 +55,7 @@
 				
 				<tr ng-repeat="assigned in assigned_macs" class="animate-assigned">
 					<th>{{$index + 1}}.</th>
-					<th><a href="admin/reports/PerMac-perDay/macs?mac={{assigned.mac}}">{{assigned.mac}}</a></th>
+					<th><a href="admin/reports/permac/macs?mac={{assigned.mac}}">{{assigned.mac}}</a></th>
 					<th>{{assigned.owner}}</th>
 					<th><button class="btn btn-info" ng-click="unassign(assigned.owner, assigned.mac)">Unassign</button></th>
 				</tr>
@@ -55,7 +63,7 @@
 			<table class="table table-hover table-sm am-table4">
 				
 				<tr ng-repeat="m in macsOwned" class="animate-assigned">
-					<th><a href="admin/reports/PerMac-perDay/macs?mac={{m.mac}}">{{m.mac}}</a></th>
+					<th><a href="admin/reports/permac/macs?mac={{m.mac}}">{{m.mac}}</a></th>
 					<th>{{m.owner}}</th>
 					<th><button class="btn btn-info" ng-click="unassign2(m.owner, m.mac)">Unassign</button></th>
 				</tr>
