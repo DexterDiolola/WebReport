@@ -29,6 +29,16 @@
 	color: black;
 	font-size: 11pt
 }
+
+
+
+
+
+
+
+
+
+
 /*SIDEBAR SECTION*/
 .contentArea{
 	height: 100%;
@@ -65,6 +75,15 @@
 	margin: 0 0 10 0;
 }
 
+
+
+
+
+
+
+
+
+
 /*WORKING AREA SECTION*/
 .workingArea{
 	background-color: #E9E9E9;
@@ -80,6 +99,15 @@
 	border-bottom: 1px solid #C2C2C2;
 }
 
+
+
+
+
+
+
+
+
+
 /*DASHBOARD SECTION*/
 .db-tab{
 	background-color: #898989;
@@ -89,34 +117,283 @@
 	color: white;
 	font-weight: 400;
 }
+
+/***********************************/
+.db-header-frame{
+	background-color: #FDFDFD;
+	width: 95%;
+	height: 100px;
+	margin:60 auto auto auto;
+}
+.db-label{
+	padding-top: 10;
+	padding-left: 25;
+}
+/***********************************/
+.db-option-tab-frame,
+.db-trend-tab-frame{
+	display: inline-block;
+}
+.db-option-tab{
+	margin: 10 0 5 20;
+	font-size: 9pt;
+}
+.db-trend-tab{
+	margin: 12 0 5 10;
+	font-size: 9pt;
+}
+.db-option-tab li:hover,
+.db-trend-tab li:hover{
+	background-color: #DDDDDD;
+	cursor: pointer;
+}
+.db-option-tab li a,
+.db-trend-tab li a{
+	color: black;
+}
+/***********************************/
+.db-stats-frame{
+	width: 95%;
+	height: 150px;
+	margin:20 auto auto auto;
+}
+.db-s-frame{
+	width: 23%;
+	height: 150px;
+	margin: auto auto 20 auto;
+}
+.db-s-label{
+	color: white;
+	padding-top: 20;
+	padding-left: 20;
+	font-size: 15pt;
+	font-weight: 600;
+}
+.db-s-value{
+	padding-left: 20;
+	padding-top: 5;
+	font-size: 17pt;
+	font-weight: 600;
+}
+.db-s-value1{
+	padding-left: 20;
+	padding-top: 5;
+	font-size: 12pt;
+	font-weight: 600;
+}
+
+.db-s-label font:hover,
+.db-p-label font:hover{
+	cursor: pointer;
+	font-weight: 700;
+}
+.db-s-value font:hover{
+	cursor: pointer;
+}
+/***********************************/
+.db-p-frame{
+	width: 250px;
+	height: 90px;
+	border: 1px solid black;
+	margin: auto auto 20 auto;
+	display: none;
+}
+.db-p-label{
+	color: white;
+	padding-top: 5;
+	padding-left: 10;
+	font-size: 15pt;
+	font-weight: 600;
+}
+.db-p-value{
+	padding-left: 10;
+	padding-top: 10;
+	font-size: 13pt;
+	font-weight: 600;
+}
+/***********************************/
+.db-graph-frame{
+	background-color: #FDFDFD;
+	width: 95%;
+	height: 250px;
+	margin:20 auto auto auto;
+}
+.db-graph-header{
+	padding-top: 10;
+	padding-left: 30;
+	font-size: 15pt;
+	font-weight: bold;
+}
+.db-canvas-frame{
+	width: 95%;
+	height: 180px;
+	margin: auto;
+}
+/***********************************/
+.db-table-frame{
+	width: 95%;
+	margin: 20 auto auto auto;
+}
+.db-table-frame2{
+	width: 95%;
+	margin: 20 auto 20 auto;
+}
+.tb-inner-frame{
+	background-color: #FDFDFD;
+	margin: auto;
+	width: 48%;
+	height: 300px;
+	border-top: 3px solid #898989;
+}
+.tb-label{
+	padding-top: 10;
+	padding-left: 10;
+	font-size: 15pt;
+	font-weight: bold;
+}
+.db-table{
+	width: 95%;
+	height: 230px;
+	margin: 10 auto auto auto;
+	overflow-y: auto;
+}
+
+/************************************/
+.alert-map-frame{
+	width: 96%;
+	margin: auto;
+}
+.alert-frame{
+	background-color: #FDFDFD; 
+	width: 25%; 
+	height: 400; 
+	margin: auto auto 20 auto; 
+	overflow-y: auto;
+}
+.maps-frame{
+	background-color: #FDFDFD; 
+	width: 72%; 
+	height: 400; 
+	margin: auto auto 20 auto; 
+	overflow-y: auto;	
+}
+.alert-label, .maps-label{
+	padding-top: 10;
+	padding-left: 10;
+	font-size: 15pt;
+	font-weight: bold;
+}
+.alerts{
+	width: 85%;
+	height: 350;
+	margin: 5 auto auto auto;
+	overflow-y: auto;
+	font-size: 9pt;
+}
+.alerts p, .map-details p{
+	background-color: #F5F5F5;
+}
+
+.alert-frame, .maps-frame{
+	border-top: 3px solid #898989;
+}
+.maps-frame2{
+	width: 100%;
+	margin: auto;
+}
+.map-details-frame{
+	width: 25%;
+	height: 90%;
+	overflow-y: auto;
+	margin: auto;
+}
+.map-details{
+	width: 85%;
+	font-size: 9pt;
+	margin: 10 auto auto auto;
+}
+.maps{
+	width: 73%;
+	height: 85%;
+	margin: auto;
+	display: block;
+}
+
+/***********************************/
+.preloader{
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: none;
+}
+.spinner{
+	position: absolute;
+	width: 50;
+	height: 50;
+	top: 0;
+	bottom: 0;
+	left:0;
+	right: 0;
+	margin: auto;
+	border: 2px solid #DCEFF5;
+	border-top: 3px solid #3BBFEB;
+	border-radius: 100%;
+	animation: spin 1s infinite linear;
+}
+@keyframes spin{
+	from{
+		transform: rotate(0deg);
+	}
+	to{
+		transform: rotate(360deg);
+	}
+}
+
+
+
+
+
+
+
+
+
+
 /*SUMMARIES SECTION AND PERMAC SECTION*/
 .reports-container, .permac-container{
-	width: 99%;
+	width: 98%;
 	height: auto;
-	margin: 0 0 0 10;
+	margin: 20 auto 20 auto;
 }
 .reports-tb1-container{
 	background-color: white;
-	margin: 10 10 10 0;
-	width: 70%;
+	margin: auto;
+	width: 75%;
 	height: 450px;
 	border: 1px solid #DBDBDB;
-	border-top: 4px solid #404040;
+	border-top: 3px solid #898989
+}
+.reports-tb1-label{
+	padding-top: 10;
+	padding-left: 20;
+}
+.reports-tb2-label{
+	padding-top: 10;
+	padding-left: 10;
 }
 .reports-tb2-container{
 	background-color: white;
-	margin: 10 0 10 0;
-	width: 25%;
+	margin: auto;
+	width: 22%;
 	height: 450px;
 	border: 1px solid #DBDBDB;
-	border-top: 4px solid #404040;
+	border-top: 3px solid #898989
 }
-.reports-tb1-container h5{
-	margin: 10 0 10 20;
-}
-.reports-tb2-container h5, .permac-tb2-container h5{
-	margin: 10 0 10 10;
-}
+
 .reports-table, .permac-table{
 	width: 95%;
 	height: 380px;
@@ -125,7 +402,7 @@
 }
 .reports-tb1-tab, .permac-tb1-tab{
 	width: 50%;
-	margin: 3 0 0 5;
+	margin: 5 0 0 10;
 }
 .reports-tb1-tab a, .permac-tb1-tab a{
 	font-size: 9pt;
@@ -141,16 +418,16 @@
 .th-macs, .td-macs, .th-location, .td-location{
 	text-align: left !important;
 }
-.reports-tb2, .permac-tb2, .permac-tb3, .permac-tb4, .permac-tb5{
+.reports-tb2, .permac-tb2, .permac-tb3, .permac-tb4, .permac-tb5, .permac-tb6{
 	display: none;
 }
 .permac-tb1-container{
 	background-color: white;
-	margin: 10 10 10 0;
-	width: 95%;
+	margin: auto;
+	width: 98%;
 	height: 450px;
 	border: 1px solid #DBDBDB;
-	border-top: 4px solid #404040;
+	border-top: 3px solid #898989
 }
 .permac-search-form{
 	margin: 8 0 8 30;
@@ -168,17 +445,31 @@ td, th{
 .dropdown-item{
 	font-size: 10pt;
 }
+
+
+
+
+
+
+
+
+
+
 /*CHARTS SECTION*/
+.chart-option-tab{
+	margin: 10 0 5 20;
+	font-size: 9pt;
+}
 .row1{
-	margin: 10 0 0 10;
-	width: 99%;
+	margin: 10 auto auto auto;
+	width: 95%;
 	height: auto;
 }
 .chart-container{
 	background-color: white;
-	width: 48%;
+	width: 49%;
 	height: 350px;
-	margin: 0 10 0 0;
+	margin: 10 auto auto auto;
 }
 .chart-container h5{
 	margin: 20 0 0 25;
@@ -204,50 +495,87 @@ td, th{
 #canvas38{
 	display: none !important;
 }
+
+
+
+
+
+
+
+
+
+
 /*ADD-MAC-LABEL ASSIGN MAC SECTION*/
-.aml-tb1-container{
+.aml-tb1-frame{
 	background-color: white;
-	margin: 10 10 10 0;
-	width: 30%;
-	height: 230px;
-}
-.aml-tb2-container{
-	background-color: white;
-	margin: 10 0 10 1%;
-	width: 63%;
-	height: 230px;
-}
-.aml-tb3-container{
-	background-color: white;
-	margin: 10 0 10 0;
-	width: 82%;
-	height: 250px;
-}
-.am-tb1-container, .aml-tb3-container{
-	background-color: white;
-	margin: 10 0 10 0;
+	margin: 20 auto auto auto;
 	width: 95%;
+	height: 250px;
+	border-top: 3px solid #898989;
+}
+.aml-label{
+	padding-top: 10;
+	padding-left: 10;
+	padding-bottom: 15
+}
+.aml-tb23-frame{
+	width: 95%;
+	margin: 20 auto auto auto;
+}
+.aml-tb2-frame{
+	background-color: white;
+	width: 28%;
+	height: 250px;
+	margin: auto;
+	border-top: 3px solid #898989;
+}
+.aml-tb3-frame{
+	background-color: white;
+	width: 69%;
+	height: 250px;
+	margin: auto;
+	border-top: 3px solid #898989;
+}
+.alert-settings-frame{
+	background-color: white;
+	width: 30%;
+	height: 300px;
+	margin: 20 auto 20 25;
+	border-top: 3px solid #898989;
+	display: none;
+}
+.set-alert-label{
+	padding-top: 10;
+	padding-left: 10
+}
+.set-values-frame{
+	width: 90%;
+	margin: 20 auto auto auto;
+}
+
+
+
+.am-tb1-container{
+	background-color: white;
+	margin: 20 auto auto auto;
+	width: 98%;
 	height: 250px;
 }
 .am-tb2-container{
 	background-color: white;
-	margin: 10 10 10 0;
+	margin: 20 auto auto auto;
 	width: 40%;
 	height: 230px;
 }
 .am-tb3-container{
 	background-color: white;
-	margin: 10 0 10 1%;
-	width: 53%;
+	margin: 20 auto auto auto;
+	width: 55%;
 	height: 230px;
 }
-.aml-tb1-container h5, .aml-tb2-container h5,
-.aml-tb3-container h5, .am-tb1-container h5,
-.am-tb2-container h5, .am-tb3-container h5{
+.am-tb1-container h5, .am-tb2-container h5, .am-tb3-container h5{
 	margin: 10 0 15 10;
 }
-.aml-tb2-container th, .aml-tb2-container tr,
-.aml-tb3-container th, .aml-tb3-container tr,
 .am-tb1-container th, .am-tb1-container tr,
 .am-tb2-container th, .am-tb2-container tr,
 .am-tb3-container th, .am-tb3-container tr{
@@ -259,10 +587,11 @@ td, th{
 .aml-form-container{
 	margin: auto;
 }
-.aml-form-container label{
+.aml-form-container label, .set-values label{
 	font-size: 9pt;
 }
-.aml-input-mac, .aml-input-label{
+.aml-input-mac, .aml-input-label, .aml-input-val,
+.set-values input{
 	height: 30px;
 	border-radius: 3px;
 	font-size: 11pt;
@@ -273,7 +602,7 @@ td, th{
 	height: 160px;
 	overflow-y: auto;
 }
-.aml-macs-table button, .am-assign-table button,
+.aml-macs-table button, .set-values-frame button, .am-assign-table button,
 .am-unassign-table button{
 	padding: auto;
 	font-size: 10pt;
