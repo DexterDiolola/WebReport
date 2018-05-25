@@ -36,7 +36,7 @@ function graphActiveDevices(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Active Devices per "+ trendStr,
+					text: "Active Devices "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -71,7 +71,7 @@ function graphActiveDevices(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Active Devices per "+ trendStr,
+					text: "Active Devices "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -89,6 +89,98 @@ function graphActiveDevices(urlParam, trendStr){
 
 	});
 }
+
+
+
+
+function graphViewCount(urlParam, trendStr){
+	$.getJSON('/api/' + urlParam, function(data){
+		var dateTime = [], totalViewCount = [];
+
+		for(var x=0; x<data.length; x++){
+			dateTime.unshift(data[x].dateCreated);
+			totalViewCount.unshift(data[x].totalViewCount);
+		}
+
+		if(myChart || myChart2){
+			myChart.destroy();
+			myChart2.destroy();
+		}
+
+		var ctx = document.getElementById("canvas1").getContext("2d");
+		var ctx2 = document.getElementById("canvas2").getContext("2d");
+
+		myChart = new Chart(ctx2, {
+			type: "bar",
+			data: {
+				labels: dateTime,
+				datasets: [{
+					label: "Total Max Views",
+					data: totalViewCount,
+					backgroundColor: "rgba(170, 35, 255, 0.3)",
+					borderColor: "rgba(100, 0, 163, 0.76)",
+					borderWidth: "2"
+				}]
+			},
+			options:{
+				maintainAspectRatio: false,
+				title: {
+					display: true,
+					text: "Total Max Views "+ trendStr,
+				},
+				scales:{
+					yAxes:[{
+						ticks:{
+							beginAtZero: true
+						}
+					}],
+					xAxes:[{
+						display: false
+					}]
+				},
+			}
+		});	
+		myChart2 = new Chart(ctx, {
+			type: "line",
+			data: {
+				labels: dateTime,
+				datasets: [{
+					label: "Total Max Views",
+					data: totalViewCount,
+					backgroundColor: "rgba(170, 35, 255, 0.3)",
+					borderColor: "rgba(100, 0, 163, 0.76)",
+					borderWidth: "2",
+					lineTension: 0.3,
+	    			fill: true,
+	    			pointBackgroundColor: "rgba(100, 0, 163, 0.76)",
+	    			pointRadius: 2
+				}]
+			},
+			options:{
+				maintainAspectRatio: false,
+				title: {
+					display: true,
+					text: "Total Max Views "+ trendStr,
+				},
+				scales:{
+					yAxes:[{
+						ticks:{
+							beginAtZero: true,
+							max: Math.max(...totalViewCount) + 1
+						}
+					}],
+					xAxes:[{
+						display: false
+					}]
+				},
+			}
+		});
+	})
+}
+
+
+
+
 
 function graphLayout(urlParam, trendStr, type){
 	$.getJSON('/api/' + urlParam, function(result){
@@ -147,7 +239,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Connected per "+ trendStr,
+						text: "Max Connected "+ trendStr,
 					},
 					//responsive: false,
 					scales:{
@@ -182,7 +274,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Connected per "+ trendStr,
+						text: "Max Connected "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -218,7 +310,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Ccq per "+ trendStr,
+						text: "Max Ccq "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -252,7 +344,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Ccq per "+ trendStr,
+						text: "Max Ccq "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -294,7 +386,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Utiltx-Utilrx per "+ trendStr,
+						text: "Max Utiltx-Utilrx "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -339,7 +431,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Utiltx-Utilrx per "+ trendStr,
+						text: "Max Utiltx-Utilrx "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -380,7 +472,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Usagetx-Usagerx per "+ trendStr,
+						text: "Max Usagetx-Usagerx "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -425,7 +517,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Usagetx-Usagerx per "+ trendStr,
+						text: "Max Usagetx-Usagerx "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -460,7 +552,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Lease per "+ trendStr,
+						text: "Max Lease "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -494,7 +586,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Lease per "+ trendStr,
+						text: "Max Lease "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -529,7 +621,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Free Memory per "+ trendStr,
+						text: "Max Free Memory "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -563,7 +655,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max Free Memory per "+ trendStr,
+						text: "Max Free Memory "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -597,7 +689,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max CPU Frequency per "+ trendStr,
+						text: "Max CPU Frequency "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -631,7 +723,7 @@ function graphLayout(urlParam, trendStr, type){
 					maintainAspectRatio: false,
 					title: {
 						display: true,
-						text: "Max CPU Frequency per "+ trendStr,
+						text: "Max CPU Frequency "+ trendStr,
 					},
 					scales:{
 						yAxes:[{
@@ -673,7 +765,7 @@ function graphLayout(urlParam, trendStr, type){
 					},
 					title: {
 						display: true,
-						text: "Max CPU Load per "+ trendStr,
+						text: "Max CPU Load "+ trendStr,
 					}
 				}
 			});	
@@ -707,7 +799,7 @@ function graphLayout(urlParam, trendStr, type){
 					},
 					title: {
 						display: true,
-						text: "Max CPU Load per "+ trendStr,
+						text: "Max CPU Load "+ trendStr,
 					}
 				}
 			});
@@ -740,7 +832,7 @@ function graphLayout(urlParam, trendStr, type){
 					},
 					title: {
 						display: true,
-						text: "Max Free Hdd per "+ trendStr,
+						text: "Max Free Hdd "+ trendStr,
 					}
 				}
 			});	
@@ -774,7 +866,7 @@ function graphLayout(urlParam, trendStr, type){
 					},
 					title: {
 						display: true,
-						text: "Max Free Hdd per "+ trendStr,
+						text: "Max Free Hdd "+ trendStr,
 					}
 				}
 			});
