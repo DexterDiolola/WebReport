@@ -11,91 +11,34 @@ macStats.config(['$routeProvider',
 	//DASHBOARD SECTION
 	.when('/admin/dashboard',{
 		templateUrl: "templates/dashboard.php",
-		controller: "dashboardControllerPD"			/*PD -> perDay, PW -> perWeek, PM -> perMonth*/
+		controller: "dashboardController"			/*PD -> perDay, PW -> perWeek, PM -> perMonth*/
 	})
-	.when('/admin/dashboard-perDay',{
-		templateUrl: "templates/dashboard.php",
-		controller: "dashboardControllerPD"
-	})
-	.when('/admin/dashboard-perWeek',{
-		templateUrl: "templates/dashboard.php",
-		controller: "dashboardControllerPW"
-	})
-	.when('/admin/dashboard-perMonth',{
-		templateUrl: "templates/dashboard.php",
-		controller: "dashboardControllerPM"
-	})
-
-	//SUMMARIES (REPORTS) SECTION	
-	.when('/admin/reports/Summary-perDay',{
+	//SUMMARIES (REPORTS) SECTION
+	.when('/admin/reports/summaries',{
 		templateUrl: "templates/reports.php",
-		controller: "reportsControllerPD"
+		controller: "reportsController"
+	})	
+	//CHARTS SECTION
+	.when('/admin/reports/charts',{
+		templateUrl: "templates/graphs.php",
+		controller: "chartsController"
 	})
-	.when('/admin/reports/Summary-perWeek',{
-		templateUrl: "templates/reports.php",
-		controller: "reportsControllerPW"
+	//PERMAC SECTION
+	.when('/admin/reports/permac',{
+		templateUrl: "templates/permac.php",
+		controller: "permacController"
 	})
-	.when('/admin/reports/Summary-perMonth',{
-		templateUrl: "templates/reports.php",
-		controller: "reportsControllerPM"
+	//PERMAC-ACTIVITY SECTION
+	.when('/admin/reports/permac/macs?:mac',{
+		templateUrl: "templates/permac.php",
+		controller: "permacActivityController"
+	})
+	//CHARTS PERMAC ACTIVITY SECTION
+	.when('/admin/reports/charts/macs?:mac',{
+		templateUrl: "templates/graphs.php",
+		controller: "chartsPermacActController"
 	})
 	
-	//CHARTS SECTION
-	.when('/admin/reports/Charts-perDay',{
-		templateUrl: "templates/graphs.php",
-		controller: "chartsControllerPD"
-	})
-	.when('/admin/reports/Charts-perWeek',{
-		templateUrl: "templates/graphs.php",
-		controller: "chartsControllerPW"
-	})
-	.when('/admin/reports/Charts-perMonth',{
-		templateUrl: "templates/graphs.php",
-		controller: "chartsControllerPM"
-	})
-
-	//PERMAC SECTION
-	.when('/admin/reports/PerMac-perDay',{
-		templateUrl: "templates/permac.php",
-		controller: "perMacControllerPD"
-	})
-	.when('/admin/reports/PerMac-perWeek',{
-		templateUrl: "templates/permac.php",
-		controller: "perMacControllerPW"
-	})
-	.when('/admin/reports/PerMac-perMonth',{
-		templateUrl: "templates/permac.php",
-		controller: "perMacControllerPM"
-	})
-
-	//PERMAC-ACTIVITY SECTION
-	.when('/admin/reports/PerMac-perDay/macs?:mac',{
-		templateUrl: "templates/permac.php",
-		controller: "permacActivityPD"
-	})
-	.when('/admin/reports/PerMac-perWeek/macs?:mac',{
-		templateUrl: "templates/permac.php",
-		controller: "permacActivityPW"
-	})
-	.when('/admin/reports/PerMac-perMonth/macs?:mac',{
-		templateUrl: "templates/permac.php",
-		controller: "permacActivityPM"
-	})
-
-	//CHARTS PERMAC ACTIVITY SECTION
-	.when('/admin/reports/Charts-perDay/macs?:mac',{
-		templateUrl: "templates/graphs.php",
-		controller: "chartsPermacActPD"
-	})
-	.when('/admin/reports/Charts-perWeek/macs?:mac',{
-		templateUrl: "templates/graphs.php",
-		controller: "chartsPermacActPW"
-	})
-	.when('/admin/reports/Charts-perMonth/macs?:mac',{
-		templateUrl: "templates/graphs.php",
-		controller: "chartsPermacActPM"
-	})
-
 	//ADMINISTRATION SECTION
 	.when('/admin/administration/add-mac-label',{
 		templateUrl: "templates/add-mac-label.php",
@@ -117,89 +60,32 @@ macStats.config(['$routeProvider',
 	//DASHBOARD SECTION
 	.when('/user/dashboard',{
 		templateUrl: "templates/dashboard.php",
-		controller: "userDashboardPD"			/*PD -> perDay, PW -> perWeek, PM -> perMonth*/
+		controller: "dashboardControllerUser"			/*PD -> perDay, PW -> perWeek, PM -> perMonth*/
 	})
-	.when('/user/dashboard-perDay',{
-		templateUrl: "templates/dashboard.php",
-		controller: "userDashboardPD"
-	})
-	.when('/user/dashboard-perWeek',{
-		templateUrl: "templates/dashboard.php",
-		controller: "userDashboardPW"
-	})
-	.when('/user/dashboard-perMonth',{
-		templateUrl: "templates/dashboard.php",
-		controller: "userDashboardPM"
-	})
-
 	//SUMMARIES (REPORTS) SECTION	
-	.when('/user/reports/Summary-perDay',{
+	.when('/user/reports/summaries',{
 		templateUrl: "templates/reports.php",
-		controller: "userReportsPD"
+		controller: "reportsControllerUser"
 	})
-	.when('/user/reports/Summary-perWeek',{
-		templateUrl: "templates/reports.php",
-		controller: "userReportsPW"
-	})
-	.when('/user/reports/Summary-perMonth',{
-		templateUrl: "templates/reports.php",
-		controller: "userReportsPM"
-	})
-
 	//CHARTS SECTION
-	.when('/user/reports/Charts-perDay',{
+	.when('/user/reports/charts',{
 		templateUrl: "templates/graphs.php",
-		controller: "userChartsPD"
+		controller: "chartsControllerUser"
 	})
-	.when('/user/reports/Charts-perWeek',{
-		templateUrl: "templates/graphs.php",
-		controller: "userChartsPW"
-	})
-	.when('/user/reports/Charts-perMonth',{
-		templateUrl: "templates/graphs.php",
-		controller: "userChartsPM"
-	})
-
 	//PERMAC SECTION
-	.when('/user/reports/PerMac-perDay',{
+	.when('/user/reports/permac',{
 		templateUrl: "templates/permac.php",
-		controller: "userPermacPD"
+		controller: "permacControllerUser"
 	})
-	.when('/user/reports/PerMac-perWeek',{
-		templateUrl: "templates/permac.php",
-		controller: "userPermacPW"
-	})
-	.when('/user/reports/PerMac-perMonth',{
-		templateUrl: "templates/permac.php",
-		controller: "userPermacPM"
-	})
-
 	//PERMAC-ACTIVITY SECTION
-	.when('/user/reports/PerMac-perDay/macs?:mac',{
+	.when('/user/reports/permac/macs?:mac',{
 		templateUrl: "templates/permac.php",
-		controller: "userPermacActivityPD"
+		controller: "permacActivityControllerUser"
 	})
-	.when('/user/reports/PerMac-perWeek/macs?:mac',{
-		templateUrl: "templates/permac.php",
-		controller: "userPermacActivityPW"
-	})
-	.when('/user/reports/PerMac-perMonth/macs?:mac',{
-		templateUrl: "templates/permac.php",
-		controller: "userPermacActivityPM"
-	})
-
 	//CHARTS PERMAC ACTIVITY SECTION
-	.when('/user/reports/Charts-perDay/macs?:mac',{
+	.when('/user/reports/charts/macs?:mac',{
 		templateUrl: "templates/graphs.php",
-		controller: "userChartsPermacActPD"
-	})
-	.when('/user/reports/Charts-perWeek/macs?:mac',{
-		templateUrl: "templates/graphs.php",
-		controller: "userChartsPermacActPW"
-	})
-	.when('/user/reports/Charts-perMonth/macs?:mac',{
-		templateUrl: "templates/graphs.php",
-		controller: "userChartsPermacActPM"
+		controller: "chartsPermacActControllerUser"
 	})
 
 	
