@@ -15,393 +15,409 @@
 
 </style>
 
-<div class="sidebarHeader row">
-	<h3>Charts</h3>
-	<ul class="nav nav-tabs chart-option-tab" >
-		<li class="nav-item">
-			<a class="nav-link stats-tab" data-toggle="tab" href="#"><b>Stats</b></a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link packages-tab" data-toggle="tab" href="#"><b>Packages</b></a>
-		</li>
-	</ul>
-</div>
-<ul class="nav nav-tabs db-tab">
-  <li class="nav-item">
-    <a class="nav-link db-pday" data-toggle="tab" href="{{trendUrl[0]}}">Per Day</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link db-pweek" data-toggle="tab" href="{{trendUrl[1]}}">Per Week</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link db-pmonth" data-toggle="tab" href="{{trendUrl[2]}}">Per Month</a>
-  </li>
-</ul>
-
-<div class="stats-graph">
-	<div class="row row1">
-		<div class="chart-container chart-active-container" style="border-top: 4px solid #404040;">
-			<div class="row">
-				<h5>Actives ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link active-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link active-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas1"></canvas>
-				<canvas id="canvas2"></canvas>
-			</div>
-		</div>
-		<div class="chart-container chart-connected-container" style="border-top: 4px solid rgba(0, 204, 47, 0.76);">
-			<div class="row">
-				<h5>Connected ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link connected-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link connected-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container canvas-connected-container">
-				<canvas id="canvas3"></canvas>
-				<canvas id="canvas4"></canvas>
-			</div>
-		</div>
-	</div>
-
-	<div class="row row1">
-		<div class="chart-container" style="border-top: 4px solid rgba(0, 198, 179, 0.76);">
-			<div class="row">
-				<h5>Ccq ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link ccq-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link ccq-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas5"></canvas>
-				<canvas id="canvas6"></canvas>
-			</div>
-		</div>
-		<div class="chart-container" style="border-top: 4px solid rgba(204, 129, 0, 0.76);">
-			<div class="row">
-				<h5>Util ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link util-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link util-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas7"></canvas>
-				<canvas id="canvas8"></canvas>
-			</div>
-		</div>
-	</div>
-
-	<div class="row row1">
-		<div class="chart-container" style="border-top: 4px solid rgba(204, 0, 122, 0.76)">
-			<div class="row">
-				<h5>Usage ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link usage-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link usage-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas9"></canvas>
-				<canvas id="canvas10"></canvas>
-			</div>
-		</div>
-		<div class="chart-container" style="border-top: 4px solid rgba(76, 0, 158, 0.9);">
-			<div class="row">
-				<h5>Lease ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link lease-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link lease-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas11"></canvas>
-				<canvas id="canvas12"></canvas>
-			</div>
-		</div>
-	</div>
-
-	<div class="row row1">
-		<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76);">
-			<div class="row">
-				<h5>Free Mem ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link freeMem-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link freeMem-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas13"></canvas>
-				<canvas id="canvas14"></canvas>
-			</div>
-		</div>
-		<div class="chart-container" style="border-top: 4px solid rgba(100, 0, 163, 0.76);">
-			<div class="row">
-				<h5>CPU Freq ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link cpuFreq-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link cpuFreq-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas15"></canvas>
-				<canvas id="canvas16"></canvas>
-			</div>
-		</div>
-	</div>
-
-	<div class="row row1">
-		<div class="chart-container" style="border-top: 4px solid rgba(198, 0, 0, 0.76);">
-			<div class="row">
-				<h5>CPU Load ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link cpuLoad-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link cpuLoad-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas17"></canvas>
-				<canvas id="canvas18"></canvas>
-			</div>
-		</div>
-		<div class="chart-container" style="border-top: 4px solid rgba(11, 29, 24, 0.76);">
-			<div class="row">
-				<h5>Free Hdd ({{trend}})</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link freeHdd-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link freeHdd-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas19"></canvas>
-				<canvas id="canvas20"></canvas>
-			</div>
-		</div>
-	</div>
-</div>
 
 
-
-
-
-
-
-
-<div class="packages-graph">
-	<div class="row row1">
-		<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76); width: 90%; height: 400px; margin:auto;">
-			<div class="row">
-				<h5>Packages</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link packages-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link packages-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
+<div class="charts-init" ng-init="init('perDay')">
+	<!--Uses the header for dashboard-->
+	<div class="db-header-frame">
+		<div class="aa row">
+			<div class="db-label">
+				<h3>Charts</h3>
 			</div>
-			<div class="canvas-container" style="height: 300px">
-				<canvas id="canvas37"></canvas>
-				<canvas id="canvas38"></canvas>
-			</div>
+			<div class="db-option-tab-frame">
+				<ul class="nav nav-tabs db-option-tab" >
+					<li class="nav-item">
+						<a class="nav-link stats-tab" data-toggle="tab"><b>Stats</b></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link packages-tab" data-toggle="tab" ng-click="packagesCharts()"><b>Packages</b></a>
+					</li>
+				</ul>	
+			</div>	
 		</div>
 		
+		<div class="db-trend-tab-frame">
+			<ul class="nav nav-tabs db-trend-tab" >
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" ng-click="init('perDay')"><b>Per Day</b></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" ng-click="init('perWeek')"><b>Per Week</b></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" data-toggle="tab" ng-click="init('perMonth')"><b>Per Month</b></a>
+				</li>
+			</ul>	
+		</div>
+
 	</div>
 
-	<div class="row row1">
-		<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76);">
-			<div class="row">
-				<h5>30Mins</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link 30mins-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link 30mins-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
+	<div class="stats-graph">
+		<div class="row row1">
+			<div class="chart-container chart-active-container" style="border-top: 2px solid rgba(204, 0, 122, 0.76);">
+				<div class="row">
+					<h5>Actives ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link active-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link active-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas1"></canvas>
+					<canvas id="canvas2"></canvas>
+				</div>
 			</div>
-			<div class="canvas-container">
-				<canvas id="canvas21"></canvas>
-				<canvas id="canvas22"></canvas>
+			<div class="chart-container chart-connected-container" style="border-top: 2px solid rgba(76, 0, 158, 0.9);">
+				<div class="row">
+					<h5>Connected ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link connected-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link connected-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container canvas-connected-container">
+					<canvas id="canvas3"></canvas>
+					<canvas id="canvas4"></canvas>
+				</div>
 			</div>
 		</div>
-		<div class="chart-container" style="border-top: 4px solid rgba(100, 0, 163, 0.76);">
-			<div class="row">
-				<h5>1Hour</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link 1hour-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link 1hour-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
+
+		<div class="row row1">
+			<div class="chart-container" style="border-top: 2px solid rgba(14, 16, 15, 0.9);">
+				<div class="row">
+					<h5>Ccq ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link ccq-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link ccq-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas5"></canvas>
+					<canvas id="canvas6"></canvas>
+				</div>
 			</div>
-			<div class="canvas-container">
-				<canvas id="canvas23"></canvas>
-				<canvas id="canvas24"></canvas>
+			<div class="chart-container" style="border-top: 2px solid rgba(0, 71, 204, 0.76);">
+				<div class="row">
+					<h5>Util ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link util-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link util-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas7"></canvas>
+					<canvas id="canvas8"></canvas>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row1">
+			<div class="chart-container" style="border-top: 2px solid rgba(100, 0, 163, 0.76)">
+				<div class="row">
+					<h5>Usage ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link usage-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link usage-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas9"></canvas>
+					<canvas id="canvas10"></canvas>
+				</div>
+			</div>
+			<div class="chart-container" style="border-top: 2px solid rgba(0, 204, 47, 0.76);">
+				<div class="row">
+					<h5>Lease ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link lease-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link lease-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas11"></canvas>
+					<canvas id="canvas12"></canvas>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row1">
+			<div class="chart-container" style="border-top: 2px solid rgba(0, 198, 179, 0.76);">
+				<div class="row">
+					<h5>Free Mem ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link freeMem-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link freeMem-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas13"></canvas>
+					<canvas id="canvas14"></canvas>
+				</div>
+			</div>
+			<div class="chart-container" style="border-top: 2px solid rgba(204, 129, 0, 0.76);">
+				<div class="row">
+					<h5>CPU Freq ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link cpuFreq-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link cpuFreq-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas15"></canvas>
+					<canvas id="canvas16"></canvas>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row1">
+			<div class="chart-container" style="border-top: 2px solid rgba(198, 0, 0, 0.76);">
+				<div class="row">
+					<h5>CPU Load ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link cpuLoad-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link cpuLoad-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas17"></canvas>
+					<canvas id="canvas18"></canvas>
+				</div>
+			</div>
+			<div class="chart-container" style="border-top: 2px solid rgba(11, 29, 24, 0.76);">
+				<div class="row">
+					<h5>Free Hdd ({{trend}})</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link freeHdd-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link freeHdd-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas19"></canvas>
+					<canvas id="canvas20"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="row row1">
-		<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76);">
-			<div class="row">
-				<h5>2Hours</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link 2hours-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link 2hours-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas25"></canvas>
-				<canvas id="canvas26"></canvas>
-			</div>
-		</div>
-		<div class="chart-container" style="border-top: 4px solid rgba(100, 0, 163, 0.76);">
-			<div class="row">
-				<h5>5Hours</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link 5hours-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link 5hours-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas27"></canvas>
-				<canvas id="canvas28"></canvas>
-			</div>
-		</div>
-	</div>
 
-	<div class="row row1">
-		<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76);">
-			<div class="row">
-				<h5>1Day</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link 1day-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link 1day-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas29"></canvas>
-				<canvas id="canvas30"></canvas>
-			</div>
-		</div>
-		<div class="chart-container" style="border-top: 4px solid rgba(100, 0, 163, 0.76);">
-			<div class="row">
-				<h5>2Days</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link 2days-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link 2days-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
-			</div>
-			<div class="canvas-container">
-				<canvas id="canvas31"></canvas>
-				<canvas id="canvas32"></canvas>
-			</div>
-		</div>
-	</div>
 
-	<div class="row row1">
-		<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76);">
-			<div class="row">
-				<h5>4Days</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link 4days-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link 4days-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
+
+
+
+
+
+	<div class="packages-graph">
+		<div class="row row1">
+			<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76); width: 90%; height: 400px; margin:auto;">
+				<div class="row">
+					<h5>Packages</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link packages-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link packages-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container" style="height: 300px">
+					<canvas id="canvas37"></canvas>
+					<canvas id="canvas38"></canvas>
+				</div>
 			</div>
-			<div class="canvas-container">
-				<canvas id="canvas33"></canvas>
-				<canvas id="canvas34"></canvas>
+			
+		</div>
+
+		<div class="row row1">
+			<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76);">
+				<div class="row">
+					<h5>30Mins</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link 30mins-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link 30mins-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas21"></canvas>
+					<canvas id="canvas22"></canvas>
+				</div>
+			</div>
+			<div class="chart-container" style="border-top: 4px solid rgba(100, 0, 163, 0.76);">
+				<div class="row">
+					<h5>1Hour</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link 1hour-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link 1hour-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas23"></canvas>
+					<canvas id="canvas24"></canvas>
+				</div>
 			</div>
 		</div>
-		<div class="chart-container" style="border-top: 4px solid rgba(100, 0, 163, 0.76);">
-			<div class="row">
-				<h5>1Week</h5>
-				<ul class="nav nav-tabs chart-tab">
-				  <li class="nav-item">
-				    <a class="nav-link 1week-line" data-toggle="tab" href="#">Line</a>
-				  </li>
-				  <li class="nav-item">
-				    <a class="nav-link 1week-bar" data-toggle="tab" href="#">Bar</a>
-				  </li>
-				</ul>
+
+		<div class="row row1">
+			<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76);">
+				<div class="row">
+					<h5>2Hours</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link 2hours-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link 2hours-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas25"></canvas>
+					<canvas id="canvas26"></canvas>
+				</div>
 			</div>
-			<div class="canvas-container">
-				<canvas id="canvas35"></canvas>
-				<canvas id="canvas36"></canvas>
+			<div class="chart-container" style="border-top: 4px solid rgba(100, 0, 163, 0.76);">
+				<div class="row">
+					<h5>5Hours</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link 5hours-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link 5hours-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas27"></canvas>
+					<canvas id="canvas28"></canvas>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row1">
+			<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76);">
+				<div class="row">
+					<h5>1Day</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link 1day-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link 1day-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas29"></canvas>
+					<canvas id="canvas30"></canvas>
+				</div>
+			</div>
+			<div class="chart-container" style="border-top: 4px solid rgba(100, 0, 163, 0.76);">
+				<div class="row">
+					<h5>2Days</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link 2days-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link 2days-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas31"></canvas>
+					<canvas id="canvas32"></canvas>
+				</div>
+			</div>
+		</div>
+
+		<div class="row row1">
+			<div class="chart-container" style="border-top: 4px solid rgba(0, 71, 204, 0.76);">
+				<div class="row">
+					<h5>4Days</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link 4days-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link 4days-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas33"></canvas>
+					<canvas id="canvas34"></canvas>
+				</div>
+			</div>
+			<div class="chart-container" style="border-top: 4px solid rgba(100, 0, 163, 0.76);">
+				<div class="row">
+					<h5>1Week</h5>
+					<ul class="nav nav-tabs chart-tab">
+					  <li class="nav-item">
+					    <a class="nav-link 1week-line" data-toggle="tab" href="#">Line</a>
+					  </li>
+					  <li class="nav-item">
+					    <a class="nav-link 1week-bar" data-toggle="tab" href="#">Bar</a>
+					  </li>
+					</ul>
+				</div>
+				<div class="canvas-container">
+					<canvas id="canvas35"></canvas>
+					<canvas id="canvas36"></canvas>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 
 
