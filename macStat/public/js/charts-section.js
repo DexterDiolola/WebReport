@@ -30,8 +30,8 @@ function graphActiveDevices(urlParam, trendStr){
 				datasets: [{
 					label: "Active Devices",
 					data: activeDevices,
-					backgroundColor: "rgba(14, 16, 15, 0.4)",
-					borderColor: "rgba(14, 16, 15, 0.9)",
+					backgroundColor: "rgba(255, 40, 169, 0.3)",
+					borderColor: "rgba(204, 0, 122, 0.76)",
 					borderWidth: "2"
 				}]
 			},
@@ -39,7 +39,7 @@ function graphActiveDevices(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Active Devices per "+ trendStr,
+					text: "Active Devices "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -60,20 +60,20 @@ function graphActiveDevices(urlParam, trendStr){
 				datasets: [{
 					label: "Active Devices ",
 					data: activeDevices,
-					backgroundColor: "rgba(14, 16, 15, 0.4)",
-					borderColor: "rgba(14, 16, 15, 0.9)",
+					backgroundColor: "rgba(255, 40, 169, 0.3)",
+					borderColor: "rgba(204, 0, 122, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
-        			fill: true,
-        			pointBackgroundColor: "rgba(14, 16, 15, 0.4",
-        			pointBorderColor: "rgba(14, 16, 15, 0.9)"
+					lineTension: 0.3,
+	        		fill: true,
+	        		pointBackgroundColor: "rgba(204, 0, 122, 0.76)",
+	        		pointRadius: 2
 				}]
 			},
 			options:{
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Active Devices per "+ trendStr,
+					text: "Active Devices "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -113,8 +113,8 @@ function graphMaxConnected(urlParam, trendStr){
 				datasets: [{
 					label: "Max Connected",
 					data: maxConnected,
-					backgroundColor: "rgba(35, 255, 86, 0.3)",
-					borderColor: "rgba(0, 204, 47, 0.76)",
+					backgroundColor: "rgba(93, 0, 193, 0.5)",
+					borderColor: "rgba(76, 0, 158, 0.9)",
 					borderWidth: "2"
 				}]
 			},
@@ -122,7 +122,7 @@ function graphMaxConnected(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Connected per "+ trendStr,
+					text: "Max Connected "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -143,20 +143,20 @@ function graphMaxConnected(urlParam, trendStr){
 				datasets: [{
 					label: "Max Connected ",
 					data: maxConnected,
-					backgroundColor: "rgba(35, 255, 86, 0.3)",
-					borderColor: "rgba(0, 204, 47, 0.76)",
+					backgroundColor: "rgba(93, 0, 193, 0.5)",
+					borderColor: "rgba(76, 0, 158, 0.9)",
 					borderWidth: "2",
-					lineTension: 0,
-        			fill: true,
-        			pointBackgroundColor: "black",
-        			pointBorderColor: "rgba(35, 255, 86, 0.3)"
+					lineTension: 0.3,
+	        		fill: true,
+	        		pointBackgroundColor: "rgba(76, 0, 158, 0.9)",
+	        		pointRadius: 2
 				}]
 			},
 			options:{
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Connected per "+ trendStr,
+					text: "Max Connected "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -196,8 +196,8 @@ function graphMaxCcq(urlParam, trendStr){
 				datasets: [{
 					label: "Max Ccq",
 					data: maxCcq,
-					backgroundColor: "rgba(35, 255, 233, 0.3)",
-					borderColor: "rgba(0, 198, 179, 0.76)",
+					backgroundColor: "rgba(14, 16, 15, 0.4)",
+					borderColor: "rgba(14, 16, 15, 0.9)",
 					borderWidth: "2"
 				}]
 			},
@@ -205,7 +205,7 @@ function graphMaxCcq(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Ccq per "+ trendStr,
+					text: "Max Ccq "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -226,20 +226,20 @@ function graphMaxCcq(urlParam, trendStr){
 				datasets: [{
 					label: "Max Ccq ",
 					data: maxCcq,
-					backgroundColor: "rgba(103, 245, 253, 0.3)",
-					borderColor: "rgba(0, 198, 179, 0.76)",
+					backgroundColor: "rgba(14, 16, 15, 0.4)",
+					borderColor: "rgba(14, 16, 15, 0.9)",
 					borderWidth: "2",
-					lineTension: 0,
-        			fill: true,
-        			pointBackgroundColor: "black",
-        			pointBorderColor: "rgba(0, 198, 179, 0.76)"
+					lineTension: 0.3,
+	        		fill: true,
+	        		pointBackgroundColor: "rgba(14, 16, 15, 0.9)",
+	        		pointRadius: 2
 				}]
 			},
 			options:{
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Ccq per "+ trendStr,
+					text: "Max Ccq "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -279,8 +279,8 @@ function graphMaxUtil(urlParam, trendStr){
 				datasets: [{
 					label: "Max Utiltx (in KB)",
 					data: maxUtiltx,
-					backgroundColor: "rgba(255, 174, 35, 0.3)",
-					borderColor: "rgba(204, 129, 0, 0.76)",
+					backgroundColor: "rgba(44, 116, 251, 0.3)",
+					borderColor: "rgba(0, 71, 204, 0.76)",
 					borderWidth: "2"
 				},
 				{
@@ -295,7 +295,7 @@ function graphMaxUtil(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Utiltx-Utilrx per "+ trendStr,
+					text: "Max Utiltx-Utilrx "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -316,13 +316,13 @@ function graphMaxUtil(urlParam, trendStr){
 				datasets: [{
 					label: "Max Utiltx (in KB)",
 					data: maxUtiltx,
-					backgroundColor: "rgba(255, 174, 35, 0.3)",
-					borderColor: "rgba(204, 129, 0, 0.76)",
+					backgroundColor: "rgba(44, 116, 251, 0.3)",
+					borderColor: "rgba(0, 71, 204, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
-        			fill: true,
-        			pointBackgroundColor: "black",
-        			pointBorderColor: "rgba(204, 129, 0, 0.76)"
+					lineTension: 0.3,
+	        		fill: true,
+	        		pointBackgroundColor: "rgba(0, 71, 204, 0.76)",
+	        		pointRadius: 2
 				},
 				{
 					label: "Max Utilrx (in KB)",
@@ -330,17 +330,17 @@ function graphMaxUtil(urlParam, trendStr){
 					backgroundColor: "rgba(26, 65, 54, 0.3)",
 					borderColor: "rgba(11, 29, 24, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
+					lineTension: 0.3,
         			fill: false,
-        			pointBackgroundColor: "black",
-        			pointBorderColor: "rgba(11, 29, 24, 0.76)"
+        			pointBackgroundColor: "rgba(11, 29, 24, 0.76)",
+        			pointRadius: 2
 				}]
 			},
 			options:{
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Utiltx-Utilrx per "+ trendStr,
+					text: "Max Utiltx-Utilrx "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -378,8 +378,8 @@ function graphMaxUsage(urlParam, trendStr){
 				datasets: [{
 					label: "Max Usagetx (in GB)",
 					data: maxUsagetx,
-					backgroundColor: "rgba(255, 40, 169, 0.3)",
-					borderColor: "rgba(204, 0, 122, 0.76)",
+					backgroundColor: "rgba(170, 35, 255, 0.3)",
+					borderColor: "rgba(100, 0, 163, 0.76)",
 					borderWidth: "2"
 				},
 				{
@@ -394,7 +394,7 @@ function graphMaxUsage(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Usagetx-Usagerx per "+ trendStr,
+					text: "Max Usagetx-Usagerx "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -415,13 +415,13 @@ function graphMaxUsage(urlParam, trendStr){
 				datasets: [{
 					label: "Max Usagetx (in GB)",
 					data: maxUsagetx,
-					backgroundColor: "rgba(255, 40, 169, 0.3)",
-					borderColor: "rgba(204, 0, 122, 0.76)",
+					backgroundColor: "rgba(170, 35, 255, 0.3)",
+					borderColor: "rgba(100, 0, 163, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
-        			fill: true,
-        			pointBackgroundColor: "black",
-        			pointBorderColor: "rgba(204, 0, 122, 0.76)"
+					lineTension: 0.3,
+	        		fill: true,
+	        		pointBackgroundColor: "rgba(100, 0, 163, 0.76)",
+	        		pointRadius: 2
 				},
 				{
 					label: "Max Usagerx (in GB)",
@@ -429,17 +429,17 @@ function graphMaxUsage(urlParam, trendStr){
 					backgroundColor: "rgba(26, 65, 54, 0.3)",
 					borderColor: "rgba(11, 29, 24, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
+					lineTension: 0.3,
         			fill: false,
-        			pointBackgroundColor: "black",
-        			pointBorderColor: "rgba(11, 29, 24, 0.76)"
+        			pointBackgroundColor: "rgba(11, 29, 24, 0.76)",
+        			pointRadius: 2
 				}]
 			},
 			options:{
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Usagetx-Usagerx per "+ trendStr,
+					text: "Max Usagetx-Usagerx "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -476,8 +476,8 @@ function graphMaxLease(urlParam, trendStr){
 				datasets: [{
 					label: "Max Lease ",
 					data: maxLease,
-					backgroundColor: "rgba(93, 0, 193, 0.5)",
-					borderColor: "rgba(76, 0, 158, 0.9)",
+					backgroundColor: "rgba(35, 255, 86, 0.3)",
+					borderColor: "rgba(0, 204, 47, 0.76)",
 					borderWidth: "2"
 					
 				}]
@@ -486,7 +486,7 @@ function graphMaxLease(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Lease per "+ trendStr,
+					text: "Max Lease "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -507,20 +507,20 @@ function graphMaxLease(urlParam, trendStr){
 				datasets: [{
 					label: "Max Lease ",
 					data: maxLease,
-					backgroundColor: "rgba(93, 0, 193, 0.5)",
-					borderColor: "rgba(76, 0, 158, 0.9)",
+					backgroundColor: "rgba(35, 255, 86, 0.3)",
+					borderColor: "rgba(0, 204, 47, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
-        			fill: true,
-        			pointBackgroundColor: "black",
-        			pointBorderColor: "rgba(76, 0, 158, 0.9)"
+					lineTension: 0.3,
+	        		fill: true,
+	        		pointBackgroundColor: "rgba(0, 204, 47, 0.76)",
+	        		pointRadius: 2
 				}]
 			},
 			options:{
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Lease per "+ trendStr,
+					text: "Max Lease "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -559,8 +559,8 @@ function graphMaxFreeMem(urlParam, trendStr){
 				datasets: [{
 					label: "Max Free Memory (in MB) ",
 					data: maxFreeMem,
-					backgroundColor: "rgba(44, 116, 251, 0.3)",
-					borderColor: "rgba(0, 71, 204, 0.76)",
+					backgroundColor: "rgba(103, 245, 253, 0.3)",
+					borderColor: "rgba(0, 198, 179, 0.76)",
 					borderWidth: "2"
 					
 				}]
@@ -569,7 +569,7 @@ function graphMaxFreeMem(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Free Memory per "+ trendStr,
+					text: "Max Free Memory "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -590,20 +590,20 @@ function graphMaxFreeMem(urlParam, trendStr){
 				datasets: [{
 					label: "Max Free Memory (in MB)",
 					data: maxFreeMem,
-					backgroundColor: "rgba(44, 116, 251, 0.3)",
-					borderColor: "rgba(0, 71, 204, 0.76)",
+					backgroundColor: "rgba(103, 245, 253, 0.3)",
+					borderColor: "rgba(0, 198, 179, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
-        			fill: true,
-        			pointBackgroundColor: "black",
-        			pointBorderColor: "rgba(0, 71, 204, 0.76)"
+					lineTension: 0.3,
+	        		fill: true,
+	        		pointBackgroundColor: "rgba(0, 198, 179, 0.76)",
+	        		pointRadius: 2
 				}]
 			},
 			options:{
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max Free Memory per "+ trendStr,
+					text: "Max Free Memory "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -642,8 +642,8 @@ function graphMaxCpuFreq(urlParam, trendStr){
 				datasets: [{
 					label: "Max CPU Frequency ",
 					data: maxCpuFreq,
-					backgroundColor: "rgba(170, 35, 255, 0.3)",
-					borderColor: "rgba(100, 0, 163, 0.76)",
+					backgroundColor: "rgba(255, 174, 35, 0.3)",
+					borderColor: "rgba(204, 129, 0, 0.76)",
 					borderWidth: "2"
 					
 				}]
@@ -652,7 +652,7 @@ function graphMaxCpuFreq(urlParam, trendStr){
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max CPU Frequency per "+ trendStr,
+					text: "Max CPU Frequency "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -673,20 +673,20 @@ function graphMaxCpuFreq(urlParam, trendStr){
 				datasets: [{
 					label: "Max CPU Frequency ",
 					data: maxCpuFreq,
-					backgroundColor: "rgba(170, 35, 255, 0.3)",
-					borderColor: "rgba(100, 0, 163, 0.76)",
+					backgroundColor: "rgba(255, 174, 35, 0.3)",
+					borderColor: "rgba(204, 129, 0, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
-        			fill: true,
-        			pointBackgroundColor: "black",
-        			pointBorderColor: "rgba(100, 0, 163, 0.76)"
+					lineTension: 0.3,
+	        		fill: true,
+	        		pointBackgroundColor: "rgba(204, 129, 0, 0.76)",
+	        		pointRadius: 2
 				}]
 			},
 			options:{
 				maintainAspectRatio: false,
 				title: {
 					display: true,
-					text: "Max CPU Frequency per "+ trendStr,
+					text: "Max CPU Frequency "+ trendStr,
 				},
 				scales:{
 					yAxes:[{
@@ -744,7 +744,7 @@ function graphMaxCpuLoad(urlParam, trendStr){
 				},
 				title: {
 					display: true,
-					text: "Max CPU Load per "+ trendStr,
+					text: "Max CPU Load "+ trendStr,
 				}
 			}
 		});	
@@ -758,10 +758,10 @@ function graphMaxCpuLoad(urlParam, trendStr){
 					backgroundColor: "rgba(255, 35, 35, 0.3)",
 					borderColor: "rgba(198, 0, 0, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
+					lineTension: 0.3,
        				fill: true,
-       				pointBackgroundColor: "black",
-       				pointBorderColor: "rgba(198, 0, 0, 0.76)"
+       				pointBackgroundColor: "rgba(198, 0, 0, 0.76)",
+       				pointRadius: 2
 				}]
 			},
 			options:{
@@ -779,7 +779,7 @@ function graphMaxCpuLoad(urlParam, trendStr){
 				},
 				title: {
 					display: true,
-					text: "Max CPU Load per "+ trendStr,
+					text: "Max CPU Load "+ trendStr,
 				}
 			}
 		});
@@ -826,7 +826,7 @@ function graphMaxFreeHdd(urlParam, trendStr){
 				},
 				title: {
 					display: true,
-					text: "Max Free Hdd per "+ trendStr,
+					text: "Max Free Hdd "+ trendStr,
 				}
 			}
 		});	
@@ -840,10 +840,10 @@ function graphMaxFreeHdd(urlParam, trendStr){
 					backgroundColor: "rgba(26, 65, 54, 0.3)",
 					borderColor: "rgba(11, 29, 24, 0.76)",
 					borderWidth: "2",
-					lineTension: 0,
+					lineTension: 0.3,
        				fill: false,
-       				pointBackgroundColor: "black",
-       				pointBorderColor: "rgba(11, 29, 24, 0.76)"
+       				pointBackgroundColor: "rgba(11, 29, 24, 0.76)",
+       				pointRadius: 2
 				}]
 			},
 			options:{
@@ -861,7 +861,7 @@ function graphMaxFreeHdd(urlParam, trendStr){
 				},
 				title: {
 					display: true,
-					text: "Max Free Hdd per "+ trendStr,
+					text: "Max Free Hdd "+ trendStr,
 				}
 			}
 		});
