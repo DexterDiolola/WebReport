@@ -60,56 +60,20 @@ class apiController extends Controller
                                     '$vpnaddr', 'not_existing')");
             
         }
-        
-        /*
-        if(count($macs)>0){
-            $addexist = DB::select("call ADD_MAC_ENTRY('$mac', 
-                                   '$active', '$utiltx', '$utilrx', 
-                                   '$usagetx', '$usagerx', '$ccq', '$lease',
-                                   '$uptime', '$freeMem', '$cpuFreq',
-                                   '$cpuLoad', '$freeHDD', '$badBlock', '$version',
-                                   '$appVersion', '$gps', '$dispense', '$packages',
-                                   'existed')");
-            
-        }
-        else{
-            $addnotexist = DB::select("call ADD_MAC_ENTRY('$mac',
-                                    '$active', '$utiltx', '$utilrx', 
-                                    '$usagetx', '$usagerx', '$ccq', '$lease',
-                                    '$uptime', '$freeMem', '$cpuFreq',
-                                    '$cpuLoad', '$freeHDD', '$badBlock', '$version',
-                                    '$appVersion', '$gps', '$dispense', '$packages',
-                                    'not_existing')");
-            
-        }
-        */
 
     }
-    public function addTrackInfo(Request $request){
+
+    public function addViews(Request $request){
         $query = $request->all();
         $routerMac = $query['routerMac'];
         $userMac = $query['userMac'];
-        $longGps = $query['longGps'];
-        $latGps = $query['latGps'];
-        $versionUserDevice = $query['versionUserDevice'];
-        $freeMem = $query['freeMem'];
-        
-        $mti = mac_track_info::all('routerMac')->where('routerMac', '=', $routerMac);
+        $loginType = $query['logintype'];
+        $loginValue = $query['loginvalue'];
 
-        if(count($mti)>0){
-            $addexist = DB::select("call ADD_MAC_TRACK_INFO('existed', '$routerMac', 
-                                   '$userMac', '$longGps', '$latGps', 
-                                   '$versionUserDevice', '$freeMem')");
-            
-        }
-        else{
-            $addnotexist = DB::select("call ADD_MAC_TRACK_INFO('not_existing', '$routerMac', 
-                                   '$userMac', '$longGps', '$latGps', 
-                                   '$versionUserDevice', '$freeMem')");
-            
-        }
-        
+
+        $add = DB::select("call VIEWS('insert', '$routerMac', '$userMac', '$loginType', '$loginValue')");
     }
+
     public function getActiveMacs(Request $request){
         $query = $request->all();
         $trend = $query['trend'];
@@ -119,6 +83,7 @@ class apiController extends Controller
         $response = DB::select("call GET_ACTIVE_MACS('$trend', '$get', '$created')");
         return response()->json($response,200);
     }
+
     public function macsPerTrend(Request $request){
         $query = $request->all();
         $trend = $query['trend'];
@@ -126,6 +91,7 @@ class apiController extends Controller
         $response = DB::select("call MACS_PER_TREND('$trend')");
         return response()->json($response,200);
     }
+
     public function maxPerTrend(Request $request){
         $query = $request->all();
         $trend = $query['trend'];
@@ -135,6 +101,7 @@ class apiController extends Controller
         $response = DB::select("call MAX_PER_TREND('$trend', '$get', '$created')");
         return response()->json($response,200);
     }
+
     public function permacActivity(Request $request){
         $query = $request->all();
         $trend = $query['trend'];
@@ -143,10 +110,12 @@ class apiController extends Controller
         $response = DB::select("call PERMAC_ACTIVITY('$trend', '$mac')");
         return response()->json($response,200);
     }
+
     public function searchMac($mac){
         $response = DB::select("call testsearchmac('$mac')");
         return response()->json($response,200);
     }
+
     public function addMacLabel(Request $request){
         $query = $request->all();
         $cond = $query['cond'];
@@ -156,6 +125,7 @@ class apiController extends Controller
         $response = DB::select("call ADD_MAC_LABEL('$cond', '$mac', '$label')");
         return response()->json($response,200);
     }
+
     public function macAdministration(Request $request){
         $query = $request->all();
         $cond = $query['cond'];
@@ -165,7 +135,25 @@ class apiController extends Controller
         $response = DB::select("call MAC_ADMINISTRATION('$cond', '$owner', '$mac')");
         return response()->json($response,200);
     }
+
+    public function getViews(Request $request){
+        $query = $request->all();
+        $cond = $query['cond'];
+        $routerMac = $query['routerMac'];
+        $userMac = $query['userMac'];
+
+        $response = DB::select("call VIEWS('$cond', '$routerMac', '$userMac', '', '')");
+        return response()->json($response,200);
+    }
     
+
+
+
+
+
+
+
+
 
     public function packageSummary(Request $request){
         $query = $request->all();
@@ -213,6 +201,92 @@ class apiController extends Controller
         $response = DB::select("call MAX_OF_PACKAGES('$cond')");
         return response()->json($response,200);
     }
+
+    //Testing Function (processing the package chart in backend approach)
+    public function packageChart(){
+        $ampd = DB::select("call GET_ACTIVE_MACS('countActivePD', 'getMac', '')");
+        $ampd = json_decode(json_encode($ampd), true);
+
+        $packageDispense = array();
+
+        for($x=0; $x<count($ampd); $x++){
+            for($y=0; $y<30; $y++){
+                $activeDevice = $ampd[$x]['activeDevice'];
+                $ps = DB::select("call PACKAGE_SUMMARY('perDay', '$activeDevice', '$y')");
+                $ps = json_decode(json_encode($ps), true);
+
+                $lastIdx = count($ps) - 1;
+                if(count($ps) != 0){
+                    $first = $ps[0]['packages'];
+                    $last = $ps[$lastIdx]['packages'];
+                }
+                else
+                    false;
+                
+
+            }
+        }
+
+        echo "Hello Dext";
+
+    }
+    
+
+
+
+
+
+
+
+
+
+    public function alerts(Request $request){
+        $query = $request->all();
+        $cond = $query['cond'];
+
+        if($cond=='getMax'){
+            $response = DB::select("call ALERTS('getMax', '', '', '', '', '', '')");
+            return response()->json($response,200);
+        }
+        else if($cond=='getAlert'){
+            $response = DB::select("call ALERTS('getAlert', '', '', '', '', '', '')");
+            return response()->json($response,200);
+        }
+        else
+            return false;
+
+    }
+
+    public function sendAlerts(Request $request){
+        $arr = $request->all();
+        $len = count($arr);
+
+        $response = DB::select("call ALERTS('truncate', '', '', '', '', '', '')");
+
+        for($x=0; $x<$len; $x++){
+            $mac = $arr[$x]['mac'];
+            $label = $arr[$x]['label'];
+            $owner = $arr[$x]['owner'];
+            $alertMsg = $arr[$x]['alertMsg'];
+            $alertType = $arr[$x]['alertType'];
+            $dateCreated = $arr[$x]['dateCreated'];
+
+            $response2 = DB::select("call ALERTS('sendAlert', '$mac', '$label', '$owner', '$alertType', '$alertMsg',
+                                    '$dateCreated')");
+        }
+    }
+
+    public function setAlertValues(Request $request){
+        $arr = $request->all();
+        $ccq = $arr[0]['ccq'];
+        $cpuLoad = $arr[0]['cpuLoad'];
+        $freeMem = $arr[0]['freeMem'];
+
+        $response2 = DB::select("call SET_ALERT_VALUES('$ccq', '$cpuLoad', '$freeMem')");
+        
+    }
+
+
 
 
 
