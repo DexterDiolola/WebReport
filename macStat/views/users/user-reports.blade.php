@@ -41,9 +41,9 @@
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-database" aria-hidden="true"></i>&emsp;Reports</a>
                     <ul id="submenu-1" class="collapse reportsSubMenu">
-                        <li><a href="user/reports/Summary-perDay"><i class="fa fa-angle-right"></i>&emsp;Summaries</a></li>
-                        <li><a href="user/reports/Charts-perDay"><i class="fa fa-angle-right"></i>&emsp;Charts</a></li>
-                        <li><a href="user/reports/PerMac-perDay"><i class="fa fa-angle-right"></i>&emsp;PerMac</a></li>
+                        <li><a href="user/reports/summaries"><i class="fa fa-angle-right"></i>&emsp;Summaries</a></li>
+                        <li><a href="user/reports/charts"><i class="fa fa-angle-right"></i>&emsp;Charts</a></li>
+                        <li><a href="user/reports/permac"><i class="fa fa-angle-right"></i>&emsp;PerMac</a></li>
                     </ul>
                 </li>
             </div>
@@ -71,7 +71,9 @@
     <script type="text/javascript" src="{{asset('/js/charts-section2.js')}}"></script>
     <script type="text/javascript" src="{{asset('/js/charts-dashboard.js')}}"></script>
     <script type="text/javascript" src="{{asset('/js/charts-dashboard2.js')}}"></script>
+
     <script type="text/javascript" src="{{asset('/js/module.js')}}"></script>
     <script type="text/javascript" src="{{asset('/js/frontController.js')}}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLfHXn_LdUNhkInHALrTvucJLOX4l00T4" async defer></script>
 </body>
 </html>
