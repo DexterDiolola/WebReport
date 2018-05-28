@@ -10,7 +10,10 @@ BEGIN
     );
 
     IF trend = "macs" THEN
-        SELECT * FROM macs ORDER BY id DESC;
+        SELECT macs.mac, macs.label, macs.coords, macs_users.owner, macs.dateCreated FROM macs
+        LEFT OUTER JOIN macs_users ON macs.mac = macs_users.mac
+        WHERE macs_users.owner = owner
+        ORDER BY macs.id DESC;
 
     ELSEIF trend = "countActivePD" THEN        
         INSERT INTO actives(activeDevice)
