@@ -42,26 +42,22 @@ BEGIN
 		MAX(ivdays) AS ivdays, MAX(iweek) AS iweek, dateCreated FROM tempPackage;
 
 	ELSEIF cond = 'sum-perday' THEN
-		INSERT INTO tempPackage(xxxmins, ihr, iihrs, vhrs, iday,
-		iidays, ivdays, iweek, dateCreated)
+		
 
-			SELECT SUM(xxxmins), SUM(ihr), SUM(iihrs), SUM(vhrs), SUM(iday), 
-			SUM(iidays), SUM(ivdays), SUM(iweek), dateCreated FROM packages
-			GROUP BY DATE(dateCreated);
+			SELECT SUM(xxxmins) AS xxxmins, SUM(ihr) AS ihr, SUM(iihrs) AS iihrs, SUM(vhrs) AS vhrs, SUM(iday) AS iday, 
+			SUM(iidays) AS iidays, SUM(ivdays) AS ivdays, SUM(iweek) AS iweek, dateCreated FROM packages
+			GROUP BY DATE(dateCreated)
+            ORDER BY DATE(dateCreated) DESC;
 
-		SELECT xxxmins, ihr, iihrs, vhrs, iday, iidays, 
-		ivdays, iweek, dateCreated FROM tempPackage ORDER BY dateCreated DESC;
 
 	ELSEIF cond = 'sum-perweek' THEN
-		INSERT INTO tempPackage(xxxmins, ihr, iihrs, vhrs, iday,
-		iidays, ivdays, iweek, dateCreated)
 
-			SELECT SUM(xxxmins), SUM(ihr), SUM(iihrs), SUM(vhrs), SUM(iday), 
-			SUM(iidays), SUM(ivdays), SUM(iweek), dateCreated FROM packages
-			GROUP BY WEEK(dateCreated);
+			SELECT SUM(xxxmins) AS xxxmins, SUM(ihr) AS ihr, SUM(iihrs) AS iihrs, SUM(vhrs) AS vhrs, SUM(iday) AS iday, 
+			SUM(iidays) AS iidays, SUM(ivdays) AS ivdays, SUM(iweek) AS iweek, dateCreated FROM packages
+			GROUP BY WEEK(dateCreated)
+            ORDER BY DATE(dateCreated) DESC;
 
-		SELECT xxxmins, ihr, iihrs, vhrs, iday, iidays, 
-		ivdays, iweek, dateCreated FROM tempPackage ORDER BY dateCreated DESC;
+		
 
 	END IF;
 
