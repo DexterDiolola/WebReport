@@ -68,6 +68,27 @@ BEGIN
              LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac
              ORDER BY tempUtilizations.dateCreated DESC;
 
+        ELSEIF trend='perMonth' THEN
+            INSERT INTO tempUtilizations(mac, active, ccq, utiltx, utilrx,
+            usagetx, usagerx, lease, freeMem, cpuFreq, cpuLoad, freeHdd,
+            badBlock, uptime, version, appVersion, gps, dispense, packages, dateCreated)
+                SELECT mac_fk, MAX(active), MAX(ccq), MAX(utiltx),
+                MAX(utilrx), MAX(usagetx), MAX(usagerx), MAX(lease),        
+                MAX(freeMemory), MAX(cpuFreq), MAX(cpuLoad), MAX(freeHdd),
+                MAX(badBlock), uptime, version, appVersion, gps, dispense, packages, dateCreated FROM utilizations 
+                WHERE mac_fk=mac AND DAYOFYEAR(dateCreated) = DAYOFYEAR(NOW()) - nthDay
+                GROUP BY DATE(dateCreated), HOUR(dateCreated);
+                     
+             SELECT tempUtilizations.mac, label, owner, active, ccq, utiltx, 
+             utilrx, usagetx, usagerx, lease, freeMem, cpuFreq, cpuLoad, freeHdd, badBlock, uptime,
+             version, appVersion, gps, dispense, packages,
+             DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d %H:00') AS dateCreated, 
+             DATE_FORMAT(tempUtilizations.dateCreated, '%H:00') AS dateCreated2 FROM tempUtilizations
+             LEFT OUTER JOIN macs ON tempUtilizations.mac = macs.mac 
+             LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac
+             ORDER BY tempUtilizations.dateCreated DESC;
+
+
         END IF;
 END$$
 DELIMITER ;
