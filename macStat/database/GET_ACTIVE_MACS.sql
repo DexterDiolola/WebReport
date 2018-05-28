@@ -67,7 +67,7 @@ BEGIN
         ELSEIF get="getMac" THEN
             SELECT activeDevice, DATE_FORMAT(dateCreated, 
             "%Y-%m-%d %H-00") AS dateCreated FROM actives
-            WHERE dateCreated>DATE_SUB(NOW(), INTERVAL 1 DAY)
+            WHERE dateCreated>DATE_SUB(NOW(), INTERVAL 24 HOUR)
             AND HOUR(dateCreated) = created;
         END IF;
     
