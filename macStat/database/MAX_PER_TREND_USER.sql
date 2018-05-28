@@ -56,13 +56,14 @@ BEGIN
             ORDER BY tempUtilizations.dateCreated DESC LIMIT 24;
        
         ELSEIF get="getEach-user" THEN
-            SELECT tempUtilizations.mac, tempUtilizations.active, tempUtilizations.ccq, 
+            SELECT tempUtilizations.mac, macs.label, tempUtilizations.active, tempUtilizations.ccq, 
             tempUtilizations.utiltx, tempUtilizations.utilrx, .tempUtilizations.usagetx, 
             tempUtilizations.usagerx, tempUtilizations.lease, tempUtilizations.freeMem, 
             tempUtilizations.cpuFreq, tempUtilizations.cpuLoad, tempUtilizations.freeHdd, 
             tempUtilizations.badBlock, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d %H:00') AS dateCreated, 
             DATE_FORMAT(tempUtilizations.dateCreated, '%H:00') AS dateCreated2 FROM tempUtilizations
-            LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac 
+            LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac
+            LEFT OUTER JOIN macs ON tempUtilizations.mac = macs.mac 
             WHERE tempUtilizations.dateCreated > DATE_SUB(NOW(), INTERVAL 1 DAY) 
             AND HOUR(tempUtilizations.dateCreated) = created AND macs_users.owner = owner
             ORDER BY tempUtilizations.dateCreated DESC;
@@ -119,13 +120,14 @@ BEGIN
             ORDER BY tempUtilizations.dateCreated DESC LIMIT 7;
         
         ELSEIF get="getEach-user" THEN
-            SELECT tempUtilizations.mac, tempUtilizations.active, tempUtilizations.ccq, 
+            SELECT tempUtilizations.mac, macs.label, tempUtilizations.active, tempUtilizations.ccq, 
             tempUtilizations.utiltx, tempUtilizations.utilrx, .tempUtilizations.usagetx, 
             tempUtilizations.usagerx, tempUtilizations.lease, tempUtilizations.freeMem, 
             tempUtilizations.cpuFreq, tempUtilizations.cpuLoad, tempUtilizations.freeHdd, 
             tempUtilizations.badBlock, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d') AS dateCreated, 
             DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d') AS dateCreated2 FROM tempUtilizations
-            LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac 
+            LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac
+            LEFT OUTER JOIN macs ON tempUtilizations.mac = macs.mac 
             WHERE tempUtilizations.dateCreated > DATE_SUB(NOW(), INTERVAL 1 WEEK) 
             AND DATE(tempUtilizations.dateCreated) = created AND macs_users.owner = owner
             ORDER BY tempUtilizations.dateCreated DESC;
@@ -182,13 +184,14 @@ BEGIN
             ORDER BY tempUtilizations.dateCreated DESC LIMIT 30;
         
         ELSEIF get="getEach-user" THEN
-            SELECT tempUtilizations.mac, tempUtilizations.active, tempUtilizations.ccq, 
+            SELECT tempUtilizations.mac, macs.label, tempUtilizations.active, tempUtilizations.ccq, 
             tempUtilizations.utiltx, tempUtilizations.utilrx, .tempUtilizations.usagetx, 
             tempUtilizations.usagerx, tempUtilizations.lease, tempUtilizations.freeMem, 
             tempUtilizations.cpuFreq, tempUtilizations.cpuLoad, tempUtilizations.freeHdd, 
             tempUtilizations.badBlock, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d') AS dateCreated, 
             DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d') AS dateCreated2 FROM tempUtilizations
-            LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac 
+            LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac
+            LEFT OUTER JOIN macs ON tempUtilizations.mac = macs.mac 
             WHERE tempUtilizations.dateCreated > DATE_SUB(NOW(), INTERVAL 1 MONTH) 
             AND DATE(tempUtilizations.dateCreated) = created AND macs_users.owner = owner
             ORDER BY tempUtilizations.dateCreated DESC;
