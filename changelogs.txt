@@ -42,9 +42,242 @@ version 2.0.0
 
 vesion 2.0.1
 
-  1. Design continuation in dashboard section.
+	1. Design continuation in dashboard section.
     files modified
       -charts-dashboard.js(redefined the background colors returned by every graph)
       -charts-dashboard2.js (added function that returns the overall graph, redefined the background colors)
       -frontController.js (changed the default graph loaded after ajax call for max-packages in dashboard)
       -dashboard.php (redefined the colors)
+
+	2. Shorten frontController.js (make it efficient)
+	  	a. Dashboard Section (admin & user)
+		  	files modified:
+		  		-frontController.js
+		  		-module.js
+		  		-dashboard.php
+		  		-charts-dashboard.js
+		  		-Modified PACKAGE_SUMMARY stored procedure (added 'perMonth' trend).
+
+		b. Summaries Section (admin & user)
+			files modified:
+				-frontController.js
+				-module.js
+				-reports.php
+				-web.php
+				-admin-reports.blade.php (change the url destination of Summaries section)
+				-user-reports.blade.php	 (change the url destination of Summaries section)
+
+		c. Charts Section (admin & user)
+			files modified:
+				-frontController.js
+				-module.js
+				-graphs.php
+				-charts-section.js
+				-web.php
+				-admin-reports.blade.php (change the url destination of Summaries section)
+				-user-reports.blade.php	 (change the url destination of Summaries section)
+
+		d. Permac, Permac Activity, and Charts Permac Activuty Section (admin & user)
+			files modified:
+				-frontController.js
+				-module.js
+				-permac.php
+				-web.php
+				-admin-reports.blade.php (change the url destination of Summaries section)
+				-user-reports.blade.php	 (change the url destination of Summaries section)
+
+			changed the link-url destinations of all related to permac-activity
+				files modified:
+					-dashboard.php
+					-reports.php
+					-permac.php
+					-add-mac-label.php
+					-assign-mac.php
+
+	3. Redesign Charts Section
+		files modified:
+			-charts-section.js
+			-charts-section2.js
+			-graphs.php
+			-frontController.js (change the bordeR property in chartsPermacActController(admin & user))
+
+	
+
+	4. Adding Notification alert in Web Report
+		a. Creating database for setting max values
+			files modified:
+				-create alert_setting_values table
+				-create alerts table
+				-modified MACS_PER_TREND stored procedure (added trend='alert')
+				-modified MACS_PER_TREND_USER stored procedure (added tren='alert')
+				-modified MAX_OF_PACKAGES stored procedure (made efficient)
+				-modified GET_ACTIVE_MACS_USER stored procedure (edited the cond='mac')
+				-create ALERTS stored procedure.
+				-web.php, apiController.php (REST IMPLEMENTATION of ALERTS sp)
+				-frontController.js (define the function that returns alerts)
+
+		b. Frontend UI implementation
+			files modified
+				-web.php
+				-apiController.php
+				-frontCotroller.js
+				-dashboard.php
+	
+	5 Adding maps in dashboard
+		files modified:
+			-dashboard.php
+			-user-reports.blade.php (added google maps api library)
+			-frontController.js
+ 
+
+	6. Adding alert setting values
+		files modified:
+			-dashbord.php (erase the styles for dshboard and moved)
+			-styles.css (modify add-mac-label styles and added dashboard styles)
+			-add-mac-label.php (added alert and modify some display)
+			-frontController.js 
+			-added SET_ALERT_VALUES stored procedure
+			-web.php (added post url set-alert-values)
+			-apiController.php (define function setAlertValues)
+
+	7. Maintenance
+		files modified:
+			-frontController.js (added jquery event for permac-activity charts(stats-tab & packages-tab))
+			-reports.php (modify the header and body)
+			-styles.css (modify the styles)
+			-graphs.php (modify the header and body)
+			-frontController.js (change the charts-option-tab in chartsController to db-option-tab)
+			-permac.php (modify the header and body)
+			-assign-mac.php (modify the header and body)
+
+	
+
+
+version 2.0.2
+
+	1. Added new parameters : routerMac, userMac, loginType, loginValue
+		a. Working in database
+			-create views table
+			-create views_summaries table
+			-addded VIEWS stored procedure
+
+		b. REST API implementation.
+			-web.php (define the url for query parameter 'views')
+			-apiController.php (define the function for 'views')
+
+
+	2. Frontend Implementation
+		files modified:
+			-permac.php
+			-styles.css (hide the display of permac-tb6)
+			-frontController.js (modify the jquery events for permac tables)
+
+
+			work-changes
+				-web.php (added url for api views)
+				-apiController.php (define views function)
+				-dashboard.php (replace usage with views)
+				-modify VIEWS stored procedure (add ORDER BY dateCreated)
+				-frontController.js (major changes)
+				-permac.php
+
+			side-changes
+				-frontController.js (modify sendAlert function and other related)
+				-modify alerts table (added label and owner column)
+				-modify ALERTS stored procedure (added label and owner)
+				-apiController.php (added label and owner object request in sendAlerts function, modify other functions that uses ALERTS stored procedure)
+				-dashboard.php (modify the message in alert section)
+				-modify MAX_PER_TREND_USER stored procedure (added LEFT OUTER JOIN macs ON tempUtilizations.mac = macs.mac under 'getEach-user' conditions)
+			
+	
+	3. Adding graph of total view counts
+		files modified:
+			-Modify VIEWS stored procedure
+			-charts-dashboard.js (added function graphViewCount)
+			-frontController.js (call graphViewCount in dashboard controller admin & user)
+			-dashboard.php (modify the ng-click that calls the graph for viewCount)
+
+		minor changes
+			-modify VIEWS stored procedure (in 'max' condition)
+			-dashboard.php (make 'max views' to 'total views')
+			-frontController.js (change the variable 'max views' to 'total views')
+
+		add graph of views in charts permac activity section (optional)
+			files modified:
+				-charts-section.js (add the graph function for views)
+				-frontController.js (call the graph function for views in chartsPermacActivity controller admin&user)
+
+
+
+
+	4. Minor Changes in Stored procedure and other affected files
+		files modified
+			-Deleted the lowered cases stored procedures except 'testseachmac' 
+			-Modify GET_ACTIVE_MACS stored procedure (in trend='perDay', get='getMac' condition CHANGE INTERVAL 1 DAY to INTERVAL 24 HOUR optional when
+														bug or errors still occur)
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Wifi username and pass:
+Username: guest
+Password: dti2018!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DEXTER DEXTER DEXTER DEXTER
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000]: General error: 1364 Field 'label' doesn't have a default value (SQL: call ADD_MAC_ENTRY('64D1542A7E0A',
+                                    '3', '119264', '37880', 
+                                    '20750942', '3488253', '69', '4',
+                                    '00:17:56', '38260736', '650',
+                                    '5', '2945024', '0', '5',
+                                    '1.45', '14.572752,121.0318794', '10', ',30Minutes,0,1Hour,0,2Hours,2,5Hours,0,1Day,0,2Days,0,4days,0,1Week,0',
+                                    '10.8.1.1/32', 'not_existing')) in /var/www/html/macStat/vendor/laravel/framework/src/Illuminate/Database/Connection.php:647[2018-04-17 15:11:02] local.ERROR: PDOException: SQLSTATE[HY000]: General error: 1364 Field 'label' doesn't have a default value in /var/www/html/macStat/vendor/laravel/framework/src/Illuminate/Database/Connection.php:323
+
+
+
+
+
+
+http://wb1.wizher.com/addViews?routerMac=6C3B6B670D0F&userMac=xxxrouter&logintype=pin&loginvalue=30minutes
+http://wb1.wizher.com/addViews?routerMac=64D1542C2BE2&userMac=xxxrouter&logintype=pin&loginvalue=30minutes
+http://wb1.wizher.com/addViews?routerMac=D4CA6D6B8FDE&userMac=xxxrouter&logintype=pin&loginvalue=30minutes
+http://wb1.wizher.com/addViews?routerMac=6C3B6BCA519D&userMac=xxxrouter&logintype=pin&loginvalue=30minutes
