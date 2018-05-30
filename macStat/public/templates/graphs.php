@@ -32,6 +32,9 @@
 					<li class="nav-item">
 						<a class="nav-link packages-tab" data-toggle="tab" ng-click="packagesCharts()"><b>Packages</b></a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="tab" href="{{userTypeIndicator}}/reports/permac/macs?mac={{macParam}}"><i class="fa fa-arrow-left" aria-hidden="true" style="margin-top: 3"></i></a>
+					</li>					
 				</ul>	
 			</div>	
 		</div>
