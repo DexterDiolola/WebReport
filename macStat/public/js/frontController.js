@@ -84,7 +84,7 @@ macStats.factory('myService',['$http', '$route', function($http, $route){
 	}
 
 	//customFunction2 initializes map setting
-	function mapInit(obj, center){
+	function mapInit(obj, center, userType){
 		var options = {
 			zoom: 11,
 			center: center,
@@ -104,6 +104,7 @@ macStats.factory('myService',['$http', '$route', function($http, $route){
 			});
 			var infoWindow = new google.maps.InfoWindow({
 				content: '<h6>' + obj.site + '</h6> </br>' +
+						 "<a href=' " +userType+ "/reports/permac/macs?mac=" +obj.mac+ " '><b style='font-weight: 500;'>" + obj.mac + "</b></a> </br>" +
 						 '<b>' + obj.coords2 + '</b>'
 			});
 
@@ -439,7 +440,7 @@ macStats.controller('dashboardController',
 			for(var x=0; x<$scope.fetch.length; x++){
 				arr.push(myService.modCoords($scope.fetch[x]));
 			}
-			myService.mapInit(arr, {lat: 14.5577445, lng:121.0230858});
+			myService.mapInit(arr, {lat: 14.5577445, lng:121.0230858}, 'admin');
 			$scope.locations = arr;
 		})	
 
@@ -630,7 +631,7 @@ macStats.controller('dashboardControllerUser',
 			for(var x=0; x<$scope.fetch.length; x++){
 				arr.push(myService.modCoords($scope.fetch[x]));
 			}
-			myService.mapInit(arr, {lat: 14.5577445, lng:121.0230858});
+			myService.mapInit(arr, {lat: 14.5577445, lng:121.0230858}, 'user');
 			$scope.locations = arr;
 		})
 
@@ -1297,7 +1298,7 @@ macStats.controller('mapsController',
 			for(var x=0; x<$scope.fetch.length; x++){
 				arr.push(myService.modCoords($scope.fetch[x]));
 			}
-			myService.mapInit(arr, {lat: 14.5577445, lng:121.0230858});
+			myService.mapInit(arr, {lat: 14.5577445, lng:121.0230858}, 'admin');
 			$scope.lists = arr;
 		})	
 	}
