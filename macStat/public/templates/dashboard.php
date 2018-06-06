@@ -163,7 +163,8 @@
 						<font ng-click="graphViewCount()">Total Views </font>
 					</div>
 					<div class="db-s-value1">
-						<font>{{totalViews== undefined ? 'No Count' : totalViews}}</font>
+						<font>{{trend}} = {{totalViews== undefined ? 'No Count' : totalViews}}</font> <br>
+						<font>Overall = {{overallViews== undefined ? 'No Count' : overallViews}}</font>
 					</div>
 				</div>
 			</div>
