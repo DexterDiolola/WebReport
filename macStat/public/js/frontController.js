@@ -1319,7 +1319,7 @@ macStats.controller('mapsController',
 			for(var x=0; x<$scope.fetch.length; x++){
 				arr.push(myService.modCoords($scope.fetch[x]));
 			}
-			myService.mapInit(arr, coords);
+			myService.mapInit(arr, coords, 'admin');
 		})
 	}
 
