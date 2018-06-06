@@ -20,7 +20,7 @@ BEGIN
 
 
 
-    
+    /*Views Summary*/
     ELSEIF cond = 'perDay' THEN
         SELECT views.routerMac, label, owner, DATE_FORMAT(views.dateCreated, '%Y-%m-%d %H:00') AS dateCreated, COUNT(*) as viewCount FROM views 
         LEFT OUTER JOIN macs ON views.routerMac = macs.mac
@@ -51,7 +51,8 @@ BEGIN
 
     
     
-    
+    /*Views Summary user*/
+    /*Use userMac parameter as owner of mac*/
     ELSEIF cond = 'perDay-user' THEN
         SELECT views.routerMac, label, owner, DATE_FORMAT(views.dateCreated, '%Y-%m-%d %H:00') AS dateCreated, COUNT(*) as viewCount FROM views 
         LEFT OUTER JOIN macs ON views.routerMac = macs.mac
@@ -83,7 +84,7 @@ BEGIN
 
 
 
-    
+    /*Views Summary Permac*/
     ELSEIF cond = 'permac-perDay' THEN
         SELECT views.routerMac, label, owner, DATE_FORMAT(views.dateCreated, '%Y-%m-%d %H:00') AS dateCreated, COUNT(*) as viewCount FROM views 
         LEFT OUTER JOIN macs ON views.routerMac = macs.mac
@@ -115,7 +116,7 @@ BEGIN
 
 
 
-    
+    /*Max of ViewCounts*/
     ELSEIF cond = 'max-perDay' THEn
         INSERT INTO tempViews(routerMac, dateCreated, viewCount)
             SELECT views.routerMac, views.dateCreated, COUNT(*) FROM views
@@ -140,11 +141,17 @@ BEGIN
 
         SELECT SUM(tempViews.viewCount) AS totalViews FROM tempViews;
 
+    ELSEIF cond = 'max-overall' THEn
+        INSERT INTO tempViews(routerMac, dateCreated, viewCount)
+            SELECT views.routerMac, views.dateCreated, COUNT(*) FROM views;
+
+        SELECT SUM(tempViews.viewCount) AS totalViews FROM tempViews;
 
 
 
 
-    
+
+    /*Max of ViewCounts user*/
     ELSEIF cond = 'max-perDay-user' THEn
         INSERT INTO tempViews(routerMac, dateCreated, viewCount)
             SELECT views.routerMac, views.dateCreated, COUNT(*) FROM views
@@ -175,13 +182,21 @@ BEGIN
 
         SELECT SUM(tempViews.viewCount) AS totalViews FROM tempViews;
 
+    ELSEIF cond = 'max-overall-user' THEn
+        INSERT INTO tempViews(routerMac, dateCreated, viewCount)
+            SELECT views.routerMac, views.dateCreated, COUNT(*) FROM views
+            LEFT OUTER JOIN macs_users ON views.routerMac = macs_users.mac
+            WHERE  macs_users.owner = userMac; 
+
+        SELECT SUM(tempViews.viewCount) AS totalViews FROM tempViews;
 
 
 
 
 
 
-    
+
+    /*Graph for viewCount*/
     ELSEIF cond = 'graph-perDay' THEN       
         INSERT INTO tempViews(routerMac, dateCreated, viewCount)
             SELECT views.routerMac, views.dateCreated, COUNT(*) FROM views
@@ -217,7 +232,7 @@ BEGIN
 
 
 
-    
+    /*Graph for viewCount User*/
     ELSEIF cond = 'graph-perDay-user' THEn
         INSERT INTO tempViews(routerMac, dateCreated, viewCount)
             SELECT views.routerMac, views.dateCreated, COUNT(*) FROM views
