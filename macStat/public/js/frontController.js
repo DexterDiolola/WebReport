@@ -292,6 +292,10 @@ macStats.controller('dashboardController',
 		myService.getViews('max-'+trend, '', '').then(function(response){
 			$scope.totalViews = response.data[0].totalViews;
 		})
+		myService.getViews('max-overall', '', '').then(function(response){
+			$scope.trend = trend;
+			$scope.overallViews = response.data[0].totalViews;
+		})
 		//RETURNS dateCreated as parameter to get the dropdown values in max connected
 		myService.maxPerTrend(trend, 'getSumDate', '').then(function(response){
 			myService.maxPerTrend(trend, 'getEach', response.data[0].dateCreated).then(function(response){
@@ -481,6 +485,10 @@ macStats.controller('dashboardControllerUser',
 		})
 		myService.getViews('max-'+trend+'-user', '', auth_user).then(function(response){
 			$scope.totalViews = response.data[0].totalViews;
+		})
+		myService.getViews('max-overall-user', '', auth_user).then(function(response){
+			$scope.trend = trend;
+			$scope.overallViews = response.data[0].totalViews;
 		})
 		//RETURNS dateCreated as parameter to get the dropdown values in max connected
 		myService.maxPerTrendUser(trend, 'getSumDate-user', '', auth_user).then(function(response){
