@@ -71,6 +71,16 @@ class apiController extends Controller
         $loginValue = $query['loginvalue'];
 
 
+        /* 
+        This ternary condition was made in order to bypass the error data that has been input during REST API
+        Because the data returned has a value of routerMac = $(identity) and $userMac = undefinedundefinedundefined. . .
+        which is too long and greater than 255 characters
+        To debug, just assign a new value to $userMac 
+        
+        If the length of $userMac variable is greater than 50 then no insertion will be happened
+        */
+        strlen($userMac) > 50 ? $userMac =  'DATA_TOO_LONG_ERROR' : true;
+
         $add = DB::select("call VIEWS('insert', '$routerMac', '$userMac', '$loginType', '$loginValue')");
     }
 
