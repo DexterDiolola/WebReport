@@ -154,13 +154,13 @@
 /***********************************/
 .db-stats-frame{
 	width: 95%;
-	height: 150px;
+	height: auto;
 	margin:20 auto auto auto;
 }
 .db-s-frame{
 	width: 23%;
 	height: 150px;
-	margin: auto auto 20 auto;
+	margin: auto auto auto auto;
 }
 .db-s-label{
 	color: white;
@@ -183,7 +183,10 @@
 }
 
 .db-s-label font:hover,
-.db-p-label font:hover{
+.db-p-label font:hover,
+.db-td-label font:hover,
+.db-tv-label font:hover,
+.db-d-label font:hover{
 	cursor: pointer;
 	font-weight: 700;
 }
@@ -191,32 +194,51 @@
 	cursor: pointer;
 }
 /***********************************/
-.db-p-frame{
+.db-p-frame, .db-d-frame{
 	width: 250px;
 	height: 90px;
 	border: 1px solid black;
 	margin: auto auto 20 auto;
 	display: none;
 }
-.db-p-label{
+.db-p-label, .db-d-label,
+.db-td-label, .db-tv-label{
 	color: white;
 	padding-top: 5;
 	padding-left: 10;
 	font-size: 15pt;
 	font-weight: 600;
 }
-.db-p-value{
+.db-p-value, .db-d-value,
+.db-td-value, .db-tv-value{
 	padding-left: 10;
 	padding-top: 10;
 	font-size: 13pt;
 	font-weight: 600;
 }
 /***********************************/
+.db-tdtv-frame{
+	display: none;
+}
+
+.db-td-frame, .db-tv-frame{
+	width: 250px;
+	height: 90px;
+	border: 1px solid black;
+	margin: 20 auto 20 auto;
+}
+.db-tdtv-graph-frame{
+	background-color: #FDFDFD;
+	width: 70%;
+	height: 200px;
+	margin:20 auto auto auto;
+}
+/***********************************/
 .db-graph-frame{
 	background-color: #FDFDFD;
 	width: 95%;
 	height: 250px;
-	margin:20 auto auto auto;
+	margin:auto auto auto auto;
 }
 .db-graph-header{
 	padding-top: 10;
@@ -229,7 +251,19 @@
 	height: 180px;
 	margin: auto;
 }
+.db-tdtv-canvas-frame{
+	width: 95%;
+	height: 140px;
+	margin: auto;
+}
 /***********************************/
+.db-d-table-cont{
+	width: 95%;
+	margin: 10 auto 30 auto;
+}
+.db-d-table-frame{
+	display: none;
+}
 .db-table-frame{
 	width: 95%;
 	margin: 20 auto auto auto;
@@ -462,16 +496,22 @@ td, th{
 }
 .row1{
 	margin: 10 auto auto auto;
-	width: 95%;
+	width: 100%;
 	height: auto;
 }
 .chart-container{
 	background-color: white;
-	width: 49%;
-	height: 350px;
+	width: 30%;
+	height: 250px;
 	margin: 10 auto auto auto;
 }
-.chart-container h5{
+.chart-container2{
+	background-color: white;
+	width: 48%;
+	height: 250px;
+	margin: 10 auto auto auto;
+}
+.chart-container h5, .chart-container2 h5{
 	margin: 20 0 0 25;
 }
 .chart-tab{
@@ -482,9 +522,9 @@ td, th{
 	font-weight: 400;
 }
 .canvas-container{
-	height: 250px;
+	height: 150px;
 	width: 95%;
-	margin: 30 0 0 10;
+	margin: 20 0 0 10;
 }
 #canvas2, #canvas4, #canvas6,
 #canvas8, #canvas10, #canvas12,
@@ -492,7 +532,7 @@ td, th{
 #canvas20, #canvas22, #canvas24,
 #canvas26, #canvas28, #canvas30,
 #canvas32, #canvas34, #canvas36,
-#canvas38{
+#canvas38, #canvas40, #canvas42{
 	display: none !important;
 }
 
