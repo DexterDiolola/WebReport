@@ -1,62 +1,18 @@
 macStats.factory('myService',['$http', '$route', function($http, $route){
-	function packageSummary(trend, mac, nthDay){
+	
+
+	function packageResultsAll(trend, mac){
 		return $http({
 			method: 'GET',
-			url: '/api/package-summary?trend=' + trend + '&mac=' + mac + '&nthDay=' + nthDay 
+			url: '/api/package-results-all?trend=' + trend + '&mac=' + mac
 		});
 	}
 
-	function maxOfPackages(cond){
+	function dispenseResultsAll(x, trend, owner){
 		return $http({
 			method: 'GET',
-			url: '/api/max-of-packages?cond=' + cond
+			url: '/api/dispense-results?x=' +x+ '&trend=' +trend+ '&owner=' + owner
 		});
-	}
-
-	//customFunction1 computes the packages dispensed by a mac address
-	function packageDispense(object){
-		//Declare objects storage
-		var first = new Object(), last = new Object();
-		//Get the 1st element of object parameter
-		first = object[0];
-		
-		//Get the last element of object parameter
-		var reverse = object.reverse();
-		last = reverse[0];
-		
-		//Split the "packages" property of each object to become an array
-		var fst = first.packages.split(",");
-		var	lst = last.packages.split(",");
-		
-		//Apply Subtractions for each array element with integers
-		//Note: When subtracting a numbered string to an integer, no need to use parseInt()
-		fst[2] = fst[2] - lst[2];
-		fst[4] = fst[4] - lst[4];
-		fst[6] = fst[6] - lst[6];
-		fst[8] = fst[8] - lst[8];
-		fst[10] = fst[10] - lst[10];
-		fst[12] = fst[12] - lst[12];
-		fst[14] = fst[14] - lst[14];
-		fst[16] = fst[16] - lst[16];
-		//Error Trapping
-		//Note: If the result of string subtraction is NaN then the result must be 0.
-		!parseInt(fst[2],10) ? fst[2] = 0 : true;
-		!parseInt(fst[4],10) ? fst[4] = 0 : true;
-		!parseInt(fst[6],10) ? fst[6] = 0 : true;
-		!parseInt(fst[8],10) ? fst[8] = 0 : true;
-		!parseInt(fst[10],10) ? fst[10] = 0 : true;
-		!parseInt(fst[12],10) ? fst[12] = 0 : true;
-		!parseInt(fst[14],10) ? fst[14] = 0 : true;
-		!parseInt(fst[16],10) ? fst[16] = 0 : true;
-		
-		//Store the final result of fst into new object. Store it to "packages" property and add "mac" propery.
-		var obj = new Object();
-		obj.mac = first.mac;
-		obj.label = first.label;
-		obj.packages = fst.splice(1).join(", ");
-		obj.dateCreated = first.dateCreated;
-			
-		return obj;
 	}
 
 	//This function modifies the 'coords' property of json object parameter
@@ -154,7 +110,7 @@ macStats.factory('myService',['$http', '$route', function($http, $route){
 					url: '/api/send-alerts',
 					data: arr
 				}).then(function successCallback(response){
-					console.log(arr);
+					//console.log(arr);
 				}, function errorCallback(response){
 					console.log('failed');
 				})
@@ -246,9 +202,8 @@ macStats.factory('myService',['$http', '$route', function($http, $route){
 		},
 
 		//CUSTOM FUNCTIONS
-		packageSummary: packageSummary,
-		packageDispense: packageDispense,
-		maxOfPackages: maxOfPackages,
+		packageResultsAll: packageResultsAll,
+		dispenseResultsAll: dispenseResultsAll,
 		modCoords: modCoords,
 		mapInit: mapInit,
 		sendAlert: sendAlert
@@ -266,10 +221,8 @@ macStats.controller('dashboardController',
 		//DEBUGGING SECTION
 		
 
-		$('.db-fadeIn').hide();
-		setTimeout(function () {
-			$('.db-fadeIn').fadeIn();
-		}, 400);
+		$('.preloader').fadeIn();
+		// $('.preloader').fadeOut();
 
 		//Inserted in beginnin of url to indicate user & admin
 		$scope.userTypeIndicator = "admin";
@@ -320,28 +273,77 @@ macStats.controller('dashboardController',
 		}
 
 		$scope.xxxMinutesGraph = function(){
-			graphPackages(strend, '30Minutes');
+			$('.preloader').fadeIn();
+			graphPackages(trend, '', 'xxxMinutes');
 		}
 		$scope.iHourGraph = function(){
-			graphPackages(strend, '1Hour');
+			$('.preloader').fadeIn();
+			graphPackages(trend, '', 'iHour');	
 		}
 		$scope.iiHoursGraph = function(){
-			graphPackages(strend, '2Hours');
+			$('.preloader').fadeIn();
+			graphPackages(trend, '', 'iiHours');
 		}
 		$scope.vHoursGraph = function(){
-			graphPackages(strend, '5Hours');
+			$('.preloader').fadeIn();
+			graphPackages(trend, '', 'vHours');
 		}
 		$scope.iDayGraph = function(){
-			graphPackages(strend, '1Day');
+			$('.preloader').fadeIn();
+			graphPackages(trend, '', 'iDay');
 		}
 		$scope.iiDaysGraph = function(){
-			graphPackages(strend, '2Days');
+			$('.preloader').fadeIn();
+			graphPackages(trend, '', 'iiDays');
 		}
 		$scope.ivDaysGraph = function(){
-			graphPackages(strend, '4Days');
+			$('.preloader').fadeIn();
+			graphPackages(trend, '', 'ivDays');
 		}
 		$scope.iWeekGraph = function(){
-			graphPackages(strend, '1Week');
+			$('.preloader').fadeIn();
+			graphPackages(trend, '', 'iWeek');
+		}
+
+		$scope.totalDispenseGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense('td-' +trend, '', 'totalDispense');
+		}
+		$scope.totalValueGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense('td-' +trend, '', 'totalValue');
+		}
+		$scope.d_xxxMinutesGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend, '', 'xxxMinutes');
+		}
+		$scope.d_iHourGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend, '', 'iHour');	
+		}
+		$scope.d_iiHoursGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend, '', 'iiHours');
+		}
+		$scope.d_vHoursGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend, '', 'vHours');
+		}
+		$scope.d_iDayGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend, '', 'iDay');
+		}
+		$scope.d_iiDaysGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend, '', 'iiDays');
+		}
+		$scope.d_ivDaysGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend, '', 'ivDays');
+		}
+		$scope.d_iWeekGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend, '', 'iWeek');
 		}
 
 
@@ -366,67 +368,60 @@ macStats.controller('dashboardController',
 		})
 
 
-		$scope.packagesCharts = function(){
-			//Initializes the preloader
-			setTimeout(function () {
-				$('.preloader').fadeIn();
-			}, 200);
-			
-			var arr = [];
-			myService.getActiveMacs('countActivePD', 'getMac', '').then(function(response){
-				var activemacs = response.data;
-				var raw;
-				for(var x=0; x<activemacs.length; x++){
-					for(var y=0; y<30; y++){
-						myService.packageSummary(trend, activemacs[x]['activeDevice'], y).then(function(response){
-							response.data.length != 0 ? raw = myService.packageDispense(response.data) : arr.pop();
-							var spliter = raw['packages'].split(",");
-							raw['30mins'] = parseInt(spliter[1],10);
-							raw['1hr'] = parseInt(spliter[3],10);
-							raw['2hrs'] = parseInt(spliter[5],10);
-							raw['5hrs'] = parseInt(spliter[7],10);
-							raw['1day'] = parseInt(spliter[9],10);
-							raw['2days'] = parseInt(spliter[11],10);
-							raw['4days'] = parseInt(spliter[13],10);
-							raw['1week'] = parseInt(spliter[15],10);
-							arr.push(raw);
-						})
-					}
-				}
-				myService.getActiveMacs("macs", '', '').then(function(response){
-					arr = $filter('orderBy')(arr, '-dateCreated' );
-					arr = arr.filter(Boolean);
 
-					$http({
-						method: 'POST',
-						url: '/api/package-summary',
-						data:   arr//{ data: JSON.stringify(arr)} //{mac: 'bbb', label: 'bbb', coords:'bbb', packages: 'bbb'}
-					}).then(function successCallback(response){
-						console.log("Success");
-						$(".preloader").fadeOut();
-						$('.db-p-frame').fadeIn();	
-						$('.db-s-frame').hide();
-						$(".db-graph-frame").attr("style", "margin-top: 70;");
-						
-						graphPackages(strend, '30Minutes');
-						myService.maxOfPackages(mtrend).then(function(response){
-							$scope.xxxmins = response.data[0]['xxxmins'];
-							$scope.ihr = response.data[0]['ihr'];
-							$scope.iihrs = response.data[0]['iihrs'];
-							$scope.vhrs = response.data[0]['vhrs'];
-							$scope.iday = response.data[0]['iday'];
-							$scope.iidays = response.data[0]['iidays'];
-							$scope.ivdays = response.data[0]['ivdays'];
-							$scope.iweek = response.data[0]['iweek'];
-						})
-					}, function errorCallback(response){
-						console.log("fAILED");
-					});		
-				})
+		
+
+		// Packages
+		myService.packageResultsAll('overall-' + trend, '').then(function successCallback(response){
+				
+			$('.preloader').fadeOut();
+
+			$scope.xxxMinutes = response.data[0]['xxxMinutes'];
+			$scope.iHour = response.data[0]['iHour'];
+			$scope.iiHours = response.data[0]['iiHours'];
+			$scope.iiiHours = response.data[0]['iiiHours'];
+			$scope.vHours = response.data[0]['vHours'];
+			$scope.iDay = response.data[0]['iDay'];
+			$scope.iiDays = response.data[0]['iiDays'];
+			$scope.ivDays = response.data[0]['ivDays'];
+			$scope.iWeek = response.data[0]['iWeek'];
+
+			console.log('iiiHours: ' + $scope.iiiHours);
+
+
+
+			// Dispenses
+			// Note: I warapped this chunk inside packages in order to load the dispenseresults after loading the package results
+			// Dispense results will not be updated or cannot be get if it is outside packages
+			myService.dispenseResultsAll('', 'overall-' + trend, '').then(function(response){
+				graphDispense('td-' +trend, '', 'totalDispense');
+				$scope.totalDispense = response.data[0]['totalDispense'];
+				$scope.totalValue = response.data[0]['totalValue'];
 			})
-		}
 
+			myService.dispenseResultsAll('top', trend, '').then(function(response){
+				$scope.top_total_dispense = response.data;
+			})
 
+			myService.dispenseResultsAll('', 'overall2-' + trend, '').then(function successCallback(response){
+				$scope.d_xxxMinutes = 3*response.data[0]['xxxMinutes'];
+				$scope.d_iHour = 5*response.data[0]['iHour'];
+				$scope.d_iiHours = 10*response.data[0]['iiHours'];
+				$scope.d_iiiHours = 15*response.data[0]['iiiHours'];
+				$scope.d_vHours = 20*response.data[0]['vHours'];
+				$scope.d_iDay = 30*response.data[0]['iDay'];
+				$scope.d_iiDays = 40*response.data[0]['iiDays'];
+				$scope.d_ivDays = 50*response.data[0]['ivDays'];
+				$scope.d_iWeek = 60*response.data[0]['iWeek'];
+
+				console.log('iiiHours: ' + $scope.d_iiiHours);
+			})	
+
+		})
+		
+
+			
+		// Alerts
 		myService.sendAlert('admin');
 		setTimeout(function(){
 			myService.getAlerts().then(function(response){
@@ -436,6 +431,7 @@ macStats.controller('dashboardController',
 		
 
 
+		// Maps
 		//Declare array container
 		var arr = [];
 		//Call the factory function that returns the list of mac addresses
@@ -456,10 +452,7 @@ macStats.controller('dashboardControllerUser',
 ['$scope', '$http', 'myService', '$filter', function($scope, $http, myService, $filter){
 	$scope.init = function(trend, ctrend, strend, mtrend){
 
-		$('.db-fadeIn').hide();
-		setTimeout(function () {
-			$('.db-fadeIn').fadeIn();
-		}, 400);
+		$('.preloader').fadeIn();
 
 		//Get the authenticated user that logged in
 		var auth_user = $(".auth-user").text();
@@ -514,30 +507,78 @@ macStats.controller('dashboardControllerUser',
 		}
 
 		$scope.xxxMinutesGraph = function(){
-			graphPackages(strend, '30Minutes');
+			$('.preloader').fadeIn();
+			graphPackages(trend + '-user', auth_user, 'xxxMinutes');
 		}
 		$scope.iHourGraph = function(){
-			graphPackages(strend, '1Hour');
+			$('.preloader').fadeIn();
+			graphPackages(trend + '-user', auth_user, 'iHour');	
 		}
 		$scope.iiHoursGraph = function(){
-			graphPackages(strend, '2Hours');
+			$('.preloader').fadeIn();
+			graphPackages(trend + '-user', auth_user, 'iiHours');
 		}
 		$scope.vHoursGraph = function(){
-			graphPackages(strend, '5Hours');
+			$('.preloader').fadeIn();
+			graphPackages(trend + '-user', auth_user, 'vHours');
 		}
 		$scope.iDayGraph = function(){
-			graphPackages(strend, '1Day');
+			$('.preloader').fadeIn();
+			graphPackages(trend + '-user', auth_user, 'iDay');
 		}
 		$scope.iiDaysGraph = function(){
-			graphPackages(strend, '2Days');
+			$('.preloader').fadeIn();
+			graphPackages(trend + '-user', auth_user, 'iiDays');
 		}
 		$scope.ivDaysGraph = function(){
-			graphPackages(strend, '4Days');
+			$('.preloader').fadeIn();
+			graphPackages(trend + '-user', auth_user, 'ivDays');
 		}
 		$scope.iWeekGraph = function(){
-			graphPackages(strend, '1Week');
+			$('.preloader').fadeIn();
+			graphPackages(trend + '-user', auth_user, 'iWeek');
 		}
 
+		$scope.totalDispenseGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense('td-' +trend+ '-user', auth_user, 'totalDispense');
+		}
+		$scope.totalValueGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense('td-' +trend+ '-user', auth_user, 'totalValue');
+		}
+		$scope.d_xxxMinutesGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend+ '-user', auth_user, 'xxxMinutes');
+		}
+		$scope.d_iHourGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend+ '-user', auth_user, 'iHour');	
+		}
+		$scope.d_iiHoursGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend+ '-user', auth_user, 'iiHours');
+		}
+		$scope.d_vHoursGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend+ '-user', auth_user, 'vHours');
+		}
+		$scope.d_iDayGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend+ '-user', auth_user, 'iDay');
+		}
+		$scope.d_iiDaysGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend+ '-user', auth_user, 'iiDays');
+		}
+		$scope.d_ivDaysGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend+ '-user', auth_user, 'ivDays');
+		}
+		$scope.d_iWeekGraph = function(){
+			$('.preloader').fadeIn();
+			graphDispense2('expl-' +trend+ '-user', auth_user, 'iWeek');
+		}
 
 		//Inserted in tables section to indicate the trends
 		$scope.trend = "Per Day";
@@ -562,67 +603,63 @@ macStats.controller('dashboardControllerUser',
 		})
 
 
-		$scope.packagesCharts = function(){
-			//Initializes the preloader
-			setTimeout(function () {
-				$('.preloader').fadeIn();
-			}, 200);
-			
-			var arr = [];
-			myService.getActiveMacsUser("countActivePD", 'getMac-user', '', auth_user).then(function(response){
-				var activemacs = response.data;
-				var raw;
-				for(var x=0; x<activemacs.length; x++){
-					for(var y=0; y<30; y++){
-						myService.packageSummary(trend, activemacs[x]['activeDevice'], y).then(function(response){
-							response.data.length != 0 ? raw = myService.packageDispense(response.data) : arr.pop();
-							var spliter = raw['packages'].split(",");
-							raw['30mins'] = parseInt(spliter[1],10);
-							raw['1hr'] = parseInt(spliter[3],10);
-							raw['2hrs'] = parseInt(spliter[5],10);
-							raw['5hrs'] = parseInt(spliter[7],10);
-							raw['1day'] = parseInt(spliter[9],10);
-							raw['2days'] = parseInt(spliter[11],10);
-							raw['4days'] = parseInt(spliter[13],10);
-							raw['1week'] = parseInt(spliter[15],10);
-							arr.push(raw);
-						})
-					}
-				}
-				myService.getActiveMacs("macs", '', '').then(function(response){
-					arr = $filter('orderBy')(arr, '-dateCreated' );
-					arr = arr.filter(Boolean);
-					$http({
-						method: 'POST',
-						url: '/api/package-summary',
-						data:   arr//{ data: JSON.stringify(arr)} //{mac: 'bbb', label: 'bbb', coords:'bbb', packages: 'bbb'}
-					}).then(function successCallback(response){
-						console.log("Success");
-						$(".preloader").fadeOut();
-						$('.db-p-frame').fadeIn();	
-						$('.db-s-frame').hide();
-						$(".db-graph-frame").attr("style", "margin-top: 70;");
-						
-						graphPackages(strend, '30Minutes');
-						myService.maxOfPackages(mtrend).then(function(response){
-							$scope.xxxmins = response.data[0]['xxxmins'];
-							$scope.ihr = response.data[0]['ihr'];
-							$scope.iihrs = response.data[0]['iihrs'];
-							$scope.vhrs = response.data[0]['vhrs'];
-							$scope.iday = response.data[0]['iday'];
-							$scope.iidays = response.data[0]['iidays'];
-							$scope.ivdays = response.data[0]['ivdays'];
-							$scope.iweek = response.data[0]['iweek'];
-						})
 
-					}, function errorCallback(response){
-						console.log("fAILED");
-					});		
-				})
+		// Packages
+		myService.packageResultsAll('overall-' +trend+ '-user', auth_user).then(function successCallback(response){
+				
+			$('.preloader').fadeOut();
+
+			$scope.xxxMinutes = response.data[0]['xxxMinutes'];
+			$scope.iHour = response.data[0]['iHour'];
+			$scope.iiHours = response.data[0]['iiHours'];
+			$scope.iiiHours = response.data[0]['iiiHours'];
+			$scope.vHours = response.data[0]['vHours'];
+			$scope.iDay = response.data[0]['iDay'];
+			$scope.iiDays = response.data[0]['iiDays'];
+			$scope.ivDays = response.data[0]['ivDays'];
+			$scope.iWeek = response.data[0]['iWeek'];
+
+			console.log('iiiHours: ' + $scope.iiiHours);
+
+
+
+			// Dispenses
+			// Note: I warapped this chunk inside packages in order to load the dispenseresults after loading the package results
+			// Dispense results will not be updated or cannot be get if it is outside packages
+			myService.dispenseResultsAll('', 'overall-' +trend+ '-user', auth_user).then(function(response){
+				graphDispense('td-' +trend+ '-user', auth_user, 'totalDispense');
+				$scope.totalDispense = response.data[0]['totalDispense'];
+				$scope.totalValue = response.data[0]['totalValue'];
 			})
-		}
 
+			myService.dispenseResultsAll('top', trend + '-user', auth_user).then(function(response){
+				$scope.top_total_dispense = response.data;
+			})
 
+			myService.dispenseResultsAll('', 'overall2-' +trend+ '-user', auth_user).then(function successCallback(response){	
+				$scope.d_xxxMinutes = 3*response.data[0]['xxxMinutes'];
+				$scope.d_iHour = 5*response.data[0]['iHour'];
+				$scope.d_iiHours = 10*response.data[0]['iiHours'];
+				$scope.d_iiiHours = 15*response.data[0]['iiiHours'];
+				$scope.d_vHours = 20*response.data[0]['vHours'];
+				$scope.d_iDay = 30*response.data[0]['iDay'];
+				$scope.d_iiDays = 40*response.data[0]['iiDays'];
+				$scope.d_ivDays = 50*response.data[0]['ivDays'];
+				$scope.d_iWeek = 60*response.data[0]['iWeek'];
+
+				console.log('iiiHours: ' + $scope.d_iiiHours);
+
+			})
+
+		})
+
+		
+		
+		
+
+		
+
+		// Alerts
 		myService.sendAlert(auth_user);
 		setTimeout(function(){
 			myService.getAlerts().then(function(response){
@@ -631,6 +668,8 @@ macStats.controller('dashboardControllerUser',
 		}, 2000)
 		
 
+
+		// Maps
 		//Declare array container
 		var arr = [];
 		//Call the factory function that returns the list of mac addresses
@@ -803,10 +842,7 @@ macStats.controller('permacController',
 ['$scope', '$http', 'myService', function($scope, $http, myService){
 	$scope.init = function(trend){
 
-		$('.permac-table').hide();
-		setTimeout(function () {
-			$('.permac-table').fadeIn();
-		}, 700);
+		$('.preloader').fadeIn();
 
 		//Inserted in beginnin of url to indicate user & admin
 		$scope.userTypeIndicator = "admin";
@@ -815,6 +851,7 @@ macStats.controller('permacController',
 
 		//RETURNS list of macs utilizations			
 		myService.macsPerTrend(trend).then(function(response){
+			$('.preloader').fadeOut();
 			$scope.utilizations = response.data;
 		})
 		//REYURNS list of count of views
@@ -835,10 +872,8 @@ macStats.controller('permacControllerUser',
 ['$scope', '$http', 'myService', function($scope, $http, myService){
 	$scope.init = function(trend){
 
-		$('.permac-table').hide();
-		setTimeout(function () {
-			$('.permac-table').fadeIn();
-		}, 700);
+		
+		$('.preloader').fadeIn();
 
 		//Get the authenticated user that logged in
 		var auth_user = $(".auth-user").text();
@@ -849,6 +884,7 @@ macStats.controller('permacControllerUser',
 
 		//RETURNS list of macs utilizations
 		myService.macsPerTrendUser(trend, auth_user).then(function(response){
+			$('.preloader').fadeOut();
 			$scope.utilizations = response.data;
 		})
 		//REYURNS list of count of views
@@ -870,13 +906,9 @@ macStats.controller('permacControllerUser',
 
 /*--------------------------------PERMAC ACTIVITY SECTION-------------------------------------*/
 macStats.controller('permacActivityController',
-['$scope', '$http', '$location', 'myService', '$filter', function($scope, $http, $location, myService, $filter){
+['$scope', '$http', '$location', 'myService', '$filter', '$route', function($scope, $http, $location, myService, $filter, $route){
 	$scope.init = function(trend){
-
-		$('.permac-table').hide();
-		setTimeout(function () {
-			$('.permac-table').fadeIn();
-		}, 700);
+		$('.preloader').fadeIn();
 
 		// use $location.path() or url() or absUrl() to get current url path
 		// use $location.search() to get current url search hash eg.(/macs?mac=1011200107) returns mac=1011200107 as object
@@ -906,21 +938,14 @@ macStats.controller('permacActivityController',
 			})
 		}
 
-		//Declare a storage array
-		var arr = [];
+		// Packages
+		myService.packageResultsAll('mac-' +trend, $scope.macParam).then(function(response){
+			$('.preloader').fadeOut();
+			$scope.package_results_each = response.data;
+		})
+
 		
-		//Loop through a specified number
-		//Note: every number in the loop corresponds to the nthDay returned by packageSummary function
-		for(var y=0; y<30; y++){
-			myService.packageSummary(trend, $scope.macParam, y).then(function(response){
-				//If the array is undefined its length is '0' so, if array length is 0 then
-				//that array will not inserted instead it will remove by pop() method.
-				response.data.length != 0 ? $scope.b = myService.packageDispense(response.data) : arr.pop();
-				arr.push($scope.b);
-			})
-		}		
-		//Store the resulted array 'arr' into angular variable.
-		$scope.packageSummary = arr;
+		
 		
 	}
 }])
@@ -930,10 +955,7 @@ macStats.controller('permacActivityControllerUser',
 ['$scope', '$http', '$location', 'myService', function($scope, $http, $location, myService){
 	$scope.init = function(trend){
 
-		$('.permac-table').hide();
-		setTimeout(function () {
-			$('.permac-table').fadeIn();
-		}, 700);
+		$('.preloader').fadeIn();
 
 		// use $location.path() or url() or absUrl() to get current url path
 		// use $location.search() to get current url search hash eg.(/macs?mac=1011200107) returns mac=1011200107 as object
@@ -964,15 +986,13 @@ macStats.controller('permacActivityControllerUser',
 			})
 		}
 
-		//Same as ADMIN PERMAC ACTIVITY section
-		var arr = [];
-		for(var y=0; y<30; y++){
-			myService.packageSummary(trend, $scope.macParam, y).then(function(response){
-				response.data.length != 0 ? $scope.b = myService.packageDispense(response.data) : arr.pop();
-				arr.push($scope.b);
-			})
-		}
-		$scope.packageSummary = arr;
+
+
+		// Packages
+		myService.packageResultsAll('mac-' +trend, $scope.macParam).then(function(response){
+			$('.preloader').fadeOut();
+			$scope.package_results_each = response.data;
+		})
 
 	}
 }])
@@ -984,16 +1004,10 @@ macStats.controller('chartsPermacActController',
 ['$scope', '$http', '$location', 'myService', '$filter', function($scope, $http, $location, myService, $filter){
 	$scope.init = function(trend){
 
-		$('.stats-graph').hide();
-		$('.packages-graph').hide();
-		setTimeout(function () {
-			$('.stats-graph').fadeIn();
-		}, 200);
+		$('.preloader').fadeIn();
 
 		//Hides the active devices chart container
 		$(".chart-active-container").hide();
-		$(".chart-connected-container").attr("style", "display: block; margin: auto; border-top: 2px solid rgba(76, 0, 158, 0.9); width: 80%; height:400px");
-		$(".canvas-connected-container").attr("style", "height: 300px");
 
 		//Gets the query parameter of current url in object form
 		var urlParam = $location.search();
@@ -1029,32 +1043,62 @@ macStats.controller('chartsPermacActController',
 
 
 
-		var arr = [];	
-		for(var y=0; y<30; y++){
-			myService.packageSummary(trend, $scope.macParam, y).then(function(response){
-				response.data.length != 0 ? $scope.b = myService.packageDispense(response.data) : arr.pop();
-				arr.push($scope.b);
-			})
-		}
-		
-		//Any ajax call will do the same.	
-		myService.permacActivity('perDay', $scope.macParam).then(function(response){
-			//Sort the resulted array
-			arr = $filter('orderBy')(arr, '-dateCreated' );
-			//Remove the undefined index of resulted array
-			arr = arr.filter(Boolean);
-
+		// Package Graphs
+		myService.packageResultsAll('mac-'+trend, $scope.macParam).then(function(response){
+			
+			$('.preloader').fadeOut();
+			var arr = response.data;
+			
 			xxxMinutesGraph(arr, trend);
 			iHourGraph(arr, trend);
 			iiHoursGraph(arr, trend);
+			iiiHoursGraph(arr, trend);
 			vHoursGraph(arr, trend);
 			iDayGraph(arr, trend);
 			iiDaysGraph(arr, trend);
 			ivDaysGraph(arr, trend);
 			iWeekGraph(arr, trend);
-			packagesGraph(arr, trend);
-			console.log(arr);
 		})
+
+		// Dispense Dshboard and Graph
+		myService.dispenseResultsAll('each', 's-' + trend, $scope.macParam).then(function(response){
+			$scope.xxxMinutes = response.data[0]['xxxMinutes']/3;
+			$scope.iHour = response.data[0]['iHour']/5;
+			$scope.iiHours = response.data[0]['iiHours']/10;
+			$scope.iiiHours = response.data[0]['iiiHours']/15;
+			$scope.vHours = response.data[0]['vHours']/20;
+			$scope.iDay = response.data[0]['iDay']/30;
+			$scope.iiDays = response.data[0]['iiDays']/40;
+			$scope.ivDays = response.data[0]['ivDays']/50;
+			$scope.iWeek = response.data[0]['iWeek']/60;
+
+			$scope.totalPackage = response.data[0]['xxxMinutes']/3 + response.data[0]['iHour']/5 +
+								   response.data[0]['iiHours']/10 + response.data[0]['iiiHours']/15 +
+								   response.data[0]['vHours']/20 + response.data[0]['iDay']/30 +
+								   response.data[0]['iiDays']/40 + response.data[0]['ivDays']/50 +
+								   response.data[0]['iWeek']/60;
+
+			$scope.totalDispense = parseInt(response.data[0]['xxxMinutes']) + parseInt(response.data[0]['iHour']) +
+								parseInt(response.data[0]['iiHours']) + parseInt(response.data[0]['iiiHours']) +
+								parseInt(response.data[0]['vHours']) + parseInt(response.data[0]['iDay']) +
+								parseInt(response.data[0]['iiDays']) + parseInt(response.data[0]['ivDays']) +
+								parseInt(response.data[0]['iWeek']);
+			
+		})
+
+		myService.dispenseResultsAll('each', 'g-' + trend, $scope.macParam).then(function(response){
+			
+			var arr = response.data;
+
+			totalPackageGraph(arr, trend);
+			totalDispenseGraph(arr, trend);
+
+		})
+
+		
+			
+
+
 
 
 	}
@@ -1065,16 +1109,10 @@ macStats.controller('chartsPermacActControllerUser',
 ['$scope', '$http', '$location', 'myService', '$filter', function($scope, $http, $location, myService, $filter){
 	$scope.init = function(trend){
 
-		$('.stats-graph').hide();
-		$('.packages-graph').hide();
-		setTimeout(function () {
-			$('.stats-graph').fadeIn();
-		}, 200);
+		$('.preloader').fadeIn();
 		
 		//Hides the connected chart container
 		$(".chart-active-container").hide();
-		$(".chart-connected-container").attr("style", "display: block; margin: auto; border-top: 2px solid rgba(76, 0, 158, 0.9); width: 80%; height:400px");
-		$(".canvas-connected-container").attr("style", "height: 300px");
 
 		//Gets the query parameter of current url in object form
 		var urlParam = $location.search();
@@ -1107,30 +1145,57 @@ macStats.controller('chartsPermacActControllerUser',
 		  graphMaxCpuLoad('permac-activity?trend=' +trend+ '&mac=' + $scope.macParam, trend),
 		  graphMaxFreeHdd('permac-activity?trend=' +trend+ '&mac=' + $scope.macParam, trend));
 
-		var arr = [];	
-		for(var y=0; y<30; y++){
-			myService.packageSummary(trend, $scope.macParam, y).then(function(response){
-				response.data.length != 0 ? $scope.b = myService.packageDispense(response.data) : arr.pop();
-				arr.push($scope.b);
-			})
-		}
+		
+		// Package Graphs
+		myService.packageResultsAll('mac-'+trend, $scope.macParam).then(function(response){
 			
-		myService.permacActivity('perDay', $scope.macParam).then(function(response){
-			//Sort the resulted array
-			arr = $filter('orderBy')(arr, '-dateCreated' );
-			//Remove the undefined index of resulted array
-			arr = arr.filter(Boolean);
-
+			$('.preloader').fadeOut();
+			var arr = response.data;
+			
 			xxxMinutesGraph(arr, trend);
 			iHourGraph(arr, trend);
 			iiHoursGraph(arr, trend);
+			iiiHoursGraph(arr, trend);
 			vHoursGraph(arr, trend);
 			iDayGraph(arr, trend);
 			iiDaysGraph(arr, trend);
 			ivDaysGraph(arr, trend);
 			iWeekGraph(arr, trend);
-			packagesGraph(arr, trend);
-			//console.log(arr);
+		})
+
+		// Dispense Dshboard and Graph
+		myService.dispenseResultsAll('each', 's-' + trend, $scope.macParam).then(function(response){
+			$scope.xxxMinutes = response.data[0]['xxxMinutes']/3;
+			$scope.iHour = response.data[0]['iHour']/5;
+			$scope.iiHours = response.data[0]['iiHours']/10;
+			$scope.iiiHours = response.data[0]['iiiHours']/15;
+			$scope.vHours = response.data[0]['vHours']/20;
+			$scope.iDay = response.data[0]['iDay']/30;
+			$scope.iiDays = response.data[0]['iiDays']/40;
+			$scope.ivDays = response.data[0]['ivDays']/50;
+			$scope.iWeek = response.data[0]['iWeek']/60;
+
+			$scope.totalPackage = response.data[0]['xxxMinutes']/3 + response.data[0]['iHour']/5 +
+								   response.data[0]['iiHours']/10 + response.data[0]['iiiHours']/15 +
+								   response.data[0]['vHours']/20 + response.data[0]['iDay']/30 +
+								   response.data[0]['iiDays']/40 + response.data[0]['ivDays']/50 +
+								   response.data[0]['iWeek']/60;
+
+			$scope.totalDispense = parseInt(response.data[0]['xxxMinutes']) + parseInt(response.data[0]['iHour']) +
+								parseInt(response.data[0]['iiHours']) + parseInt(response.data[0]['iiiHours']) +
+								parseInt(response.data[0]['vHours']) + parseInt(response.data[0]['iDay']) +
+								parseInt(response.data[0]['iiDays']) + parseInt(response.data[0]['ivDays']) +
+								parseInt(response.data[0]['iWeek']);
+			
+		})
+
+		myService.dispenseResultsAll('each', 'g-' + trend, $scope.macParam).then(function(response){
+			
+			var arr = response.data;
+
+			totalPackageGraph(arr, trend);
+			totalDispenseGraph(arr, trend);
+			
 		})
 
 
@@ -1338,8 +1403,30 @@ macStats.controller('mapsController',
 //Dashboard Events
 $("body").on("click", ".stats-tab", function(){
 	$(".db-s-frame").fadeIn();
+	$('.db-graph-frame').show();
 	$(".db-p-frame").hide();
-	$(".db-graph-frame").attr("style", "margin-top: 20;")
+	$(".db-tdtv-frame").hide();
+	$(".db-d-table-frame").hide();
+	$(".db-d-frame").hide();
+});
+
+$('body').on('click', '.packages-tab', function(){
+	$('.db-p-frame').show();
+	$('.db-graph-frame').show();	
+	$('.db-s-frame').hide();
+	$('.db-tdtv-frame').hide();
+	$(".db-d-table-frame").hide();
+	$(".db-d-frame").hide();
+});
+	
+
+$("body").on("click", ".dispense-tab", function(){
+	$(".db-tdtv-frame").show();
+	$(".db-d-table-frame").show();
+	$(".db-d-frame").show();
+	$(".db-s-frame").hide();
+	$(".db-p-frame").hide();
+	//$(".db-graph-frame").attr("style", "margin-top: 670;")
 });
 
 $("body").on("click", ".db-line", function(){
@@ -1350,6 +1437,20 @@ $("body").on("click", ".db-bar", function(){
 	$("#canvas2").attr("style", "display:block !important; width:100%; height:100%;");
 	$("#canvas1").hide();
 });
+
+$("body").on("click", ".db-tdtv-line", function(){
+	$("#canvas3").show();
+	$("#canvas4").hide();
+});
+$("body").on("click", ".db-tdtv-bar", function(){
+	$("#canvas4").attr("style", "display:block !important; width:100%; height:100%;");
+	$("#canvas3").hide();
+});
+
+
+
+
+
 //Summaries and PerMac Events
 $("body").on("click", ".reports-pri", function(){
 	$(".reports-tb1").show();
@@ -1367,6 +1468,9 @@ $("body").on("click", ".permac-pri", function(){
 	$(".permac-tb5").hide();
 	$(".permac-tb6").hide();
 	$(".permac-search-results").hide();
+	$(".pm-tab-frame").hide();
+	$(".pm-d-frame").hide();
+	$(".pm-tdtv-frame").hide();
 });
 $("body").on("click", ".permac-sec", function(){
 	$(".permac-tb2").show();
@@ -1376,6 +1480,9 @@ $("body").on("click", ".permac-sec", function(){
 	$(".permac-tb5").hide();
 	$(".permac-tb6").hide();
 	$(".permac-search-results").hide();
+	$(".pm-tab-frame").hide();
+	$(".pm-d-frame").hide();
+	$(".pm-tdtv-frame").hide();
 });
 $("body").on("click", ".permac-tri", function(){
 	$(".permac-tb3").show();
@@ -1385,6 +1492,9 @@ $("body").on("click", ".permac-tri", function(){
 	$(".permac-tb5").hide();
 	$(".permac-tb6").hide();
 	$(".permac-search-results").hide();
+	$(".pm-tab-frame").hide();
+	$(".pm-d-frame").hide();
+	$(".pm-tdtv-frame").hide();
 });
 $("body").on("click", ".permac-4th", function(){
 	$(".permac-tb4").show();
@@ -1394,15 +1504,21 @@ $("body").on("click", ".permac-4th", function(){
 	$(".permac-tb5").hide();
 	$(".permac-tb6").hide();
 	$(".permac-search-results").hide();
+	$(".pm-tab-frame").hide();
+	$(".pm-d-frame").hide();
+	$(".pm-tdtv-frame").hide();
 });
 $("body").on("click", ".permac-packages", function(){
-	$(".permac-tb5").show();
+	$('.permac-tb5').show();
 	$(".permac-tb1").hide();
 	$(".permac-tb2").hide();
 	$(".permac-tb3").hide();
 	$(".permac-tb4").hide();
 	$(".permac-tb6").hide();
 	$(".permac-search-results").hide();
+	$(".pm-tab-frame").show();
+	$(".pm-d-frame").hide();
+	$(".pm-tdtv-frame").hide();
 });
 $("body").on("click", ".permac-6th", function(){
 	$(".permac-tb6").show();
@@ -1412,6 +1528,9 @@ $("body").on("click", ".permac-6th", function(){
 	$(".permac-tb3").hide();
 	$(".permac-tb4").hide();
 	$(".permac-search-results").hide();
+	$(".pm-tab-frame").hide();
+	$(".pm-d-frame").hide();
+	$(".pm-tdtv-frame").hide();
 });
 $("body").on("click", ".show-results", function(){
 	$(".permac-search-results").show();
@@ -1421,6 +1540,32 @@ $("body").on("click", ".show-results", function(){
 	$(".permac-tb4").hide();
 	$(".permac-tb5").hide();	
 });
+
+
+
+
+
+
+
+// PERMAC ACTIVITY EVENTS
+$('body').on('click', '.tab-packages', function(){
+	$('.permac-tb5').show();
+	$(".pm-d-frame").hide();
+	$(".pm-tdtv-frame").hide();
+})
+$('body').on('click', '.tab-dispense', function(){
+	$(".pm-d-frame").show();
+	$(".pm-tdtv-frame").show();
+	$('.permac-tb5').hide();
+})
+
+
+
+
+
+
+
+
 //Charts Events
 $("body").on("click", ".active-line", function(){
 	$("#canvas1").show();
@@ -1526,6 +1671,14 @@ $("body").on("click", ".2hours-bar", function(){
 	$("#canvas26").attr("style", "display:block !important; width:100%; height:100%;");
 	$("#canvas25").hide();
 });
+$("body").on("click", ".3hours-line", function(){
+	$("#canvas37").show();
+	$("#canvas38").hide();
+});
+$("body").on("click", ".3hours-bar", function(){
+	$("#canvas38").attr("style", "display:block !important; width:100%; height:100%;");
+	$("#canvas37").hide();
+});
 $("body").on("click", ".5hours-line", function(){
 	$("#canvas27").show();
 	$("#canvas28").hide();
@@ -1566,24 +1719,38 @@ $("body").on("click", ".1week-bar", function(){
 	$("#canvas36").attr("style", "display:block !important; width:100%; height:100%;");
 	$("#canvas35").hide();
 });
-$("body").on("click", ".packages-line", function(){
-	$("#canvas37").show();
-	$("#canvas38").hide();
+$("body").on("click", ".tp-line", function(){
+	$("#canvas39").show();
+	$("#canvas40").hide();
 });
-$("body").on("click", ".packages-bar", function(){
-	$("#canvas38").attr("style", "display:block !important; width:100%; height:100%;");
-	$("#canvas37").hide();
+$("body").on("click", ".tp-bar", function(){
+	$("#canvas40").attr("style", "display:block !important; width:100%; height:100%;");
+	$("#canvas39").hide();
+});
+$("body").on("click", ".td-line", function(){
+	$("#canvas41").show();
+	$("#canvas42").hide();
+});
+$("body").on("click", ".td-bar", function(){
+	$("#canvas42").attr("style", "display:block !important; width:100%; height:100%;");
+	$("#canvas41").hide();
 });
 
 
 $("body").on("click", ".stats-tab", function(){
 	$(".stats-graph").show();
 	$(".packages-graph").hide();
+	$('.ch-package-cont').hide();
 });
 $("body").on("click", ".packages-tab", function(){
 	$(".packages-graph").show();
+	$('.ch-package-cont').show();
 	$(".stats-graph").hide();
 });
+
+
+
+
 
 
 /*MAC ADMNISTRATION SECTION*/
