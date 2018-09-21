@@ -1,21 +1,23 @@
-function graphPackages(cond, type){
-	var dateTime = [], xxxMinutes = [], iHour = [], iiHours = [],
+function graphPackages(trend, user, type){
+	var dateTime = [], xxxMinutes = [], iHour = [], iiHours = [], iiiHours = [],
 		vHours = [], iDay = [], iiDays = [], ivDays = [], iWeek = [];
 
 
-	$.getJSON('/api/max-of-packages/?cond=' + cond, function(response){
+	$.getJSON('/api/package-results-all/?trend=' +trend+ '&mac=' +user, function(response){
+		$('.preloader').fadeOut();
 		for(var x=0; x<response.length; x++){
 			var spliter = response[x]['dateCreated'].split(" ");
 
-			dateTime.unshift(spliter[0]);
-			xxxMinutes.unshift(response[x]['xxxmins']);
-			iHour.unshift(response[x]['ihr']);
-			iiHours.unshift(response[x]['iihrs']);
-			vHours.unshift(response[x]['vhrs']);
-			iDay.unshift(response[x]['iday']);
-			iiDays.unshift(response[x]['iidays']);
-			ivDays.unshift(response[x]['ivdays']);
-			iWeek.unshift(response[x]['iweek']);
+			dateTime.push(spliter[0]);
+			xxxMinutes.push(response[x]['xxxMinutes']);
+			iHour.push(response[x]['iHour']);
+			iiHours.push(response[x]['iiHours']);
+			iiiHours.push(response[x]['iiiHours']);
+			vHours.push(response[x]['vHours']);
+			iDay.push(response[x]['iDay']);
+			iiDays.push(response[x]['iiDays']);
+			ivDays.push(response[x]['ivDays']);
+			iWeek.push(response[x]['iWeek']);
 
 		}
 		//DESTROYS THE OLD EXISTING GRAPH TO AVOID HOVER BUG
@@ -223,7 +225,7 @@ function graphPackages(cond, type){
 			});
 		}
 
-		else if(type=="30Minutes"){
+		else if(type=="xxxMinutes"){
 			myChart = new Chart(ctx2, {
 				type: "bar",
 				data: {
@@ -293,7 +295,7 @@ function graphPackages(cond, type){
 		}
 
 	//////////////////////////////////////////////////////////////////////////////////////////
-		else if(type=="1Hour"){
+		else if(type=="iHour"){
 			myChart = new Chart(ctx2, {
 				type: "bar",
 				data: {
@@ -363,7 +365,7 @@ function graphPackages(cond, type){
 		}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////
-		else if(type=="2Hours"){
+		else if(type=="iiHours"){
 			myChart = new Chart(ctx2, {
 				type: "bar",
 				data: {
@@ -433,7 +435,7 @@ function graphPackages(cond, type){
 		}
 		
 	////////////////////////////////////////////////////////////////////////////////////////////////
-		else if(type=="5Hours"){
+		else if(type=="vHours"){
 			myChart = new Chart(ctx2, {
 				type: "bar",
 				data: {
@@ -503,7 +505,7 @@ function graphPackages(cond, type){
 		}
 
 
-		else if(type=="1Day"){
+		else if(type=="iDay"){
 			myChart = new Chart(ctx2, {
 				type: "bar",
 				data: {
@@ -573,7 +575,7 @@ function graphPackages(cond, type){
 		}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////
-		else if(type=="2Days"){
+		else if(type=="iiDays"){
 			myChart = new Chart(ctx2, {
 				type: "bar",
 				data: {
@@ -643,7 +645,7 @@ function graphPackages(cond, type){
 		}
 
 	//////////////////////////////////////////////////////////////////////////////////////////////
-		else if(type=="4Days"){
+		else if(type=="ivDays"){
 			myChart = new Chart(ctx2, {
 				type: "bar",
 				data: {
@@ -713,7 +715,7 @@ function graphPackages(cond, type){
 		}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////
-		else if(type=="1Week"){
+		else if(type=="iWeek"){
 			myChart = new Chart(ctx2, {
 				type: "bar",
 				data: {
