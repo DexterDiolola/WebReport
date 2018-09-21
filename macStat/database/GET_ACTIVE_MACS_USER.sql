@@ -83,7 +83,7 @@ BEGIN
             SELECT actives.activeDevice, 
             DATE_FORMAT(actives.dateCreated, "%Y-%m-%d %H-00") AS dateCreated FROM actives 
             LEFT OUTER JOIN macs_users ON actives.activeDevice = macs_users.mac 
-            WHERE actives.dateCreated>DATE_SUB(NOW(), INTERVAL 1 DAY) 
+            WHERE actives.dateCreated>DATE_SUB(NOW(), INTERVAL 23 HOUR) 
             AND HOUR(actives.dateCreated) = created
             AND macs_users.owner = owner;
         END IF;
