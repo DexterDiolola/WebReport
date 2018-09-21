@@ -25,6 +25,7 @@ BEGIN
         dispense VARCHAR(255) NOT NULL DEFAULT '',
         packages VARCHAR(255) NOT NULL DEFAULT '',
         vpnaddr VARCHAR(255) NOT NULL DEFAULT '',
+        vendoVersion VARCHAR(255) NOT NULL DEFAULT '',
         dateCreated DATETIME NOT NULL DEFAULT 0,
         dateUpdated DATETIME NOT NULL DEFAULT 0
     );
@@ -34,12 +35,12 @@ BEGIN
         INSERT INTO tempUtilizations(mac, active, utiltx,
         utilrx, usagetx, usagerx, ccq, lease, uptime, 
         freeMem, cpuFreq, cpuLoad, freeHdd, badBlock, version, appVersion,
-        gps, dispense, packages, vpnaddr, dateCreated, dateUpdated)
+        gps, dispense, packages, vpnaddr, vendoVersion, dateCreated, dateUpdated)
             SELECT mac_fk, MAX(active), MAX(utiltx), MAX(utilrx), 
             MAX(usagetx), MAX(usagerx), MAX(ccq), MAX(lease), 
             uptime, MAX(freeMemory), MAX(cpuFreq), MAX(cpuLoad), 
             MAX(freeHdd), MAX(badBlock), version, appVersion, gps, 
-            dispense, packages, vpnaddr, dateCreated, dateUpdated
+            dispense, packages, vpnaddr, vendoVersion, dateCreated, dateUpdated
             FROM utilizations
             WHERE  dateCreated > DATE_SUB(NOW(), INTERVAL 2 DAY)
             GROUP BY DATE(dateCreated), HOUR(dateCreated), mac_fk; 
@@ -49,7 +50,7 @@ BEGIN
         SELECT tempUtilizations.mac, label, owner, active, utiltx, 
         utilrx, usagetx, usagerx, ccq, lease, freeMem, cpuFreq, 
         cpuLoad, freeHdd, badBlock, uptime, version, appVersion, gps, dispense, packages,
-        vpnaddr, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d %H:00') 
+        vpnaddr, vendoVersion, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d %H:00') 
         AS dateCreated FROM tempUtilizations 
         LEFT OUTER JOIN macs ON tempUtilizations.mac = macs.mac
         LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac 
@@ -62,12 +63,12 @@ BEGIN
         INSERT INTO tempUtilizations(mac, active, utiltx,
         utilrx, usagetx, usagerx, ccq, lease, uptime, 
         freeMem, cpuFreq, cpuLoad, freeHdd, badBlock, version, appVersion, 
-        gps, dispense, packages, vpnaddr, dateCreated, dateUpdated)
+        gps, dispense, packages, vpnaddr, vendoVersion, dateCreated, dateUpdated)
             SELECT mac_fk, MAX(active), MAX(utiltx), MAX(utilrx), 
             MAX(usagetx), MAX(usagerx), MAX(ccq), MAX(lease), 
             uptime, MAX(freeMemory), MAX(cpuFreq), MAX(cpuLoad), 
             MAX(freeHdd), MAX(badBlock), version, appVersion, gps, 
-            dispense, packages, vpnaddr, dateCreated, dateUpdated
+            dispense, packages, vpnaddr, vendoVersion, dateCreated, dateUpdated
             FROM max_table
             WHERE  dateCreated > DATE_SUB(NOW(), INTERVAL 2 WEEK)
             GROUP BY DATE(dateCreated), mac_fk;
@@ -77,7 +78,7 @@ BEGIN
         SELECT tempUtilizations.mac, label, owner, active, utiltx, 
         utilrx, usagetx, usagerx, ccq, lease, freeMem, cpuFreq, 
         cpuLoad, freeHdd, badBlock, uptime, version, appVersion, gps, dispense, packages,
-        vpnaddr, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d') 
+        vpnaddr, vendoVersion, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d') 
         AS dateCreated FROM tempUtilizations 
         LEFT OUTER JOIN macs ON tempUtilizations.mac = macs.mac
         LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac 
@@ -90,12 +91,12 @@ BEGIN
         INSERT INTO tempUtilizations(mac, active, utiltx,
         utilrx, usagetx, usagerx, ccq, lease, uptime, 
         freeMem, cpuFreq, cpuLoad, freeHdd, badBlock, version, appVersion,
-        gps, dispense, packages, vpnaddr, dateCreated, dateUpdated)
+        gps, dispense, packages, vpnaddr, vendoVersion, dateCreated, dateUpdated)
             SELECT mac_fk, MAX(active), MAX(utiltx), MAX(utilrx), 
             MAX(usagetx), MAX(usagerx), MAX(ccq), MAX(lease), 
             uptime, MAX(freeMemory), MAX(cpuFreq), MAX(cpuLoad), 
             MAX(freeHdd), MAX(badBlock), version, appVersion, gps, 
-            dispense, packages, vpnaddr, dateCreated, dateUpdated
+            dispense, packages, vpnaddr, vendoVersion, dateCreated, dateUpdated
             FROM max_table
             WHERE  dateCreated > DATE_SUB(NOW(), INTERVAL 2 MONTH)
             GROUP BY DATE(dateCreated), mac_fk;
@@ -105,7 +106,7 @@ BEGIN
         SELECT tempUtilizations.mac, label, owner, active, utiltx, 
         utilrx, usagetx, usagerx, ccq, lease, freeMem, cpuFreq, 
         cpuLoad, freeHdd, badBlock, uptime, version, appVersion, gps, dispense, packages,
-        vpnaddr, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d') 
+        vpnaddr, vendoVersion, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d') 
         AS dateCreated FROM tempUtilizations 
         LEFT OUTER JOIN macs ON tempUtilizations.mac = macs.mac
         LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac 
@@ -117,19 +118,19 @@ BEGIN
         INSERT INTO tempUtilizations(mac, active, utiltx,
         utilrx, usagetx, usagerx, ccq, lease, uptime, 
         freeMem, cpuFreq, cpuLoad, freeHdd, badBlock, version, appVersion,
-        gps, dispense, packages, vpnaddr, dateCreated, dateUpdated)
+        gps, dispense, packages, vpnaddr, vendoVersion, dateCreated, dateUpdated)
             SELECT mac_fk, MAX(active), MAX(utiltx), MAX(utilrx), 
             MAX(usagetx), MAX(usagerx), MAX(ccq), MAX(lease), 
             uptime, MAX(freeMemory), MAX(cpuFreq), MAX(cpuLoad), 
             MAX(freeHdd), MAX(badBlock), version, appVersion, gps, dispense, 
-            packages, vpnaddr, dateCreated, dateUpdated FROM utilizations
+            packages, vpnaddr, vendoVersion, dateCreated, dateUpdated FROM utilizations
             WHERE  dateCreated > DATE_SUB(NOW(), INTERVAL 4 DAY)
             GROUP BY DATE(dateCreated), mac_fk;
         
         SELECT tempUtilizations.mac, label, owner, active, utiltx, utilrx, 
         usagetx, usagerx, ccq, lease, freeMem, cpuFreq, cpuLoad, 
         freeHdd, badBlock, uptime, version, appVersion, gps, dispense, packages, 
-        vpnaddr, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d %H:00') AS dateCreated FROM tempUtilizations 
+        vpnaddr, vendoVersion, DATE_FORMAT(tempUtilizations.dateCreated, '%Y-%m-%d %H:00') AS dateCreated FROM tempUtilizations 
         LEFT OUTER JOIN macs ON tempUtilizations.mac = macs.mac 
         LEFT OUTER JOIN macs_users ON tempUtilizations.mac = macs_users.mac
         WHERE macs_users.owner = owner
