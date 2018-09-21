@@ -64,10 +64,15 @@ Route::group(['prefix' => 'api'], function(){
 	Route::get('/add-mac-label', 'apiController@addMacLabel');
 	Route::get('/mac-administration', 'apiController@macAdministration');
 	
-	Route::get('/package-summary', 'apiController@packageSummary');
-	Route::post('/package-summary', 'apiController@modPackages');
-	Route::get('/max-of-packages', 'apiController@maxOfPackages');
-	Route::get('/package-chart', 'apiController@packageChart');
+	
+	// test in package
+	Route::get('/package-results-each', 'apiController@packageEach');
+	Route::get('/package-all', 'apiController@packageAll');
+	Route::get('/package-results-all', "apiController@packageResults");
+
+	// dispense
+	Route::get('/dispense-results', 'apiController@dispenseResults');
+
 	
 	Route::get('/alerts', 'apiController@alerts');
 	Route::post('/send-alerts', 'apiController@sendAlerts');
