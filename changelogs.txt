@@ -221,6 +221,125 @@ version 2.0.2
 
 
 
+/------------------------------------------------------------------------------------------------------------------------/
+
+Version 3.0.0
+
+1. MAJOR CHANGES IN PACKAGE DISPENSED
+
+	MYSQL Changes
+	- Create package_backup table.
+	- Fill packages_backup table with data from max_table.
+	- Create computed_packages table.
+	- Write packages_to_decode stored procedure.
+	- Write fill_computed_packages stored procedure.
+	- Write package_results stored procedure.
+	- Write package_dispense_results stored procedure.
+	- Write package_top_dispenses stored procedure
+	
+
+	Controller Changes
+	Files Modified:
+		- web.php 
+			* define endpoint /package-results-each
+			* define endpoint /package-all (for testing purposes)
+			* define endpoint /package-results-all
+		- apiController.php
+			* define packageDispense function
+			* define packageDispenseAll function
+			* define package_decoder function
+			* define compute_package function
+
+	UI Changes
+	Files Modified:
+		- dashboard.php
+			* added dispense tab and relateds
+		- styles.css
+			* added styles for dispense tab and many related
+		- frontController.js
+			* added jquery event in dispense tab
+			* general change in packages in frontend
+		- permac.php
+		- charts-dashboard2.js
+			* rewrite the graph functions
+		- Added charts-dashboard3.js
+		- charts-section2.js
+		- admin-reports.blade.php
+		- user-reports.blade.php
+
+
+2. ADDED DISPENSING REPORT IN EVERY MAC
+	
+	MYSQL Changes
+	- Write package_dispense_results_each stored procedure.
+
+	Controller Changes
+	Files Modified:
+	- apiController.php
+		* Added else if in dispenseResults function that uses 
+			package_dispense_results_each stored procedure.
+
+	UI Changes
+	Files Modified:
+		- permac.php
+			* Added the required contents for dispense in every mac.
+		- frontController.js
+			* Added button events for dispense in every mac 
+
+
+
+Version 3.0.1
+
+1. DATABASE & CONTROLLER MODIFICAATION
+	Database Changes
+	- Added columns 'vendoVersion' & 'wallet' in utilizations table
+	- Added columns 'vendoVersion' & 'wallet' in max-table table
+	- Modified ADD_MAC_ENTRY stored procedure.
+		* Added 'vendoVersion' & 'wallet' parameters
+	- Modified PERMAC_ACTIVITY stored procedure.
+		* Added 'vendoVersion' in temporary table & select statements
+	- Modified packages_to_decode stored procedure
+		* Added 'wallet'
+	- Modified apiController.php
+		* Added 'wallet' in package_decoder function
+		* Added 'wallet' in compute_packages function
+	- Added column 'wallet' in computed_packages table
+	- Modified fill_computed_packages stored procedure
+		* Added 'wallet'
+	- Modified package_results stored procedure
+		* Added 'wallet'
+	- Modified MACS_PER_TREND & MACS_PER_TREND_USER stored procdure
+		* Added 'vendoVersion' in table and select statements
+	- Modified MY_SCHEDULER stored procedure
+		* Added 'vendoVersion'
+	- Modified package_dispense_results_each stored procedure
+		* Added 'totalPackage & totalDispense'
+
+2. VIEW/UI MODIFICATION
+	- Modified 'permac.php'
+		* Added Wallet, Total Package, Total Dispense columns in Packge Summary Table
+			in Permac Activity
+		* Removed the dispense dashboard
+	- Modified 'graphs.php'
+		* Made 3x3 canvas
+		* Added two new canvas for 'Total Package' and 'Total Dispense' Graph
+	- Modified 'styles.css'
+		* Resize each canvas
+		* Added design for 'Total Package' and 'Total Dispense' canvas
+	- Modified 'charts-section2.js'
+		* Added iiiHoursGraph graph function
+		* Added totalPackage & totalDispense graph function
+	- Modified frontController.js
+		* Removed the .attr of a chart in charts_permac_activity section
+		* Added click events for iiiHours in charts_permac_activity
+		* Removed the click event for 'tab-packages' and 'tab-dispense' class
+		* Added the required asynchronous calls to fill the dashboard in charts_permac_activity section
+
+
+3. FIXING OF TAB NAVIGATION
+	- Modified 'frontController.js'
+		* Rewrite Dashboard and Dahboard-User controllers
+		* Rewrite Permac Activity & Permac Activity Userx controllers
 
 
 
@@ -241,7 +360,12 @@ version 2.0.2
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+/---------------------------------------------------------------------------------------------------------------/
 
 Wifi username and pass:
 Username: guest
