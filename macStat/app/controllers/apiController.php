@@ -36,6 +36,8 @@ class apiController extends Controller
         $request->query->has('dispense') ? $dispense = $query['dispense'] : $dispense = 0;
         $request->query->has('packages') ? $packages = $query['packages'] : $packages = 0;
         $request->query->has('vpnaddr') ? $vpnaddr = $query['vpnaddr'] : $vpnaddr = 0;
+        $request->query->has('vendoVersion') ? $vendoVersion = $query['vendoVersion'] : $vendoVersion = 0;
+        $request->query->has('wallet') ? $wallet = $query['wallet'] : $wallet = 0;
 
 
         $macs = mac::all('mac')->where('mac', '=', $mac);
@@ -47,7 +49,7 @@ class apiController extends Controller
                                    '$uptime', '$freeMem', '$cpuFreq',
                                    '$cpuLoad', '$freeHDD', '$badBlock', '$version',
                                    '$appVersion', '$gps', '$dispense', '$packages',
-                                   '$vpnaddr', 'existed')");
+                                   '$vpnaddr', '$vendoVersion', '$wallet', 'existed')");
             
         }
         else{
@@ -57,7 +59,7 @@ class apiController extends Controller
                                     '$uptime', '$freeMem', '$cpuFreq',
                                     '$cpuLoad', '$freeHDD', '$badBlock', '$version',
                                     '$appVersion', '$gps', '$dispense', '$packages',
-                                    '$vpnaddr', 'not_existing')");
+                                    '$vpnaddr', '$vendoVersion', '$wallet', 'not_existing')");
             
         }
 
@@ -155,91 +157,225 @@ class apiController extends Controller
         $response = DB::select("call VIEWS('$cond', '$routerMac', '$userMac', '', '')");
         return response()->json($response,200);
     }
+ 
+
+
+
+
+
+
+
+
+    /*
+    public function packageEach(Request $request){
+        $query = $request->all();
+        $mac = $query['mac'];
+
+        $packages_to_decode = DB::select("call packages_to_decode('$mac')");
+        $packages_to_decode = json_decode(json_encode($packages_to_decode),true);
+
+        
+        $decoded_packages = $this->package_decoder($packages_to_decode);
+        $xx = $this->compute_packages($decoded_packages);
+
+        return response()->json($xx,200);
+    }
+    */
     
-
-
-
-
-
-
-
-
-
-    public function packageSummary(Request $request){
+    
+    public function packageResults(Request $request){
         $query = $request->all();
         $trend = $query['trend'];
         $mac = $query['mac'];
-        $nthDay = $query['nthDay'];
 
-        $response = DB::select("call PACKAGE_SUMMARY('$trend', '$mac', '$nthDay')");
-        return response()->json($response,200);
+        $this->checker();
+        
+        $package_results = DB::select("call package_results('$trend', '$mac')");
+        return response()->json($package_results,200);
     }
 
-    public function modPackages(Request $request){
-        $arr = $request->all();
-        $len = count($arr);
+    public function dispenseResults(Request $request){
+        $query = $request->all();
+        $x = $query['x'];
+        $trend = $query['trend'];
+        $owner = $query['owner'];
 
-        $response = DB::select("call MOD_PACKAGES('truncate', '', '', '', '', '', '', 
-                                                  '', '', '', '', '', '')");
+        //$this->checker();
+        
+        if($x == 'top'){
+            $top_dispenses = DB::select("call package_top_dispenses('$trend', '$owner')");
+            return response()->json($top_dispenses,200);
+        }
+        else if ($x == 'each') {
+            // Uses the query parameter owner as 'mac'
+            $dispense_each = DB::select("call package_dispense_results_each('$trend', '$owner')");
+            return response()->json($dispense_each,200);
+        }
 
-        for($x=0; $x<$len; $x++){
-            $mac = $arr[$x]['mac'];
-            $label = $arr[$x]['label'];
-            $packages = $arr[$x]['packages'];
-            $dateCreated = $arr[$x]['dateCreated'];
+        $dispense_results = DB::select("call package_dispense_results('$trend', '$owner')");
+        return response()->json($dispense_results,200);
+    }
 
-            $xxxmins = $arr[$x]['30mins'];
-            $ihr = $arr[$x]['1hr'];
-            $iihrs = $arr[$x]['2hrs'];
-            $vhrs = $arr[$x]['5hrs'];
-            $iday = $arr[$x]['1day'];
-            $iidays = $arr[$x]['2days'];
-            $ivdays = $arr[$x]['4days'];
-            $iweek = $arr[$x]['1week'];
+    public function package_decoder($object){
+        // Declare a container array
+        $arr = array();
+        
+        // Loop through the object parameter
+        for($x=0; $x<count($object); $x++){
+            // Split every element to an array of strings
+            $split = explode(',', $object[$x]['packages']);
+            // If the length of resulting array is <17 then :
+            if(count($split) < 17){
+                $split = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+            }
+            else if(count($split) == 17){
+                array_splice($split, 8, 0, array('0', '0'));
+            }
 
-            $response2 = DB::select("call MOD_PACKAGES('insert', '$mac', '$label', '$packages',
-                                    '$dateCreated', '$xxxmins', '$ihr', '$iihrs', '$vhrs',
-                                    '$iday', '$iidays', '$ivdays', '$iweek')");
+            // Declare new object and input every decoded element into it. 
+            $decoded = (object) [
+                'mac' => $object[$x]['mac'],
+                'wallet' => $object[$x]['wallet'],
+                'xxxMinutes' => $split[2],
+                'iHour' => $split[4],
+                'iiHours' => $split[6],
+                'iiiHours' => $split[8],
+                'vHours' => $split[10],
+                'iDay' => $split[12],
+                'iiDays' => $split[14],
+                'ivDays' => $split[16],
+                'iWeek' => $split[18],
+                'dateCreated' => $object[$x]['dateCreated']
+            ];
+
+            // Insert it into the array.
+            array_push($arr, $decoded);
         }
         
+        return $arr;
     }
 
-    public function maxOfPackages(Request $request){
-        $query = $request->all();
-        $cond = $query['cond'];
+    public function compute_packages($object){
 
-        $response = DB::select("call MAX_OF_PACKAGES('$cond')");
-        return response()->json($response,200);
+        // Declare an array container.
+        $arr = array();
+        // Specifies the length of object parameter.
+        $len = count($object);
+
+        // Loop through it.
+        for($x=0; $x<$len; $x++){
+            // The value of $z is decreasing as per loop.
+            $z = $len-$x-2;
+            // If $z reach to 0 below initialize it to $z=0.
+            $z>0 ? true : $z = 0 ;
+
+
+            $xxxMinutes = $object[$len-$x-1]->xxxMinutes - $object[$z]->xxxMinutes;
+            $iHour = $object[$len-$x-1]->iHour - $object[$z]->iHour;
+            $iiHours = $object[$len-$x-1]->iiHours - $object[$z]->iiHours;
+            $iiiHours = $object[$len-$x-1]->iiiHours - $object[$z]->iiiHours;
+            $vHours = $object[$len-$x-1]->vHours - $object[$z]->vHours;
+            $iDay = $object[$len-$x-1]->iDay - $object[$z]->iDay;
+            $iiDays = $object[$len-$x-1]->iiDays - $object[$z]->iiDays;
+            $ivDays = $object[$len-$x-1]->ivDays - $object[$z]->ivDays;
+            $iWeek = $object[$len-$x-1]->iWeek - $object[$z]->iWeek;
+
+            $xxxMinutes < 0 ? $xxxMinutes = 0 : true;
+            $iHour < 0 ? $iHour = 0 : true;
+            $iiHours < 0 ? $iiHours = 0 : true;
+            $iiiHours < 0 ? $iiiHours = 0 : true;
+            $vHours < 0 ? $vHours = 0 : true;
+            $iDay < 0 ? $iDay = 0 : true;
+            $iiDays < 0 ? $iiDays = 0 : true;
+            $ivDays < 0 ? $ivDays = 0 : true;
+            $iWeek < 0 ? $iWeek = 0 : true;
+
+            // Declare new object and input every subtraction results, mac, and dateCreated attribute into it.
+            $obj = (object) [
+                'mac' => $object[$x]->mac,
+                'wallet' => $object[$len-$x-1]->wallet,
+                'xxxMinutes' => $xxxMinutes,
+                'iHour' => $iHour,
+                'iiHours' => $iiHours,
+                'iiiHours' => $iiiHours,
+                'vHours' => $vHours,
+                'iDay' => $iDay,
+                'iiDays' => $iiDays,
+                'ivDays' => $ivDays,
+                'iWeek' => $iWeek,
+                'dateCreated' => $object[$len-$x-1]->dateCreated
+            ];
+
+            // Insert it into the array.
+            array_push($arr, $obj);
+        }
+    
+        return $arr;
     }
 
-    //Testing Function (processing the package chart in backend approach)
-    public function packageChart(){
-        $ampd = DB::select("call GET_ACTIVE_MACS('countActivePD', 'getMac', '')");
-        $ampd = json_decode(json_encode($ampd), true);
+    public function packageAll(){
+        // Get the active macs perMonth
+        $get_macs_monthly = DB::select("call GET_ACTIVE_MACS('countActivePM', 'getMac', '')");
+        $get_macs_monthly = json_decode(json_encode($get_macs_monthly),true);
 
-        $packageDispense = array();
+        // Declare array contaainers
+        $arr = array();
+        $arr2 = array();
 
-        for($x=0; $x<count($ampd); $x++){
-            for($y=0; $y<30; $y++){
-                $activeDevice = $ampd[$x]['activeDevice'];
-                $ps = DB::select("call PACKAGE_SUMMARY('perDay', '$activeDevice', '$y')");
-                $ps = json_decode(json_encode($ps), true);
+        // This for loop stores all the computed packages in multidimensional array form
+        for($x=0; $x<count($get_macs_monthly); $x++){
+            $mac_param = $get_macs_monthly[$x]['activeDevice'];
+            $packages_to_decode = DB::select("call packages_to_decode('$mac_param')");
+            $packages_to_decode = json_decode(json_encode($packages_to_decode),true);
 
-                $lastIdx = count($ps) - 1;
-                if(count($ps) != 0){
-                    $first = $ps[0]['packages'];
-                    $last = $ps[$lastIdx]['packages'];
-                }
-                else
-                    false;
-                
+            $decoded_packages = $this->package_decoder($packages_to_decode);
+            $xx = $this->compute_packages($decoded_packages);
 
+            array_push($arr, $xx);
+        }
+
+        /* To simplify, this for loop uses the values of multidimensional array $arr and
+           insert it to a single array $arr2 */
+        for($x=0; $x<count($arr); $x++){
+            for($y=0; $y<count($arr[$x]); $y++){
+                array_push($arr2, $arr[$x][$y]);
             }
         }
 
-        echo "Hello Dext";
-
+        return $arr2;
     }
+
+
+    public function checker(){
+
+        $check_for_length = DB::select("call package_results('check', '')");
+        $check_for_length = json_decode(json_encode($check_for_length),true);
+
+        if(count($check_for_length) <= 0){
+            $truncate = DB::select("call package_results('truncate', '')");
+            $object = $this->packageAll();
+
+            for($x=0; $x<count($object); $x++){
+                $mac_addr = $object[$x]->mac;
+                $wallet = $object[$x]->wallet;
+                $xxxMinutes = $object[$x]->xxxMinutes;
+                $iHour = $object[$x]->iHour;
+                $iiHours = $object[$x]->iiHours;
+                $iiiHours = $object[$x]->iiiHours;
+                $vHours = $object[$x]->vHours;
+                $iDay = $object[$x]->iDay;
+                $iiDays = $object[$x]->iiDays;
+                $ivDays = $object[$x]->ivDays;
+                $iWeek = $object[$x]->iWeek;
+                $dateCreated = $object[$x]->dateCreated;
+
+                $fill_computed_packages = DB::select("call fill_computed_packages('$mac_addr', '$wallet', '$xxxMinutes', '$iHour',
+                                                     '$iiHours', '$iiiHours', '$vHours', '$iDay', '$iiDays', '$ivDays',
+                                                     '$iWeek', '$dateCreated')");
+            }
+        }
+    }
+
     
 
 
