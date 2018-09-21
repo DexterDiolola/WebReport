@@ -1,4 +1,21 @@
+<style type="text/css">
+	@media screen and (max-width: 1024px){
+		.permac-tb1-container{
+			height: 450px;
+		}
+
+		.permac-table{
+			height: 380px
+		}
+	}
+
+
+</style>
+
 <div class="permac-init" ng-init="init('perDay')">
+	<div class="preloader">
+		<div class="spinner"></div>
+	</div>
 	<div class="db-header-frame">
 		<div class="aa row">
 			<div class="db-label">
@@ -10,13 +27,13 @@
 		<div class="db-trend-tab-frame">
 			<ul class="nav nav-tabs db-trend-tab" >
 				<li class="nav-item">
-					<a class="nav-link add-label-option" data-toggle="tab" ng-click="init('perDay')"><b>Per Day</b></a>
+					<a class="nav-link " data-toggle="tab" ng-click="init('perDay')"><b>Per Day</b></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link alert-settings-option" data-toggle="tab" ng-click="init('perWeek')"><b>Per Week</b></a>
+					<a class="nav-link " data-toggle="tab" ng-click="init('perWeek')"><b>Per Week</b></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link alert-settings-option" data-toggle="tab" ng-click="init('perMonth')"><b>Per Month</b></a>
+					<a class="nav-link " data-toggle="tab" ng-click="init('perMonth')"><b>Per Month</b></a>
 				</li>
 			</ul>	
 		</div>
@@ -46,7 +63,7 @@
 				    <a class="nav-link permac-6th" data-toggle="tab" href="#">Views</a>
 				  </li>
 				  <li class="nav-item">
-				    <a class="nav-link permac-packages" data-toggle="tab" href="#">Package</a>
+				    <a class="nav-link permac-packages" data-toggle="tab" href="#" ng-click="">Package</a>
 				  </li>
 				  <li class="nav-item">
 				    <a class="nav-link permac-graph" data-toggle="tab" href="{{userTypeIndicator}}/reports/charts/macs?mac={{macParam}}">Graphs</a>
@@ -65,26 +82,7 @@
 					    <th>Usagetx</th>
 					    <th>Usagerx</th>
 					    <th>Ccq</th>
-					    <th class="dropdown">
-				    		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-				    			style="color: white;">
-								Date
-							</a>
-							<ul class="dropdown-menu permac-date-dropdown" role="menu">
-								<li><a href="#" class="dropdown-item">January</a></li>
-								<li><a href="#" class="dropdown-item">February</a></li>
-								<li><a href="#" class="dropdown-item">March</a></li>
-								<li><a href="#" class="dropdown-item">April</a></li>
-								<li><a href="#" class="dropdown-item">May</a></li>
-								<li><a href="#" class="dropdown-item">June</a></li>
-								<li><a href="#" class="dropdown-item">July</a></li>
-								<li><a href="#" class="dropdown-item">August</a></li>
-								<li><a href="#" class="dropdown-item">September</a></li>
-								<li><a href="#" class="dropdown-item">October</a></li>
-								<li><a href="#" class="dropdown-item">November</a></li>
-								<li><a href="#" class="dropdown-item">December</a></li>
-							</ul>
-				    	</th>
+					    <th>Date</th>
 					    
 				    </tr>
 				    <tr ng-repeat="utilization in utilizations">
@@ -134,7 +132,8 @@
 						<th class="th-macs">Macs</th>
 						<th class="th-location">Owner</th>
 				     	<th>Version</th>
-						<th>App Version</th>
+						<th>appVersion</th>
+						<th>vendoVersion</th>
 						<th>GPS</th>
 						<th>Dispense</th>
 						<th>Packages</th>
@@ -142,10 +141,11 @@
 				    </tr>
 				    <tr ng-repeat="utilization in utilizations">
 				    	<td class="td-macs"><a href="{{userTypeIndicator}}/reports/permac/macs?mac={{utilization.mac}}">{{utilization.mac}}</a></td>
-				    	<td class="td-location">{{utilization.owner == "" ? "----------" : utilization.owner}}</td>
+				    	<td class="td-location">{{utilization.owner == "" ? "--------" : utilization.owner}}</td>
 				    	<td>{{utilization.version == "" ? "----------" : utilization.version}}</td>
 				    	<td>{{utilization.appVersion == "" ? "----------" : utilization.appVersion}}</td>
-				    	<td class="td-location td-gps" style="font-size: 8pt !important;">{{utilization.gps == "" ? "----------" : utilization.gps}}</td>
+				    	<td>{{utilization.vendoVersion == "" ? "-----" : utilization.vendoVersion}}</td>
+				    	<td class="" style="font-size: 8pt !important;">{{utilization.gps == "" ? "----------" : utilization.gps}}</td>
 				    	<td>{{utilization.dispense == "" ? "----------" : utilization.dispense}}</td>
 				    	<td class="td-location">{{utilization.packages == "" ? "----------" : utilization.packages}}</td>
 				    	<td>{{utilization.dateCreated}}</td>
@@ -180,15 +180,52 @@
 				    </tr>
 				</table>
 
+
+
+
+				
+
+
+
+				
+
+
+
 				<table class="table table-hover  permac-tb5">
-					<h5 class="permac-tb5" style="background-color: #404040; color: white; padding:5">Package Summary</h5>
-					<tr ng-repeat="p in packageSummary | orderBy: '-dateCreated' | filter:{isRight:'!'} ">
-						<td class="td-macs">{{p.dateCreated}}</td>
+					<tr style="background-color: #404040;">
+				     	<th>Date</th>
+						<th>Mac</th>
+						<th>Wallet</th>
+						<th>Total Package</th>
+						<th>Total Dispense</th>
+						<th>30Mins</th>
+						<th>1Hr</th>
+						<th>2Hrs</th>
+						<th>3Hrs</th>
+						<th>5Hrs</th>
+						<th>1Day</th>
+						<th>2Days</th>
+						<th>4Days</th>
+						<th>1Week</th>
+				    </tr>
+					<tr ng-repeat="p in package_results_each | orderBy: '-dateCreated' ">
+						<td class="">{{p.dateCreated}}</td>
 						<td class="td-macs"><a href="{{userTypeIndicator}}/reports/permac/macs?mac={{p.mac}}">{{p.mac}}</a></td>
-						<td class="td-macs">{{p.label == "" ? "----------" : p.label}}</td>
-						<td class="td-macs">{{p.packages}}</td>
+						<td class="">{{p.wallet}}</td>
+						<td class="">{{p.xxxMinutes + p.iHour + p.iiHours + p.iiiHours + p.vHours + p.iDay + p.iiDays + p.ivDays + p.iWeek}}</td>
+						<td class="">{{(3*p.xxxMinutes) + (5*p.iHour) + (10*p.iiHours) + (15*p.iiiHours) + (20*p.vHours) + (30*p.iDay) + (40*p.iiDays) + (50*p.ivDays) + (60*p.iWeek)}}</td>
+						<td>{{p.xxxMinutes}}/{{3*p.xxxMinutes}}</td>
+						<td>{{p.iHour}}/{{5*p.iHour}}</td>
+						<td>{{p.iiHours}}/{{10*p.iiHours}}</td>
+						<td>{{p.iiiHours}}/{{15*p.iiiHours}}</td>
+						<td>{{p.vHours}}/{{20*p.vHours}}</td>
+						<td>{{p.iDay}}/{{30*p.iDay}}</td>
+						<td>{{p.iiDays}}/{{40*p.iiDays}}</td>
+						<td>{{p.ivDays}}/{{50*p.ivDays}}</td>
+						<td>{{p.iWeek}}/{{60*p.iWeek}}</td>
 					</tr>
 				</table>
+
 
 				<table class="table table-hover table-sm permac-search-results">
 					<tr style="background-color: #404040;">
