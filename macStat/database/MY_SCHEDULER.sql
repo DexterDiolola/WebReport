@@ -7,11 +7,11 @@ BEGIN
 
 INSERT INTO max_table(mac_fk, active, ccq, utiltx, utilrx,
         usagetx, usagerx, lease, uptime, freeMemory, cpuFreq, cpuLoad, freeHdd,
-        badBlock, version, appVersion, gps, dispense, packages, vpnaddr, dateCreated)
+        badBlock, version, appVersion, gps, dispense, packages, vpnaddr, vendoVersion, dateCreated)
             SELECT mac_fk, MAX(active), MAX(ccq), MAX(utiltx),
             MAX(utilrx), MAX(usagetx), MAX(usagerx), MAX(lease), uptime,       
             MAX(freeMemory), MAX(cpuFreq), MAX(cpuLoad), MAX(freeHdd),
-            MAX(badBlock), version, appVersion, gps, dispense, packages, vpnaddr, dateCreated FROM utilizations 
+            MAX(badBlock), version, appVersion, gps, dispense, packages, vpnaddr, vendoVersion, dateCreated FROM utilizations 
             WHERE dateCreated > DATE_SUB(NOW(), INTERVAL 1 DAY)
             GROUP BY DATE(dateCreated), mac_fk;
 
